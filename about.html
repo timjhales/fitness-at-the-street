@@ -181,7 +181,7 @@
       if (_bgW && _bgH) {
         const scale = Math.max(window.innerWidth / _bgW, window.innerHeight / _bgH);
         const maxShift = Math.max(0, _bgH * scale - window.innerHeight);
-        const baseShift = window.innerWidth > 768 ? maxShift * 0.22 : 0;
+        const baseShift = window.innerWidth > 768 ? maxShift * 0.33 : 0;
         const shift = Math.min(baseShift + window.scrollY * 0.3, maxShift);
         pos = `-${shift}px`;
       } else {
