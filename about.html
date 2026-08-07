@@ -173,14 +173,16 @@
     }
 
     // Parallax: background drifts at 30% of scroll speed, clamped to image bounds
+    // Desktop gets a base offset so the gym signage isn't hidden behind the ceiling at the top of the photo
     let _bgW = 0, _bgH = 0;
-    { const i = new Image(); i.onload = () => { _bgW = i.naturalWidth; _bgH = i.naturalHeight; }; i.src = 'Images/indoor_gym.png'; }
+    { const i = new Image(); i.onload = () => { _bgW = i.naturalWidth; _bgH = i.naturalHeight; parallax(); }; i.src = 'Images/indoor_gym.png'; }
     const parallax = () => {
       let pos;
       if (_bgW && _bgH) {
         const scale = Math.max(window.innerWidth / _bgW, window.innerHeight / _bgH);
         const maxShift = Math.max(0, _bgH * scale - window.innerHeight);
-        const shift = Math.min(window.scrollY * 0.3, maxShift);
+        const baseShift = window.innerWidth > 768 ? maxShift * 0.22 : 0;
+        const shift = Math.min(baseShift + window.scrollY * 0.3, maxShift);
         pos = `-${shift}px`;
       } else {
         pos = `${-window.scrollY * 0.3}px`;
@@ -189,6 +191,7 @@
       document.getElementById('header-bg').style.backgroundPositionY = pos;
     };
     window.addEventListener('scroll', parallax, { passive: true });
+    window.addEventListener('resize', parallax);
 
     // Mobile nav overlay
     const navToggle = document.getElementById('nav-toggle');
