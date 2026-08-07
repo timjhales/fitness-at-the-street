@@ -159,28 +159,23 @@
   .social-grid { grid-template-columns: 1fr; }
 }
 
-/* ── Mobile nav (hamburger + full-screen overlay) ── */
+/* ── Mobile nav (Optimus icon + full-screen overlay) ── */
 .nav-toggle {
   display: none;
-  flex-direction: column;
-  justify-content: center;
-  gap: 5px;
-  background: none;
-  border: none;
+  background: url('Images/optimus-icon.png') center / cover no-repeat;
+  border: 2px solid var(--teal-dark);
+  border-radius: 10px;
   cursor: pointer;
-  padding: 12px;
+  padding: 0;
+  width: 42px;
+  height: 42px;
   position: fixed;
-  top: 10px;
+  top: 8px;
   right: 16px;
   z-index: 300;
 }
 .nav-toggle span {
-  display: block;
-  width: 22px;
-  height: 2px;
-  background: #52D4CC;
-  border-radius: 2px;
-  transition: transform 0.3s, opacity 0.3s;
+  display: none;
 }
 
 .nav-overlay {
