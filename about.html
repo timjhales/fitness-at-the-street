@@ -17,10 +17,10 @@
     :root { --teal: #52D4CC; --teal-dark: #2FA39D; --bg: #171715; --text: #f0f0f0; --muted: #bbb; }
     body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
 
-    #bg-image { position: fixed; inset: 0; z-index: -2; background: url('Images/about_gym.png') center top / cover no-repeat; }
+    #bg-image { position: fixed; inset: 0; z-index: -2; background: url('Images/about_gym.jpg') center top / cover no-repeat; }
     #bg-overlay { position: fixed; inset: 0; z-index: -1; background: rgba(23,23,21,0.5); pointer-events: none; }
     #header-cover { position: fixed; top: 0; left: 0; right: 0; height: 160px; z-index: 3; overflow: hidden; pointer-events: none; }
-    #header-bg { position: absolute; top: 0; left: 0; right: 0; height: 100vh; background: url('Images/about_gym.png') center top / cover no-repeat; }
+    #header-bg { position: absolute; top: 0; left: 0; right: 0; height: 100vh; background: url('Images/about_gym.jpg') center top / cover no-repeat; }
     #header-bg::after { content: ''; position: absolute; inset: 0; background: rgba(23,23,21,0.5); }
 
 
@@ -122,7 +122,7 @@
     <div class="bg-content">
 
       <div class="content">
-        <img src="kimandsteve.png" alt="Kim and Steve" class="team-photo">
+        <img src="kimandsteve.jpg" alt="Kim and Steve" class="team-photo">
         <div class="text-col">
           <div class="section-label">Who we are</div>
           <h2 class="section-title">More than just a gym</h2>
@@ -174,7 +174,7 @@
 
     // Parallax: background drifts at 30% of scroll speed, clamped to image bounds
     let _bgW = 0, _bgH = 0;
-    { const i = new Image(); i.onload = () => { _bgW = i.naturalWidth; _bgH = i.naturalHeight; }; i.src = 'Images/about_gym.png'; }
+    { const i = new Image(); i.onload = () => { _bgW = i.naturalWidth; _bgH = i.naturalHeight; }; i.src = 'Images/about_gym.jpg'; }
     const parallax = () => {
       let pos;
       if (_bgW && _bgH) {
