@@ -104,6 +104,31 @@
     .reviews-inline { font-size: 0.75rem; text-decoration: none; white-space: nowrap; animation: reviews-pulse 2.4s ease-in-out infinite; }
     .reviews-inline:hover { animation: none; color: var(--teal); }
 
+    /* ── Google reviews ── */
+    .reviews-section { max-width: 1140px; width: 100%; margin: 0 auto; padding: 8px 32px 8px; flex-shrink: 0; }
+    .reviews-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; margin-bottom: 20px; }
+    .google-btn { display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 10px 16px; text-decoration: none; color: #f0f0f0; transition: background 0.2s, transform 0.15s; }
+    .google-btn:hover { background: rgba(255,255,255,0.1); transform: translateY(-1px); }
+    .google-btn svg.g-icon { width: 20px; height: 20px; flex-shrink: 0; }
+    .google-btn .g-rating { font-weight: 700; font-size: 0.85rem; }
+    .google-btn .g-stars { color: #FBBC05; font-size: 0.8rem; letter-spacing: 1px; }
+    .google-btn .g-count { color: var(--muted); font-size: 0.78rem; }
+
+    .reviews-ticker-wrap { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+    .reviews-ticker { display: flex; gap: 16px; width: max-content; animation: ticker-scroll 55s linear infinite; }
+    .reviews-ticker:hover { animation-play-state: paused; }
+    @keyframes ticker-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .review-card { flex: 0 0 300px; background: rgba(23,23,21,0.88); border: 1px solid rgba(82,212,204,0.2); border-radius: 10px; padding: 18px 20px; }
+    .review-card .review-stars { color: #FBBC05; font-size: 0.75rem; letter-spacing: 2px; margin-bottom: 8px; }
+    .review-card p { color: var(--muted); font-size: 0.85rem; line-height: 1.6; margin-bottom: 12px; }
+    .review-card .review-name { color: var(--text); font-weight: 700; font-size: 0.8rem; }
+    .review-card .review-source { color: var(--teal-dark); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-top: 2px; }
+
+    @media (max-width: 700px) {
+      .reviews-section { padding: 8px 16px 8px; }
+      .review-card { flex-basis: 240px; }
+    }
+
     /* ── Footer ── */
     footer { padding: 24px 32px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; flex-shrink: 0; border-top: 1px solid rgba(255,255,255,0.07); margin-top: auto; }
     footer img.footer-logo { height: 28px; opacity: 0.5; }
@@ -167,6 +192,143 @@
           <p>We have 3 qualified Personal Trainers on site, a variety of classes and an on-demand library — all built around what our members actually want.</p>
         </div>
       </div>
+
+      <!-- ── Google Reviews ── -->
+      <section class="reviews-section">
+        <div class="reviews-header">
+          <div>
+            <div class="section-label">Our Community Says</div>
+            <h2 class="section-title" style="margin-bottom:0;">What members think</h2>
+          </div>
+          <a href="https://www.google.com/maps/place/Fitness+at+The+Street/@52.6196817,1.4341215,17z" class="google-btn" target="_blank">
+            <svg class="g-icon" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+              <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+              <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+              <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+              <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+            </svg>
+            <span class="g-rating">4.9</span>
+            <span class="g-stars">★★★★★</span>
+            <span class="g-count">35 Google reviews</span>
+          </a>
+        </div>
+
+        <div class="reviews-ticker-wrap">
+          <div class="reviews-ticker">
+
+            <div class="review-card">
+              <div class="review-stars">★★★★★</div>
+              <p>"I used this gym for the first time today and honestly couldn't be happier with my experience."</p>
+              <div class="review-name">Jake Grimmer</div>
+              <div class="review-source">Google review</div>
+            </div>
+            <div class="review-card">
+              <div class="review-stars">★★★★★</div>
+              <p>"It has been a real game changer for me — both in terms of fitness and mental health."</p>
+              <div class="review-name">Rob</div>
+              <div class="review-source">Google review</div>
+            </div>
+            <div class="review-card">
+              <div class="review-stars">★★★★★</div>
+              <p>"I brought a persistent hip and shoulder problem, a desperate need to get back into training and lose weight, and raging peri menopause!"</p>
+              <div class="review-name">Dawn B</div>
+              <div class="review-source">Google review</div>
+            </div>
+            <div class="review-card">
+              <div class="review-stars">★★★★★</div>
+              <p>"I have been a member for nearly 2 years now, loving the new space at Brundall. Steve and Kim are very welcoming, knowledgeable, and are always happy to help!"</p>
+              <div class="review-name">Michelle D'Souza</div>
+              <div class="review-source">Google review</div>
+            </div>
+            <div class="review-card">
+              <div class="review-stars">★★★★★</div>
+              <p>"Awesome environment, people are very welcoming and warm. A lot of space, multiple squat, deadlift and bench areas. More than enough free weights."</p>
+              <div class="review-name">Ben Simpson</div>
+              <div class="review-source">Google review</div>
+            </div>
+            <div class="review-card">
+              <div class="review-stars">★★★★★</div>
+              <p>"The best gym in Norfolk by a country mile! Warm, welcoming, knowledgable staff, very reasonably priced and equipment to suit every interest and goal."</p>
+              <div class="review-name">Steven Monsey</div>
+              <div class="review-source">Google review</div>
+            </div>
+            <div class="review-card">
+              <div class="review-stars">★★★★★</div>
+              <p>"Only gym I've been able to stick with. 3 years and counting. It's friendly and welcoming. Classes are always great fun and every ability is catered for."</p>
+              <div class="review-name">Scott Shrubsall</div>
+              <div class="review-source">Google review</div>
+            </div>
+            <div class="review-card">
+              <div class="review-stars">★★★★★</div>
+              <p>"Lovely gym. Very friendly and supportive atmosphere where you feel very comfortable working out. Kim and Steve go above and beyond to help you reach your goals."</p>
+              <div class="review-name">Nicole Joyce</div>
+              <div class="review-source">Google review</div>
+            </div>
+            <div class="review-card">
+              <div class="review-stars">★★★★★</div>
+              <p>"Couldn't rate this PT service and gym any higher. Always good quality of service, goal centred fitness outcomes that really make a personal impact."</p>
+              <div class="review-name">Rebecca Geanty</div>
+              <div class="review-source">Google review</div>
+            </div>
+
+            <div class="review-card" aria-hidden="true">
+              <div class="review-stars">★★★★★</div>
+              <p>"I used this gym for the first time today and honestly couldn't be happier with my experience."</p>
+              <div class="review-name">Jake Grimmer</div>
+              <div class="review-source">Google review</div>
+            </div>
+            <div class="review-card" aria-hidden="true">
+              <div class="review-stars">★★★★★</div>
+              <p>"It has been a real game changer for me — both in terms of fitness and mental health."</p>
+              <div class="review-name">Rob</div>
+              <div class="review-source">Google review</div>
+            </div>
+            <div class="review-card" aria-hidden="true">
+              <div class="review-stars">★★★★★</div>
+              <p>"I brought a persistent hip and shoulder problem, a desperate need to get back into training and lose weight, and raging peri menopause!"</p>
+              <div class="review-name">Dawn B</div>
+              <div class="review-source">Google review</div>
+            </div>
+            <div class="review-card" aria-hidden="true">
+              <div class="review-stars">★★★★★</div>
+              <p>"I have been a member for nearly 2 years now, loving the new space at Brundall. Steve and Kim are very welcoming, knowledgeable, and are always happy to help!"</p>
+              <div class="review-name">Michelle D'Souza</div>
+              <div class="review-source">Google review</div>
+            </div>
+            <div class="review-card" aria-hidden="true">
+              <div class="review-stars">★★★★★</div>
+              <p>"Awesome environment, people are very welcoming and warm. A lot of space, multiple squat, deadlift and bench areas. More than enough free weights."</p>
+              <div class="review-name">Ben Simpson</div>
+              <div class="review-source">Google review</div>
+            </div>
+            <div class="review-card" aria-hidden="true">
+              <div class="review-stars">★★★★★</div>
+              <p>"The best gym in Norfolk by a country mile! Warm, welcoming, knowledgable staff, very reasonably priced and equipment to suit every interest and goal."</p>
+              <div class="review-name">Steven Monsey</div>
+              <div class="review-source">Google review</div>
+            </div>
+            <div class="review-card" aria-hidden="true">
+              <div class="review-stars">★★★★★</div>
+              <p>"Only gym I've been able to stick with. 3 years and counting. It's friendly and welcoming. Classes are always great fun and every ability is catered for."</p>
+              <div class="review-name">Scott Shrubsall</div>
+              <div class="review-source">Google review</div>
+            </div>
+            <div class="review-card" aria-hidden="true">
+              <div class="review-stars">★★★★★</div>
+              <p>"Lovely gym. Very friendly and supportive atmosphere where you feel very comfortable working out. Kim and Steve go above and beyond to help you reach your goals."</p>
+              <div class="review-name">Nicole Joyce</div>
+              <div class="review-source">Google review</div>
+            </div>
+            <div class="review-card" aria-hidden="true">
+              <div class="review-stars">★★★★★</div>
+              <p>"Couldn't rate this PT service and gym any higher. Always good quality of service, goal centred fitness outcomes that really make a personal impact."</p>
+              <div class="review-name">Rebecca Geanty</div>
+              <div class="review-source">Google review</div>
+            </div>
+
+          </div>
+        </div>
+      </section>
 
       <!-- ── Social Wall ── -->
       <section class="social-wall">
