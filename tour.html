@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About — Fitness At The Street</title>
+  <title>Take The Tour — Fitness At The Street</title>
   <link rel="stylesheet" href="styles.css">
-  <meta name="description" content="Meet the team at Fitness At The Street, Brundall. Three qualified personal trainers, a welcoming community gym on the outskirts of Norwich.">
-  <meta property="og:title" content="About Us — Fitness At The Street">
-  <meta property="og:description" content="Meet the team at Fitness At The Street, Brundall. Three qualified personal trainers, a welcoming community gym on the outskirts of Norwich.">
+  <meta name="description" content="Take a virtual tour of Fitness At The Street, Brundall — see the gym floor, equipment and studio space before you visit.">
+  <meta property="og:title" content="Take The Tour — Fitness At The Street">
+  <meta property="og:description" content="Take a virtual tour of Fitness At The Street, Brundall — see the gym floor, equipment and studio space before you visit.">
   <meta property="og:image" content="https://fitnessatthestreet.co.uk/FATSOUTSIDE.jpeg">
-  <meta property="og:url" content="https://fitnessatthestreet.co.uk/about.html">
+  <meta property="og:url" content="https://fitnessatthestreet.co.uk/tour.html">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
   <style>
@@ -17,12 +17,11 @@
     :root { --teal: #52D4CC; --teal-dark: #2FA39D; --bg: #171715; --text: #f0f0f0; --muted: #bbb; }
     body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
 
-    #bg-image { position: fixed; inset: 0; z-index: -2; background: url('Images/about_gym.png') center top / cover no-repeat; }
+    #bg-image { position: fixed; inset: 0; z-index: -2; background: url('Images/square_ducks.png') center top / cover no-repeat; }
     #bg-overlay { position: fixed; inset: 0; z-index: -1; background: rgba(23,23,21,0.5); pointer-events: none; }
     #header-cover { position: fixed; top: 0; left: 0; right: 0; height: 160px; z-index: 3; overflow: hidden; pointer-events: none; }
-    #header-bg { position: absolute; top: 0; left: 0; right: 0; height: 100vh; background: url('Images/about_gym.png') center top / cover no-repeat; }
+    #header-bg { position: absolute; top: 0; left: 0; right: 0; height: 100vh; background: url('Images/square_ducks.png') center top / cover no-repeat; }
     #header-bg::after { content: ''; position: absolute; inset: 0; background: rgba(23,23,21,0.5); }
-
 
     .site-top { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: transparent; }
     header { padding: 4px 32px 0; display: flex; justify-content: center; }
@@ -38,45 +37,25 @@
     .bg-section { position: relative; min-height: 100vh; }
     .bg-content { position: relative; z-index: 2; display: flex; flex-direction: column; min-height: 150vh; }
 
-    .content {
-      width: 100%;
-      padding: 280px 16% 48px;
-      display: grid;
-      grid-template-columns: 480px 1fr;
-      gap: 56px;
-      align-items: start;
-      flex-shrink: 0;
-    }
+    .page-hero { padding: 180px 32px 32px; text-align: center; flex-shrink: 0; }
+    .page-hero h1 { font-size: 2.2rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.05em; }
+    .page-hero h1 em { font-style: normal; color: var(--teal); }
+    .page-hero p { color: var(--muted); max-width: 620px; margin: 14px auto 0; font-size: 0.95rem; line-height: 1.7; }
 
-    @keyframes roll-in {
-      from { transform: translateX(-120vw) rotate(-540deg); opacity: 0; }
-      to   { transform: translateX(0)      rotate(0deg);    opacity: 1; }
-    }
+    .tour-section { max-width: 1000px; width: 100%; margin: 0 auto; padding: 8px 32px 64px; flex-shrink: 0; }
 
-    .team-photo {
-      width: 100%;
-      aspect-ratio: 1;
-      object-fit: cover;
-      border-radius: 50%;
-      display: block;
-      border: 3px solid var(--teal-dark);
-      animation: roll-in 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+    .tour-wrapper {
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(82,212,204,0.25);
+      box-shadow: 0 0 40px rgba(82,212,204,0.1);
     }
+    .tour-wrapper iframe { display: block; width: 100%; height: 500px; border: 0; }
 
     @media (max-width: 700px) {
-      .content { grid-template-columns: 1fr; padding-top: 80px; }
-      header img.logo { width: 85%; }
-      .team-photo { width: 85%; margin: 0 auto; }
+      .tour-section { padding: 8px 16px 48px; }
+      .tour-wrapper iframe { height: 340px; }
     }
-
-    .section-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--teal); margin-bottom: 8px; }
-    h2.section-title { font-size: 1.5rem; font-weight: 800; margin-bottom: 24px; }
-    .text-col p { color: var(--muted); line-height: 1.9; font-size: 0.95rem; margin-bottom: 16px; }
-
-    .btn { display: inline-block; padding: 13px 30px; border-radius: 6px; font-weight: 700; font-size: 0.85rem; text-decoration: none; text-transform: uppercase; letter-spacing: 0.08em; transition: opacity 0.2s, transform 0.1s; }
-    .btn:hover { opacity: 0.88; transform: translateY(-1px); }
-    .btn-primary { background: linear-gradient(135deg, var(--teal) 0%, var(--teal-dark) 100%); color: #171715; }
-    .cta-row { margin-top: 28px; }
 
     footer { padding: 24px 32px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; flex-shrink: 0; border-top: 1px solid rgba(255,255,255,0.07); margin-top: auto; }
     footer img.footer-logo { height: 28px; opacity: 0.5; }
@@ -96,10 +75,10 @@
   <div class="nav-overlay" id="nav-overlay">
     <button class="nav-close" id="nav-close" aria-label="Close menu">&times;</button>
     <a href="index.html">Home</a>
-    <a href="about.html" class="active">About</a>
+    <a href="about.html">About</a>
     <a href="classes.html">Classes</a>
     <a href="instructors.html">Instructors</a>
-    <a href="tour.html">Take The Tour</a>
+    <a href="tour.html" class="active">Take The Tour</a>
     <a href="find-us.html">Find Us</a>
     <a href="https://fitnessatthestreet.trainerize.com/app/login" target="_blank">Member Login</a>
   </div>
@@ -108,10 +87,10 @@
     <header><img src="fats3.png" alt="Fitness At The Street" class="logo"></header>
     <nav>
       <a href="index.html">Home</a>
-      <a href="about.html" class="active">About</a>
+      <a href="about.html">About</a>
       <a href="classes.html">Classes</a>
       <a href="instructors.html">Instructors</a>
-      <a href="tour.html">Take The Tour</a>
+      <a href="tour.html" class="active">Take The Tour</a>
       <a href="find-us.html">Find Us</a>
       <a href="https://fitnessatthestreet.trainerize.com/app/login" target="_blank" class="nav-login">Member Login</a>
     </nav>
@@ -123,19 +102,14 @@
   <div class="bg-section">
     <div class="bg-content">
 
-      <div class="content">
-        <img src="kimandsteve.png" alt="Kim and Steve" class="team-photo">
-        <div class="text-col">
-          <div class="section-label">Who we are</div>
-          <h2 class="section-title">More than just a gym</h2>
-          <p>Fitness at the Street is a community based gym in Brundall on the outskirts of Norwich. We offer all our members both cardio and resistance training, depending on their goals. We take our time to find out what they actually want to achieve, their preferences, niggles — and then provide them with a plan to help them towards that goal.</p>
-          <p>We take pride in our customer service — you won't find this in any big gym! We have 3 qualified Personal Trainers on site, ready and willing to give you any advice, guidance or just to chat to.</p>
-          <p>All our gym members have access to our gym during opening hours, plus we offer a variety of classes from gentle fitness, bootcamp, barbells and clubbercise — plus many more. We listen to our members and change the classes every 3 months reflecting their requests and to get them training in different ways. Our classes are face to face, online and on demand, with a library of previous classes to dip in and out of as and when it suits.</p>
-          <p>Our Personal Trainers are qualified in a variety of training methods and offer online, 1-2-1, and small group sessions. We have helped clients achieve fat loss, strength and muscular gains, and prepare for events including Strongman, 10K, Triathlons, Marathons, Powerlifting competitions and much more.</p>
-          <p>Most importantly, we will provide you with the support and motivation you need to hit your target — plus have bags of fun along the way. This is your first step in your journey to a fitter you.</p>
-          <div class="cta-row">
-            <a href="https://www.trainerize.me/profile/fitnessatthestreet" class="btn btn-primary" target="_blank">Book a Session</a>
-          </div>
+      <div class="page-hero">
+        <h1>Take The <em>Tour</em></h1>
+        <p>Have a look around the gym floor before you visit — drag to look around, scroll to move through the space.</p>
+      </div>
+
+      <div class="tour-section">
+        <div class="tour-wrapper">
+          <iframe src="https://matterport.com" width="100%" height="500px" allowfullscreen allow="xr-spatial-tracking"></iframe>
         </div>
       </div>
 
@@ -176,7 +150,7 @@
 
     // Parallax: background drifts at 30% of scroll speed, clamped to image bounds
     let _bgW = 0, _bgH = 0;
-    { const i = new Image(); i.onload = () => { _bgW = i.naturalWidth; _bgH = i.naturalHeight; }; i.src = 'Images/about_gym.png'; }
+    { const i = new Image(); i.onload = () => { _bgW = i.naturalWidth; _bgH = i.naturalHeight; }; i.src = 'Images/square_ducks.png'; }
     const parallax = () => {
       let pos;
       if (_bgW && _bgH) {
