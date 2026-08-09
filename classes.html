@@ -209,31 +209,7 @@
 
       <!-- Class cards -->
       <div class="cards-section">
-        <div class="cards-grid">
-
-          <!-- Monday -->
-          <div class="class-card"><img src="Images/classes/circuitclass.jpg" alt="Circuit Training"></div>
-          <div class="class-card"><img src="Images/classes/reloadedclass.jpg" alt="Decades Reloaded"></div>
-
-          <!-- Tuesday -->
-          <div class="class-card"><img src="Images/classes/kettleclass.jpg" alt="Kettlebells"></div>
-
-          <!-- Wednesday -->
-          <div class="class-card"><img src="Images/classes/yogaclass.jpg" alt="Yoga"></div>
-          <div class="class-card"><img src="Images/classes/powerhausclass.jpg" alt="Powerhaus"></div>
-          <div class="class-card"><img src="Images/classes/irongiantsclass.jpg" alt="Iron Giants Barbell Club"></div>
-
-          <!-- Thursday -->
-          <div class="class-card"><img src="Images/classes/HIITCLASS.jpg" alt="HIIT"></div>
-          <div class="class-card"><img src="Images/classes/barclass.jpg" alt="Bar Attax"></div>
-
-          <!-- Friday -->
-          <div class="class-card"><img src="Images/classes/gripclass.jpg" alt="Get A Grip"></div>
-
-          <!-- Saturday -->
-          <div class="class-card"><img src="Images/classes/bootcampclass.jpg" alt="Bootcamp"></div>
-
-        </div>
+        <div class="cards-grid" id="cards-grid"></div>
       </div>
 
       <!-- Compact timetable -->
@@ -248,38 +224,7 @@
                 <th>Instructor</th>
               </tr>
             </thead>
-            <tbody>
-              <tr class="day-header"><td colspan="3">Monday</td></tr>
-              <tr><td class="time-cell">12:00</td><td><span class="class-name">Pilates</span></td><td>Nikki</td></tr>
-              <tr><td class="time-cell">13:00</td><td><span class="class-name">Gentle Circuits</span></td><td>—</td></tr>
-              <tr><td class="time-cell">17:30</td><td><span class="class-name">Circuit Training</span></td><td>—</td></tr>
-              <tr><td class="time-cell">18:30</td><td><span class="class-name">Circuit Training</span></td><td>—</td></tr>
-              <tr><td class="time-cell">Eve</td><td><span class="class-name">Decades Reloaded</span></td><td>—</td></tr>
-
-              <tr class="day-header"><td colspan="3">Tuesday</td></tr>
-              <tr><td class="time-cell">17:30</td><td><span class="class-name">Fundamentals in Kettlebells</span></td><td>—</td></tr>
-              <tr><td class="time-cell">18:30</td><td><span class="class-name">Kettlebell Burn</span></td><td>—</td></tr>
-
-              <tr class="day-header"><td colspan="3">Wednesday</td></tr>
-              <tr><td class="time-cell">09:30</td><td><span class="class-name">Yoga</span></td><td>Kim</td></tr>
-              <tr><td class="time-cell">17:30</td><td><span class="class-name">Powerhaus</span></td><td>—</td></tr>
-              <tr><td class="time-cell">18:30</td><td><span class="class-name">Iron Giants Barbell Club</span></td><td>—</td></tr>
-              <tr><td class="time-cell">19:30</td><td><span class="class-name">Powerhaus</span></td><td>—</td></tr>
-
-              <tr class="day-header"><td colspan="3">Thursday</td></tr>
-              <tr><td class="time-cell">10:00</td><td><span class="class-name">Gentle Fitness Lingwood</span></td><td>—</td></tr>
-              <tr><td class="time-cell">17:30</td><td><span class="class-name">HIIT</span></td><td>—</td></tr>
-              <tr><td class="time-cell">18:00</td><td><span class="class-name">HIIT</span></td><td>—</td></tr>
-              <tr><td class="time-cell">18:30</td><td><span class="class-name">Bar Attax</span></td><td>—</td></tr>
-
-              <tr class="day-header"><td colspan="3">Friday</td></tr>
-              <tr><td class="time-cell">09:30</td><td><span class="class-name">Iron Giants Barbell Club</span></td><td>—</td></tr>
-              <tr><td class="time-cell">14:00</td><td><span class="class-name">Get A Grip</span></td><td>—</td></tr>
-              <tr><td class="time-cell">18:00</td><td><span class="class-name">Iron Giants Barbell Club</span></td><td>—</td></tr>
-
-              <tr class="day-header"><td colspan="3">Saturday</td></tr>
-              <tr><td class="time-cell">08:30</td><td><span class="class-name">Bootcamp</span></td><td>Steve</td></tr>
-            </tbody>
+            <tbody id="timetable-body"></tbody>
           </table>
         </div>
       </div>
@@ -322,6 +267,35 @@
     if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
       document.querySelectorAll('.nav-login').forEach(l => l.removeAttribute('target'));
     }
+
+    // Class images and weekly schedule are managed from /admin — fetch and render them here
+    (async function loadClassContent() {
+      try {
+        const images = await (await fetch('/api/class-images')).json();
+        const grid = document.getElementById('cards-grid');
+        grid.innerHTML = images.map((item) =>
+          `<div class="class-card"><img src="${item.src}" alt="${item.alt || item.slotLabel || ''}"></div>`
+        ).join('');
+      } catch (e) { /* leave grid empty on failure */ }
+
+      try {
+        const schedule = await (await fetch('/api/schedule')).json();
+        const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+        const byDay = {};
+        schedule.forEach((row) => { (byDay[row.day] = byDay[row.day] || []).push(row); });
+
+        let html = '';
+        days.forEach((day) => {
+          const rows = byDay[day];
+          if (!rows || rows.length === 0) return;
+          html += `<tr class="day-header"><td colspan="3">${day}</td></tr>`;
+          rows.forEach((row) => {
+            html += `<tr><td class="time-cell">${row.time || ''}</td><td><span class="class-name">${row.className || ''}</span></td><td>${row.instructor || '—'}</td></tr>`;
+          });
+        });
+        document.getElementById('timetable-body').innerHTML = html;
+      } catch (e) { /* leave timetable empty on failure */ }
+    })();
 
     // Parallax: background drifts at 30% of scroll speed, clamped to image bounds
     let _bgW = 0, _bgH = 0;

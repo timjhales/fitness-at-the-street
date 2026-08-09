@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login — Fitness At The Street</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+  <div class="login-wrap">
+    <div class="login-card">
+      <img src="../fats3.png" alt="Fitness At The Street" class="logo">
+      <h1>Admin Login</h1>
+      <form id="login-form">
+        <div class="field">
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" autocomplete="username" required>
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" autocomplete="current-password" required>
+        </div>
+        <button type="submit" class="btn btn-primary" id="login-btn">Log In</button>
+        <div class="login-error" id="login-error"></div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('login-form');
+    const btn = document.getElementById('login-btn');
+    const errorEl = document.getElementById('login-error');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      errorEl.textContent = '';
+      btn.disabled = true;
+      btn.textContent = 'Logging in…';
+
+      try {
+        const res = await fetch('/api/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            username: document.getElementById('username').value.trim(),
+            password: document.getElementById('password').value,
+          }),
+        });
+        const data = await res.json();
+        if (!res.ok) {
+          errorEl.textContent = data.error || 'Login failed';
+          btn.disabled = false;
+          btn.textContent = 'Log In';
+          return;
+        }
+        window.location.href = 'index.html';
+      } catch (err) {
+        errorEl.textContent = 'Something went wrong — try again.';
+        btn.disabled = false;
+        btn.textContent = 'Log In';
+      }
+    });
+  </script>
+</body>
+</html>

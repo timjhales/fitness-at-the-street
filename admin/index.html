@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard — Fitness At The Street</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+  <div class="admin-top">
+    <img src="../fats3.png" alt="Fitness At The Street" class="logo">
+    <div class="admin-user">
+      <span>Logged in as <strong id="whoami">…</strong></span>
+      <button class="btn btn-outline btn-small" id="logout-btn">Log Out</button>
+    </div>
+  </div>
+
+  <div class="admin-tabs">
+    <button class="admin-tab active" data-tab="classes">Classes</button>
+    <button class="admin-tab" data-tab="schedule">Schedule</button>
+    <button class="admin-tab" data-tab="tiles">Homepage Tiles</button>
+    <button class="admin-tab" data-tab="log">Activity Log</button>
+  </div>
+
+  <div class="admin-main">
+
+    <!-- ── Classes ── -->
+    <section class="admin-section active" id="section-classes">
+      <h2>Class Images</h2>
+      <p class="hint">These are the 10 photos shown on the Classes page. Replace any of them, or edit the label.</p>
+      <div class="slot-grid" id="classes-grid"></div>
+      <button class="btn btn-primary" id="classes-save">Save Changes</button>
+    </section>
+
+    <!-- ── Schedule ── -->
+    <section class="admin-section" id="section-schedule">
+      <h2>Weekly Schedule</h2>
+      <p class="hint">Edit, add or remove classes. Rows are grouped by day on the live site regardless of the order here.</p>
+      <div class="panel">
+        <table class="editable" id="schedule-table">
+          <thead>
+            <tr><th style="width:120px">Day</th><th style="width:100px">Time</th><th>Class</th><th style="width:140px">Instructor</th><th></th></tr>
+          </thead>
+          <tbody id="schedule-tbody"></tbody>
+        </table>
+        <button class="btn btn-outline btn-small" id="schedule-add-row">+ Add Row</button>
+      </div>
+      <button class="btn btn-primary" id="schedule-save">Save Changes</button>
+    </section>
+
+    <!-- ── Tiles ── -->
+    <section class="admin-section" id="section-tiles">
+      <h2>Homepage "Follow Our Journey" Tiles</h2>
+      <p class="hint">Upload a photo/video or paste a URL for each tile, set where it links to, and reorder with the arrows.</p>
+      <div id="tiles-list"></div>
+      <button class="btn btn-outline btn-small" id="tiles-add" style="margin-bottom:16px;">+ Add Tile</button>
+      <br>
+      <button class="btn btn-primary" id="tiles-save">Save Changes</button>
+    </section>
+
+    <!-- ── Activity Log ── -->
+    <section class="admin-section" id="section-log">
+      <h2>Activity Log</h2>
+      <p class="hint">Recent changes made from this admin panel.</p>
+      <div class="panel" id="log-list"></div>
+    </section>
+
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ── Auth check ──
+    let CURRENT_USER = null;
+    (async function checkAuth() {
+      const res = await fetch('/api/me');
+      if (!res.ok) { window.location.href = 'login.html'; return; }
+      CURRENT_USER = await res.json();
+      document.getElementById('whoami').textContent = CURRENT_USER.displayName;
+    })();
+
+    document.getElementById('logout-btn').addEventListener('click', async () => {
+      await fetch('/api/logout', { method: 'POST' });
+      window.location.href = 'login.html';
+    });
+
+    // ── Toast ──
+    function toast(msg, isError) {
+      const el = document.getElementById('toast');
+      el.textContent = msg;
+      el.className = 'toast show' + (isError ? ' error' : '');
+      setTimeout(() => { el.className = 'toast'; }, 2600);
+    }
+
+    // ── Tabs ──
+    document.querySelectorAll('.admin-tab').forEach((tab) => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.admin-tab').forEach((t) => t.classList.remove('active'));
+        document.querySelectorAll('.admin-section').forEach((s) => s.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById('section-' + tab.dataset.tab).classList.add('active');
+      });
+    });
+
+    // ── Upload helper ──
+    async function uploadFile(file) {
+      const fd = new FormData();
+      fd.append('file', file);
+      const res = await fetch('/api/upload', { method: 'POST', body: fd });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Upload failed');
+      return data.src;
+    }
+
+    function isVideoSrc(src) { return /\.mp4($|\?)/i.test(src || ''); }
+
+    // ============================================================
+    // CLASSES
+    // ============================================================
+    let classImages = [];
+
+    async function loadClassImages() {
+      classImages = await (await fetch('/api/class-images')).json();
+      renderClassImages();
+    }
+
+    function renderClassImages() {
+      const grid = document.getElementById('classes-grid');
+      grid.innerHTML = '';
+      classImages.forEach((item, i) => {
+        const card = document.createElement('div');
+        card.className = 'slot-card';
+        card.innerHTML = `
+          <img src="${item.src}" alt="${item.alt || ''}">
+          <div class="slot-body">
+            <label>Label</label>
+            <input type="text" value="${item.slotLabel || ''}" data-field="slotLabel">
+            <label>Replace Image</label>
+            <input type="file" accept="image/*" data-field="upload">
+          </div>
+        `;
+        const img = card.querySelector('img');
+        card.querySelector('[data-field=slotLabel]').addEventListener('input', (e) => {
+          classImages[i].slotLabel = e.target.value;
+          classImages[i].alt = e.target.value;
+        });
+        card.querySelector('[data-field=upload]').addEventListener('change', async (e) => {
+          const file = e.target.files[0];
+          if (!file) return;
+          try {
+            const src = await uploadFile(file);
+            classImages[i].src = src;
+            img.src = src;
+            toast('Image uploaded — remember to Save Changes');
+          } catch (err) {
+            toast(err.message, true);
+          }
+        });
+        grid.appendChild(card);
+      });
+    }
+
+    document.getElementById('classes-save').addEventListener('click', async () => {
+      const res = await fetch('/api/class-images', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(classImages),
+      });
+      if (res.ok) toast('Class images saved'); else toast('Save failed', true);
+    });
+
+    // ============================================================
+    // SCHEDULE
+    // ============================================================
+    let schedule = [];
+    const DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+
+    async function loadSchedule() {
+      schedule = await (await fetch('/api/schedule')).json();
+      renderSchedule();
+    }
+
+    function renderSchedule() {
+      const tbody = document.getElementById('schedule-tbody');
+      tbody.innerHTML = '';
+      schedule.forEach((row, i) => {
+        const tr = document.createElement('tr');
+        const daySelect = DAYS.map((d) => `<option value="${d}" ${d === row.day ? 'selected' : ''}>${d}</option>`).join('');
+        tr.innerHTML = `
+          <td><select data-field="day">${daySelect}</select></td>
+          <td><input type="text" value="${row.time || ''}" data-field="time"></td>
+          <td><input type="text" value="${row.className || ''}" data-field="className"></td>
+          <td><input type="text" value="${row.instructor || ''}" data-field="instructor"></td>
+          <td class="actions"><button class="btn btn-danger btn-small" data-action="delete">Delete</button></td>
+        `;
+        tr.querySelectorAll('[data-field]').forEach((el) => {
+          el.addEventListener('input', () => { schedule[i][el.dataset.field] = el.value; });
+          el.addEventListener('change', () => { schedule[i][el.dataset.field] = el.value; });
+        });
+        tr.querySelector('[data-action=delete]').addEventListener('click', () => {
+          schedule.splice(i, 1);
+          renderSchedule();
+        });
+        tbody.appendChild(tr);
+      });
+    }
+
+    document.getElementById('schedule-add-row').addEventListener('click', () => {
+      schedule.push({ day: 'Monday', time: '', className: '', instructor: '—' });
+      renderSchedule();
+    });
+
+    document.getElementById('schedule-save').addEventListener('click', async () => {
+      const res = await fetch('/api/schedule', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(schedule),
+      });
+      if (res.ok) toast('Schedule saved'); else toast('Save failed', true);
+    });
+
+    // ============================================================
+    // TILES
+    // ============================================================
+    let tiles = [];
+
+    async function loadTiles() {
+      tiles = await (await fetch('/api/tiles')).json();
+      renderTiles();
+    }
+
+    function renderTiles() {
+      const list = document.getElementById('tiles-list');
+      list.innerHTML = '';
+      tiles.forEach((tile, i) => {
+        const row = document.createElement('div');
+        row.className = 'tile-row';
+        const mediaTag = tile.type === 'video'
+          ? `<video src="${tile.src || ''}" muted></video>`
+          : `<img src="${tile.src || ''}" alt="${tile.alt || ''}">`;
+        row.innerHTML = `
+          ${mediaTag}
+          <div class="tile-fields">
+            <div><label>Type</label>
+              <select data-field="type">
+                <option value="image" ${tile.type === 'image' ? 'selected' : ''}>Image</option>
+                <option value="video" ${tile.type === 'video' ? 'selected' : ''}>Video</option>
+              </select>
+            </div>
+            <div><label>Platform</label>
+              <select data-field="platform">
+                <option value="instagram" ${tile.platform === 'instagram' ? 'selected' : ''}>Instagram</option>
+                <option value="facebook" ${tile.platform === 'facebook' ? 'selected' : ''}>Facebook</option>
+                <option value="other" ${tile.platform === 'other' ? 'selected' : ''}>Other</option>
+              </select>
+            </div>
+            <div class="full"><label>Source (upload a file, or edit the URL directly)</label>
+              <input type="text" value="${tile.src || ''}" data-field="src">
+              <input type="file" accept="image/*,video/mp4" data-field="upload" style="margin-top:6px;">
+            </div>
+            <div class="full"><label>Link (where the tile goes when clicked)</label>
+              <input type="text" value="${tile.link || ''}" data-field="link">
+            </div>
+            <div class="full"><label>Alt text</label>
+              <input type="text" value="${tile.alt || ''}" data-field="alt">
+            </div>
+          </div>
+          <div class="tile-actions">
+            <button class="btn btn-outline btn-small" data-action="up">↑ Up</button>
+            <button class="btn btn-outline btn-small" data-action="down">↓ Down</button>
+            <button class="btn btn-danger btn-small" data-action="remove">Remove</button>
+          </div>
+        `;
+        const media = row.querySelector('img, video');
+        row.querySelectorAll('[data-field]:not([data-field=upload])').forEach((el) => {
+          el.addEventListener('input', () => {
+            tiles[i][el.dataset.field] = el.value;
+            if (el.dataset.field === 'src') { media.setAttribute('src', el.value); }
+          });
+          el.addEventListener('change', () => { tiles[i][el.dataset.field] = el.value; });
+        });
+        row.querySelector('[data-field=upload]').addEventListener('change', async (e) => {
+          const file = e.target.files[0];
+          if (!file) return;
+          try {
+            const src = await uploadFile(file);
+            tiles[i].src = src;
+            row.querySelector('[data-field=src]').value = src;
+            media.setAttribute('src', src);
+            toast('File uploaded — remember to Save Changes');
+          } catch (err) {
+            toast(err.message, true);
+          }
+        });
+        row.querySelector('[data-action=up]').addEventListener('click', () => {
+          if (i === 0) return;
+          [tiles[i - 1], tiles[i]] = [tiles[i], tiles[i - 1]];
+          renderTiles();
+        });
+        row.querySelector('[data-action=down]').addEventListener('click', () => {
+          if (i === tiles.length - 1) return;
+          [tiles[i + 1], tiles[i]] = [tiles[i], tiles[i + 1]];
+          renderTiles();
+        });
+        row.querySelector('[data-action=remove]').addEventListener('click', () => {
+          tiles.splice(i, 1);
+          renderTiles();
+        });
+        list.appendChild(row);
+      });
+    }
+
+    document.getElementById('tiles-add').addEventListener('click', () => {
+      tiles.push({ type: 'image', src: '', link: '', platform: 'instagram', alt: '' });
+      renderTiles();
+    });
+
+    document.getElementById('tiles-save').addEventListener('click', async () => {
+      const res = await fetch('/api/tiles', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(tiles),
+      });
+      if (res.ok) toast('Tiles saved'); else toast('Save failed', true);
+    });
+
+    // ============================================================
+    // ACTIVITY LOG
+    // ============================================================
+    async function loadLog() {
+      const log = await (await fetch('/api/audit-log')).json();
+      const list = document.getElementById('log-list');
+      if (log.length === 0) {
+        list.innerHTML = '<p class="hint">No activity yet.</p>';
+        return;
+      }
+      list.innerHTML = log.map((entry) => `
+        <div class="log-row">
+          <span class="log-time">${new Date(entry.timestamp).toLocaleString('en-GB')}</span>
+          <span class="log-user">${entry.username}</span>
+          <span>${entry.summary}</span>
+        </div>
+      `).join('');
+    }
+
+    // ── Init ──
+    loadClassImages();
+    loadSchedule();
+    loadTiles();
+    loadLog();
+  </script>
+</body>
+</html>
