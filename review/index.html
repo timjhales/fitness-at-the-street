@@ -47,22 +47,22 @@
   @media (max-width: 900px) { .audit-grid { grid-template-columns: 1fr; } }
 
   /* ── Tabs ── */
-  .tab-switcher { display: flex; justify-content: center; gap: 4px; padding: 16px 24px; background: #fff; border-bottom: 2px solid #111; flex-wrap: wrap; }
+  .tab-switcher { display: flex; justify-content: center; gap: 4px; padding: 16px 24px; background: #fff; border-bottom: 2px solid #111; flex-wrap: wrap; position: sticky; top: 0; z-index: 200; }
   .tab-btn { padding: 11px 22px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; background: #eee; border: 1px solid #ccc; cursor: pointer; color: #666; font-family: inherit; }
   .tab-btn:hover { background: #e2e2e2; }
   .tab-btn.active { background: #111; color: #fff; border-color: #111; }
   .tab-panel { display: none; }
   .tab-panel.active { display: block; }
 
-  /* ── Overview diagram ── */
-  .diagram-flow { display: flex; flex-direction: column; align-items: center; gap: 4px; }
-  .diagram-box { border: 2px solid #111; background: #fff; padding: 14px 22px; text-align: center; border-radius: 6px; max-width: 560px; width: 100%; }
-  .diagram-box.existing { border-style: dashed; border-color: #999; color: #666; }
-  .diagram-arrow-down { font-size: 1.3rem; color: #bbb; padding: 2px 0; }
-  .diagram-fork-row { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; max-width: 900px; }
-  .diagram-fork-box { border: 1px solid #ccc; background: #fff; padding: 10px 14px; font-size: 0.78rem; max-width: 170px; text-align: left; }
-  .diagram-fork-box h4 { font-size: 0.75rem; margin-bottom: 4px; }
-  .diagram-fork-box p { font-size: 0.7rem; color: #666; }
+  /* ── Overview diagram: funnel ── */
+  .funnel { display: flex; flex-direction: column; align-items: center; }
+  .funnel-stage { background: #111; color: #fff; padding: 14px 20px; text-align: center; margin: 0 auto 3px; border-radius: 4px; }
+  .funnel-stage .funnel-tag { display: block; font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #aaa; margin-bottom: 4px; }
+  .funnel-stage strong { font-size: 0.9rem; font-weight: 700; }
+  .funnel-personas { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin: 8px 0 3px; width: 58%; }
+  .funnel-personas span { flex: 1; min-width: 90px; border: 1px solid #ccc; background: #fff; color: #444; padding: 8px 6px; font-size: 0.68rem; font-weight: 700; text-align: center; border-radius: 3px; }
+  .funnel-personas span.highlight { border-color: #111; border-width: 2px; color: #111; }
+  @media (max-width: 700px) { .funnel-stage, .funnel-personas { width: 100% !important; } .funnel-personas span { min-width: 70px; } }
 
   /* ── Placeholder blocks ── */
   .placeholder {
@@ -82,7 +82,7 @@
   .subhead { color: #555; font-size: 0.95rem; max-width: 620px; margin-bottom: 24px; }
 
   /* ── Header ── */
-  header.site-header { border-bottom: 1px solid #ddd; background: #fff; }
+  header.site-header { border-bottom: 1px solid #ddd; background: #fff; position: sticky; top: 68px; z-index: 150; }
   .header-row { max-width: 1100px; margin: 0 auto; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
   .logo-placeholder { border: 1px dashed #999; padding: 10px 22px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: #777; }
   nav.main-nav { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; font-size: 0.82rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
@@ -784,40 +784,34 @@
   <h2 class="headline" style="text-align:center;">The whole concept, at a glance</h2>
   <p class="subhead" style="margin:0 auto 36px; text-align:center;">No detail here — just the shape of the idea. See the other two tabs for the full reasoning behind each part.</p>
 
-  <div class="diagram-flow">
-    <div class="diagram-box existing">
-      <strong>Existing site — stays as-is</strong><br>
-      <span style="font-size:0.78rem; color:#777;">Home · About · Classes · Instructors · Snowling Stones · Take The Tour · Find Us</span>
+  <div class="funnel">
+    <div class="funnel-stage" style="width:100%;">
+      <span class="funnel-tag">Awareness</span>
+      <strong>Existing site, ads, word of mouth, walking past</strong>
     </div>
-    <div class="diagram-arrow-down">↓</div>
-    <div class="diagram-box" style="border-style:dashed;">
-      <strong>3 new ways in</strong><br>
-      <span style="font-size:0.78rem; color:#777;">Homepage banner · nav item · QR code on signage</span>
+    <div class="funnel-stage" style="width:86%;">
+      <span class="funnel-tag">Entry points (new)</span>
+      <strong>Homepage banner · Nav item · QR code</strong>
     </div>
-    <div class="diagram-arrow-down">↓</div>
-    <div class="diagram-box">
-      <strong>/start-here — new page</strong>
+    <div class="funnel-stage" style="width:72%;">
+      <span class="funnel-tag">Landing</span>
+      <strong>/start-here</strong>
     </div>
-    <div class="diagram-arrow-down">↓</div>
-    <div class="diagram-box">
-      <strong>"Which best describes you?"</strong><br>
-      <span style="font-size:0.78rem; color:#777;">The router — sits right after the hero</span>
-    </div>
-    <div class="diagram-arrow-down">↓</div>
-
-    <div class="diagram-fork-row">
-      <div class="diagram-fork-box"><h4>New to training</h4><p>Full reassurance tone, guided by Trainerize</p></div>
-      <div class="diagram-fork-box"><h4>Getting back into it</h4><p>Own pace, PT support offered</p></div>
-      <div class="diagram-fork-box"><h4>Already train</h4><p>Balanced view, both paths shown</p></div>
-      <div class="diagram-fork-box" style="border-color:#111; border-width:2px;"><h4>Experienced / specialist</h4><p>Equipment &amp; coaching, self-guided, no app pushed</p></div>
-      <div class="diagram-fork-box"><h4>Not sure</h4><p>Straight to "Get In Touch"</p></div>
+    <div class="funnel-stage" style="width:58%;">
+      <span class="funnel-tag">Segmentation</span>
+      <strong>"Which best describes you?"</strong>
     </div>
 
-    <div class="diagram-arrow-down">↓ all paths lead to ↓</div>
-    <div class="diagram-box">
+    <div class="funnel-personas">
+      <span>New</span><span>Back Into It</span><span>Already Train</span><span class="highlight">Specialist</span><span>Not Sure</span>
+    </div>
+
+    <div class="funnel-stage" style="width:30%;">
+      <span class="funnel-tag">Conversion</span>
       <strong>JOIN</strong>
     </div>
   </div>
+  <p style="font-size:0.75rem; color:#999; margin-top:14px;">Full detail on what's bespoke per persona is on the Start Here tab — this is deliberately just the shape.</p>
 
   <div style="text-align:left; margin-top:48px; border-top:1px solid #ddd; padding-top:28px;">
     <h3 style="font-size:0.95rem; margin-bottom:14px;">Existing site — quick status</h3>
