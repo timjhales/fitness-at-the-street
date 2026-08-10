@@ -105,6 +105,15 @@
   .journey-step h3 { font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.03em; margin-bottom: 6px; }
   .journey-step p { font-size: 0.78rem; color: #555; }
   .journey-arrow { display: flex; align-items: center; font-size: 1.4rem; color: #bbb; padding: 0 2px; }
+  .journey-fork-label { text-align: center; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #777; margin: 18px 0 10px; }
+  .journey-fork { display: flex; gap: 16px; }
+  .journey-fork .journey-step { flex: 1; border-width: 2px; }
+  .journey-fork .journey-step.path-self { border-color: #111; }
+  .journey-fork .journey-step.path-trainerize { border-color: #999; }
+  .journey-path-tag { display: block; font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #777; margin-bottom: 4px; }
+  .journey-converge-label { text-align: center; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #777; margin: 10px 0; }
+  .journey-final { max-width: 340px; margin: 0 auto; }
+  @media (max-width: 700px) { .journey-fork { flex-direction: column; } }
   .first-visit-link { display: inline-block; margin-top: 18px; font-weight: 700; font-size: 0.85rem; text-decoration: underline; }
 
   /* ── Trainerize ── */
@@ -470,22 +479,38 @@
   <div class="journey">
     <div class="journey-step"><span class="step-num">01</span><h3>Get In Touch</h3><p>Tell us what you're looking for — including a straight answer on pricing for your situation.</p></div>
     <div class="journey-arrow">→</div>
-    <div class="journey-step"><span class="step-num">02</span><h3>Meet The Team</h3><p>Talk through your goals and experience.</p></div>
+    <div class="journey-step"><span class="step-num">02</span><h3>Induction</h3><p>Show you around — the space, the equipment, how things work, safety basics.</p></div>
     <div class="journey-arrow">→</div>
-    <div class="journey-step"><span class="step-num">03</span><h3>Get Your Programme</h3><p>Get training appropriate to your goals and ability.</p></div>
-    <div class="journey-arrow">→</div>
-    <div class="journey-step"><span class="step-num">04</span><h3>Get Started With Trainerize</h3><p>Access your workouts through the app.</p></div>
-    <div class="journey-arrow">→</div>
-    <div class="journey-step"><span class="step-num">05</span><h3>Train &amp; Progress</h3><p>Train, track your workouts and see your progress.</p></div>
+    <div class="journey-step"><span class="step-num">03</span><h3>Discuss Your Approach</h3><p>Talk through your goals, experience and how you like to train.</p></div>
   </div>
+
+  <div class="journey-fork-label">↓ Then choose your path ↓</div>
+  <div class="journey-fork">
+    <div class="journey-step path-self">
+      <span class="journey-path-tag">For experienced / self-directed lifters</span>
+      <span class="step-num">04a</span><h3>Self-Guided</h3>
+      <p>Train independently with your own programme. No app, no set plan required.</p>
+    </div>
+    <div class="journey-step path-trainerize">
+      <span class="journey-path-tag">For guided / programme-based training</span>
+      <span class="step-num">04b</span><h3>Get Started With Trainerize</h3>
+      <p>Get a programme built for you, delivered through the Trainerize app.</p>
+    </div>
+  </div>
+
+  <div class="journey-converge-label">↓ Both paths continue to ↓</div>
+  <div class="journey-final">
+    <div class="journey-step"><span class="step-num">05</span><h3>Train &amp; Progress</h3><p>Train, track your workouts — through the app or however suits you — and see your progress.</p></div>
+  </div>
+
   <a class="first-visit-link">What to expect on your first visit →</a>
   <div class="confirm-note">
     <span class="note-label">Needs confirmation</span>
-    These five steps are a proposed structure, not a documented process. Please confirm what actually happens at each stage — is "Meet The Team" a call, a consultation, a walk-in chat? Is there any kind of induction or assessment? Nothing beyond what's shown here has been invented, but the real detail behind each step needs your input before this goes further.
+    This is a proposed structure, not a documented process. Please confirm what actually happens at each stage — is "Get In Touch" a call, form, or walk-in? Does the Induction step match what actually happens? Nothing beyond what's shown here has been invented, but the real detail behind each step needs your input before this goes further.
   </div>
-  <div class="confirm-note">
-    <span class="note-label">Added by Tim, not in the original brief</span>
-    Steps 03 and 04 assume everyone gets a programme through Trainerize — but the new "I'm An Experienced Lifter" persona above explicitly doesn't want that. Worth deciding whether this journey needs a visible branch/note for self-directed members, or whether that's handled elsewhere (e.g. at the "Get In Touch" stage).
+  <div class="note">
+    <span class="note-label">Reviewer note — resolves an earlier gap</span>
+    This now includes an explicit Induction step and a Discuss Your Approach step, and forks into a Self-Guided path alongside the Trainerize path — so the "I'm An Experienced Lifter" persona (Section 3 above) has a visible, named route through the journey rather than being an exception to a Trainerize-only process.
   </div>
 </section>
 
@@ -705,7 +730,8 @@
     <li>Does the gym already have a tagline you use, rather than "Train Hard. Feel Strong. Belong." (Tim's placeholder, not yet confirmed)?</li>
     <li>What should JOIN actually do — a sign-up form, a Trainerize flow, a booking, or the same contact route as "Ask Us A Question"?</li>
     <li>Does the proposed pricing plan work — headline price on the Section 2 cards, full pricing confirmed at "Get In Touch"? Only Personal Training's real figure is still outstanding.</li>
-    <li>Does the new "I'm An Experienced Lifter" persona feel right, and does the joining journey need to acknowledge self-directed members separately?</li>
+    <li>Does the new "I'm An Experienced Lifter" persona feel right, and does the Self-Guided vs Trainerize fork in the joining journey represent that correctly?</li>
+    <li>Is "Induction" the right word/step, and does it happen where shown (Step 02, before goals are discussed)?</li>
   </ol>
   <div class="closing-quote">
     "Yes, that's actually what we offer and that's how we want new members to experience us."
