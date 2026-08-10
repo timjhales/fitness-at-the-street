@@ -223,21 +223,23 @@
     </div>
 
     <div class="audit-card">
-      <h3>Virtual Tour <span class="status-badge status-partial">Partially built</span></h3>
+      <h3>Virtual Tour <span class="status-badge status-built">Built — original ask superseded</span></h3>
       <div class="label-row">Why it exists</div>
       <p>Let people see the gym before they visit — reduces the intimidation of walking in somewhere unfamiliar.</p>
-      <div class="label-row">What's missing</div>
-      <p>The self-guided Matterport 3D tour is live. The "book a tour" option Kim and Steve asked for — a guided walkthrough, either professionally shot or phone + gimbal with commentary — hasn't been built.</p>
+      <div class="label-row">How the original ask changed</div>
+      <p>Kim and Steve originally asked for a "book a tour" option — a guided walkthrough, either professionally shot or phone + gimbal with commentary. Matterport's free tier made a full self-guided 3D scan achievable instead, which does the same job better: available any time, no need to schedule a person to film or guide it.</p>
       <div class="label-row">How it fits the new design</div>
-      <p>Matterport viewer featured distinctly in "See Inside The Gym" (Section 9) on <code>/start-here</code>. A "Book A Guided Tour" CTA alongside it would close the original gap and fits naturally here.</p>
+      <p>Matterport viewer featured distinctly in "See Inside The Gym" (Section 9) on <code>/start-here</code>. No further build needed here.</p>
     </div>
 
     <div class="audit-card">
-      <h3>Equipment (general / powerlifter / bodybuilder tabs) <span class="status-badge status-missing">Not built</span></h3>
+      <h3>Equipment (general / powerlifter / bodybuilder tabs) <span class="status-badge status-missing">Not built — open question</span></h3>
       <div class="label-row">Why it exists</div>
       <p>Reassure people training in a specific style that the gym actually has the equipment for it, rather than a generic once-over.</p>
+      <div class="label-row">Discussion point — not decided here</div>
+      <p>Matterport supports adding interactive tags to specific equipment directly within the 3D scan, which could cover this without a separate page — the same way it superseded the guided-tour ask above. Question for Kim and Steve: is tagging equipment inside the existing Matterport tour enough, or does the general/powerlifter/bodybuilder split need its own dedicated page regardless? Flagging as a discussion point rather than assuming either way.</p>
       <div class="label-row">How it fits the new design</div>
-      <p>This is now more relevant than when originally asked for — it directly backs up the new "I'm An Experienced Lifter" persona (Section 3) with proof rather than just reassurance copy. Worth prioritising alongside the new journey page rather than treating it as a separate, lower-priority build.</p>
+      <p>Whichever approach is chosen, it's now more relevant than when originally asked for — it directly backs up the new "I'm An Experienced Lifter" persona (Section 3) with proof rather than just reassurance copy.</p>
     </div>
 
     <div class="audit-card">
@@ -249,13 +251,13 @@
     </div>
 
     <div class="audit-card">
-      <h3>Upcoming Events &amp; Socials <span class="status-badge status-partial">Partially built</span></h3>
+      <h3>Upcoming Events &amp; Socials <span class="status-badge status-built">Built — by design</span></h3>
       <div class="label-row">Why it exists</div>
       <p>Show the community/social side of the gym is real and active.</p>
-      <div class="label-row">What's missing</div>
-      <p>The homepage "Follow Our Journey" wall shows real past content (events, classes, members), but there's no forward-looking "upcoming events" listing — everything shown is retrospective.</p>
+      <div class="label-row">Clarification</div>
+      <p>The homepage "Follow Our Journey" wall using real past content (events, classes, members) rather than a live "upcoming" listing is a deliberate simulation of ongoing activity, not an oversight — corrected from how this was described in the previous version of this audit.</p>
       <div class="label-row">How it fits the new design</div>
-      <p>Social wall stays on the homepage (Part A below) — it's an existing-community feature, not a new-member conversion tool, so it doesn't belong on <code>/start-here</code>. An upcoming-events listing would sit alongside it on the homepage if built.</p>
+      <p>Social wall stays on the homepage (Part A below) — it's an existing-community feature, not a new-member conversion tool, so it doesn't belong on <code>/start-here</code>.</p>
     </div>
 
     <div class="audit-card">
@@ -270,7 +272,7 @@
 
   <div class="note">
     <span class="note-label">Why the split-journey approach is better than growing this list further</span>
-    The original approach was a flat list of standalone pages, each answering its own "what/where" question. Every new addition (Equipment, Events, whatever comes next) meant deciding from scratch whether it needed its own page and where it lived in nav. The split-journey approach gives every future addition a clear home instead: does it help persuade a prospective member (it belongs on <code>/start-here</code>), or does it serve people who are already members (it belongs on the main site)? That's the actual justification for restructuring, beyond just the homepage question raised earlier.
+    The original approach was a flat list of standalone pages, each answering its own "what/where" question. Every new addition meant deciding from scratch whether it needed its own page and where it lived in nav — the Equipment question above is a live example of exactly that decision. The split-journey approach gives every future addition a clear home instead: does it help persuade a prospective member (it belongs on <code>/start-here</code>), or does it serve people who are already members (it belongs on the main site)? That's the actual justification for restructuring, beyond just the homepage question raised earlier.
   </div>
 </section>
 
@@ -682,7 +684,7 @@
   <h2>Please Confirm</h2>
   <p class="sub">This is a UX workshop document for Steve and Kim — not a finished marketing website. Please work through these before any detailed design or copywriting starts.</p>
   <ol class="confirm-list">
-    <li>Of the three gaps found in the existing-site audit — Equipment tabs, "book a tour", upcoming events — which should be prioritised, and should any happen before the new journey page?</li>
+    <li>For Equipment: tag equipment directly inside the existing Matterport tour, build a dedicated page anyway, or both?</li>
     <li>Do you agree the journey should live on its own page (<code>/start-here</code>) rather than replacing the homepage?</li>
     <li>Is the single "New Here? Start Here" banner enough on the homepage, or does it need more prominence?</li>
     <li>Does this accurately represent what a new member experiences?</li>
