@@ -34,6 +34,18 @@
   .real-tag { display: inline-block; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #16794a; border: 1px solid #16794a; border-radius: 3px; padding: 1px 6px; margin-left: 6px; vertical-align: middle; }
   .confirm-tag { display: inline-block; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #b0104a; border: 1px solid #b0104a; border-radius: 3px; padding: 1px 6px; margin-left: 6px; vertical-align: middle; }
 
+  /* ── Existing site audit ── */
+  .audit-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 20px; }
+  .audit-card { border: 1px solid #ccc; background: #fff; padding: 18px; }
+  .audit-card h3 { font-size: 0.95rem; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .status-badge { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; padding: 2px 8px; border-radius: 3px; }
+  .status-built { background: #e3f3ea; color: #16794a; border: 1px solid #16794a; }
+  .status-partial { background: #fff6e0; color: #8a6300; border: 1px solid #8a6300; }
+  .status-missing { background: #fdf0f5; color: #b0104a; border: 1px solid #b0104a; }
+  .audit-card .label-row { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #999; margin-top: 10px; margin-bottom: 3px; }
+  .audit-card p { font-size: 0.82rem; color: #444; }
+  @media (max-width: 900px) { .audit-grid { grid-template-columns: 1fr; } }
+
   /* ── Placeholder blocks ── */
   .placeholder {
     background: repeating-linear-gradient(45deg, #e2e2e2, #e2e2e2 10px, #ececec 10px, #ececec 20px);
@@ -166,6 +178,7 @@
   <span><span class="swatch" style="background:#f0f0f0;border:1px dashed #999;"></span> Dashed grey = reviewer note (from the brief)</span>
   <span><span class="swatch" style="background:#fdf0f5;border:1px dashed #b06;"></span> Dashed pink = needs your confirmation</span>
   <span><span class="real-tag" style="margin:0;">real</span> = actual content pulled from the live site</span>
+  <span><span class="status-badge status-built" style="margin:0;">Built</span> <span class="status-badge status-partial" style="margin:0;">Partial</span> <span class="status-badge status-missing" style="margin:0;">Not built</span> = status of existing pages</span>
 </div>
 
 <div class="approval-banner">
@@ -191,6 +204,74 @@
   </div>
   <p style="font-size:0.85rem; color:#444; max-width:760px; margin-bottom:12px;"><strong>How to use this document:</strong> look at the live dev site first (<span style="text-decoration:underline;">ducks-new-build.fitnessatthestreet.pages.dev</span>), then work through this page top to bottom. Every section carries a reviewer note explaining <em>why</em> it's structured that way, and a confirmation flag anywhere we're not certain we've got the real detail right. Nothing here is final — it's a starting point for a conversation about the logic, not a design.</p>
   <p style="font-size:0.85rem; color:#444; max-width:760px;">Once we've talked through the reasoning together and agreed the structure — including whether this parallel approach is the right call — the next step is a higher-fidelity wireframe prototype, and only after that, the real build.</p>
+</section>
+
+<!-- ── Existing site audit ── -->
+<section class="block tight" style="border-bottom:3px solid #111;">
+  <span class="section-num">Existing site — under construction too</span>
+  <h2 class="headline">Why each current page exists (and what's still missing)</h2>
+  <p style="font-size:0.85rem; color:#444; max-width:760px; margin-bottom:20px;">Before deciding how the new split-journey concept fits in, it's worth being straight about the site as it stands today — it's still under construction, built page-by-page against what Kim and Steve originally asked for. Here's the original list, whether each one actually exists yet, and how it sits once the new journey page is added.</p>
+
+  <div class="audit-grid">
+
+    <div class="audit-card">
+      <h3>Classes <span class="status-badge status-built">Built</span></h3>
+      <div class="label-row">Why it exists</div>
+      <p>Show the full weekly timetable and what a class actually looks like, so people know what they're signing up for.</p>
+      <div class="label-row">How it fits the new design</div>
+      <p>Unchanged as its own page. Featured as one of the four "Find Your Way To Train" cards on <code>/start-here</code> so new members meet it earlier, in context, rather than only via nav.</p>
+    </div>
+
+    <div class="audit-card">
+      <h3>Virtual Tour <span class="status-badge status-partial">Partially built</span></h3>
+      <div class="label-row">Why it exists</div>
+      <p>Let people see the gym before they visit — reduces the intimidation of walking in somewhere unfamiliar.</p>
+      <div class="label-row">What's missing</div>
+      <p>The self-guided Matterport 3D tour is live. The "book a tour" option Kim and Steve asked for — a guided walkthrough, either professionally shot or phone + gimbal with commentary — hasn't been built.</p>
+      <div class="label-row">How it fits the new design</div>
+      <p>Matterport viewer featured distinctly in "See Inside The Gym" (Section 9) on <code>/start-here</code>. A "Book A Guided Tour" CTA alongside it would close the original gap and fits naturally here.</p>
+    </div>
+
+    <div class="audit-card">
+      <h3>Equipment (general / powerlifter / bodybuilder tabs) <span class="status-badge status-missing">Not built</span></h3>
+      <div class="label-row">Why it exists</div>
+      <p>Reassure people training in a specific style that the gym actually has the equipment for it, rather than a generic once-over.</p>
+      <div class="label-row">How it fits the new design</div>
+      <p>This is now more relevant than when originally asked for — it directly backs up the new "I'm An Experienced Lifter" persona (Section 3) with proof rather than just reassurance copy. Worth prioritising alongside the new journey page rather than treating it as a separate, lower-priority build.</p>
+    </div>
+
+    <div class="audit-card">
+      <h3>Trainer Profiles <span class="status-badge status-built">Built</span></h3>
+      <div class="label-row">Why it exists</div>
+      <p>Build trust and a human connection with the actual trainers before someone commits to joining or booking PT.</p>
+      <div class="label-row">How it fits the new design</div>
+      <p>Unchanged as its own page (Instructors). Referenced from "Meet The Team" (Step 02 of the joining journey) and the Personal Training section (Section 6) on <code>/start-here</code>, rather than only being reachable via nav.</p>
+    </div>
+
+    <div class="audit-card">
+      <h3>Upcoming Events &amp; Socials <span class="status-badge status-partial">Partially built</span></h3>
+      <div class="label-row">Why it exists</div>
+      <p>Show the community/social side of the gym is real and active.</p>
+      <div class="label-row">What's missing</div>
+      <p>The homepage "Follow Our Journey" wall shows real past content (events, classes, members), but there's no forward-looking "upcoming events" listing — everything shown is retrospective.</p>
+      <div class="label-row">How it fits the new design</div>
+      <p>Social wall stays on the homepage (Part A below) — it's an existing-community feature, not a new-member conversion tool, so it doesn't belong on <code>/start-here</code>. An upcoming-events listing would sit alongside it on the homepage if built.</p>
+    </div>
+
+    <div class="audit-card">
+      <h3>Snowling Stones <span class="status-badge status-built">Built</span></h3>
+      <div class="label-row">Why it exists</div>
+      <p>Tell the heritage/authenticity story behind the gym's identity.</p>
+      <div class="label-row">How it fits the new design</div>
+      <p>Unchanged as its own page. Deliberately kept smaller and secondary within the journey (Section 8) — heritage supports the proposition, it isn't the proposition, per the original brief.</p>
+    </div>
+
+  </div>
+
+  <div class="note">
+    <span class="note-label">Why the split-journey approach is better than growing this list further</span>
+    The original approach was a flat list of standalone pages, each answering its own "what/where" question. Every new addition (Equipment, Events, whatever comes next) meant deciding from scratch whether it needed its own page and where it lived in nav. The split-journey approach gives every future addition a clear home instead: does it help persuade a prospective member (it belongs on <code>/start-here</code>), or does it serve people who are already members (it belongs on the main site)? That's the actual justification for restructuring, beyond just the homepage question raised earlier.
+  </div>
 </section>
 
 <!-- ── PART A: Homepage (existing) ── -->
@@ -601,6 +682,7 @@
   <h2>Please Confirm</h2>
   <p class="sub">This is a UX workshop document for Steve and Kim — not a finished marketing website. Please work through these before any detailed design or copywriting starts.</p>
   <ol class="confirm-list">
+    <li>Of the three gaps found in the existing-site audit — Equipment tabs, "book a tour", upcoming events — which should be prioritised, and should any happen before the new journey page?</li>
     <li>Do you agree the journey should live on its own page (<code>/start-here</code>) rather than replacing the homepage?</li>
     <li>Is the single "New Here? Start Here" banner enough on the homepage, or does it need more prominence?</li>
     <li>Does this accurately represent what a new member experiences?</li>
