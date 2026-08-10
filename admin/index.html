@@ -22,6 +22,7 @@
     <button class="admin-tab" data-tab="schedule">Schedule</button>
     <button class="admin-tab" data-tab="tiles">Homepage Tiles</button>
     <button class="admin-tab" data-tab="log">Activity Log</button>
+    <button class="admin-tab" data-tab="admins">Admins</button>
   </div>
 
   <div class="admin-main">
@@ -65,6 +66,35 @@
       <h2>Activity Log</h2>
       <p class="hint">Recent changes made from this admin panel.</p>
       <div class="panel" id="log-list"></div>
+    </section>
+
+    <!-- ── Admins ── -->
+    <section class="admin-section" id="section-admins">
+      <h2>Admin Users</h2>
+      <p class="hint">Everyone with access to this dashboard.</p>
+      <div class="panel" id="admins-list" style="margin-bottom:20px;"></div>
+
+      <h2 style="font-size:1rem;">Add a new admin</h2>
+      <div class="panel">
+        <form id="add-admin-form">
+          <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-bottom:12px;">
+            <div>
+              <label style="font-size:0.68rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; display:block; margin-bottom:4px;">Display Name</label>
+              <input type="text" id="new-admin-displayname" required>
+            </div>
+            <div>
+              <label style="font-size:0.68rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; display:block; margin-bottom:4px;">Username</label>
+              <input type="text" id="new-admin-username" required>
+            </div>
+            <div>
+              <label style="font-size:0.68rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; display:block; margin-bottom:4px;">Password</label>
+              <input type="password" id="new-admin-password" minlength="8" required>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary btn-small">Add Admin</button>
+          <span id="add-admin-error" style="color:var(--danger); font-size:0.8rem; margin-left:12px;"></span>
+        </form>
+      </div>
     </section>
 
   </div>
@@ -345,11 +375,50 @@
       `).join('');
     }
 
+    // ============================================================
+    // ADMINS
+    // ============================================================
+    async function loadAdmins() {
+      const res = await fetch('/api/admin/users');
+      const users = await res.json();
+      const list = document.getElementById('admins-list');
+      list.innerHTML = users.map((u) => `
+        <div class="log-row">
+          <span class="log-user">${u.displayName}</span>
+          <span style="color:var(--muted);">@${u.username}</span>
+        </div>
+      `).join('');
+    }
+
+    document.getElementById('add-admin-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const errorEl = document.getElementById('add-admin-error');
+      errorEl.textContent = '';
+      const displayName = document.getElementById('new-admin-displayname').value.trim();
+      const username = document.getElementById('new-admin-username').value.trim();
+      const password = document.getElementById('new-admin-password').value;
+
+      const res = await fetch('/api/admin/users', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password, displayName }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        errorEl.textContent = data.error || 'Failed to add admin';
+        return;
+      }
+      toast(`Added admin "${displayName}"`);
+      document.getElementById('add-admin-form').reset();
+      loadAdmins();
+    });
+
     // ── Init ──
     loadClassImages();
     loadSchedule();
     loadTiles();
     loadLog();
+    loadAdmins();
   </script>
 </body>
 </html>
