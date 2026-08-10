@@ -63,6 +63,12 @@ table.editable td.actions { white-space: nowrap; width: 1%; }
 .tile-fields label { font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; display: block; margin-bottom: 3px; }
 .tile-actions { display: flex; flex-direction: column; gap: 6px; }
 
+.password-field { position: relative; }
+.password-field input { padding-right: 40px; }
+.pw-toggle { position: absolute; right: 4px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: var(--muted); padding: 6px; display: flex; align-items: center; }
+.pw-toggle:hover { color: var(--teal); }
+.pw-toggle svg { width: 18px; height: 18px; display: block; }
+
 .log-row { display: flex; gap: 14px; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 0.85rem; }
 .log-row .log-time { color: var(--muted); white-space: nowrap; font-size: 0.75rem; min-width: 130px; }
 .log-row .log-user { color: var(--teal); font-weight: 700; min-width: 70px; }

@@ -20,7 +20,10 @@
         </div>
         <div class="field">
           <label for="password">Password</label>
-          <input type="password" id="password" name="password" autocomplete="current-password" required>
+          <div class="password-field">
+            <input type="password" id="password" name="password" autocomplete="current-password" required>
+            <button type="button" class="pw-toggle" id="password-toggle" aria-label="Show password"></button>
+          </div>
         </div>
         <button type="submit" class="btn btn-primary" id="login-btn">Log In</button>
         <div class="login-error" id="login-error"></div>
@@ -29,6 +32,22 @@
   </div>
 
   <script>
+    // ── Show/hide password ──
+    const EYE_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8Z"/><circle cx="12" cy="12" r="3"/></svg>';
+    const EYE_OFF_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.94 10.94 0 0 1 12 20c-7 0-11-8-11-8a21.8 21.8 0 0 1 5.06-6.94M9.9 4.24A10.94 10.94 0 0 1 12 4c7 0 11 8 11 8a21.8 21.8 0 0 1-2.16 3.19M14.12 14.12a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>';
+    function setupPasswordToggle(inputId, btnId) {
+      const input = document.getElementById(inputId);
+      const btn = document.getElementById(btnId);
+      btn.innerHTML = EYE_ICON;
+      btn.addEventListener('click', () => {
+        const showing = input.type === 'password';
+        input.type = showing ? 'text' : 'password';
+        btn.innerHTML = showing ? EYE_OFF_ICON : EYE_ICON;
+        btn.setAttribute('aria-label', showing ? 'Hide password' : 'Show password');
+      });
+    }
+    setupPasswordToggle('password', 'password-toggle');
+
     const form = document.getElementById('login-form');
     const btn = document.getElementById('login-btn');
     const errorEl = document.getElementById('login-error');
