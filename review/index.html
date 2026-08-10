@@ -174,45 +174,84 @@
 <!-- ── Why this document exists ── -->
 <section class="block tight" style="border-bottom:3px solid #111;">
   <span class="section-num">Start here</span>
-  <h2 class="headline">Why we're proposing a restructure</h2>
+  <h2 class="headline">Why this runs alongside the site, not instead of it</h2>
+  <p style="font-size:0.88rem; color:#444; max-width:760px; margin-bottom:20px;">The original brief restructured the <em>homepage itself</em> around a new-member journey. But this site already serves an existing community — members checking the schedule, logging into Trainerize, finding contact info. Turning the whole homepage into a "JOIN"-driven funnel risks burying what regulars actually come back for. So this concept keeps the existing homepage close to as-is, and builds the journey as its own dedicated page instead.</p>
   <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:20px;">
-    <div style="border:1px solid #ccc; background:#fff; padding:18px;">
-      <h3 style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.05em; color:#777; margin-bottom:10px;">Today's site is organised by page type</h3>
-      <p style="font-size:0.85rem; color:#444;">Home · About · Classes · Instructors · Snowling Stones · Take The Tour · Find Us · Member Login — each page covers one topic well, but a first-time visitor has to piece the member journey together themselves.</p>
+    <div style="border:1px solid #111; background:#fff; padding:18px;">
+      <h3 style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.05em; color:#111; margin-bottom:10px;">Part A — Homepage (existing, stays as-is)</h3>
+      <p style="font-size:0.85rem; color:#444;">Hero, community/reviews, "Follow Our Journey" — unchanged. The one addition: a prominent "New Here? Start Here" entry point near the top, for anyone landing there who isn't a member yet.</p>
     </div>
     <div style="border:1px solid #111; background:#fff; padding:18px;">
-      <h3 style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.05em; color:#111; margin-bottom:10px;">This concept is organised around the new-member journey</h3>
-      <p style="font-size:0.85rem; color:#444;">The homepage itself is restructured to answer, in order: Is this gym for me? What do I get as a member? What happens when I join? How do I get started? Everything below is built to answer those four questions before anything else.</p>
+      <h3 style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.05em; color:#111; margin-bottom:10px;">Part B — New page: /start-here</h3>
+      <p style="font-size:0.85rem; color:#444;">The full new-member journey from the brief lives here instead — answering Is this for me? / What do I get? / What happens when I join? / How do I get started? Reached via the homepage banner, a new nav item, and any acquisition marketing (ads, bio links, QR codes at the gym).</p>
     </div>
   </div>
-  <p style="font-size:0.85rem; color:#444; max-width:760px; margin-bottom:12px;"><strong>How to use this document:</strong> look at the live dev site first (<span style="text-decoration:underline;">ducks-new-build.fitnessatthestreet.pages.dev</span>), then work through this page top to bottom. Every section below carries a reviewer note explaining <em>why</em> it's structured that way, and a confirmation flag anywhere we're not certain we've got the real detail right. Nothing here is final — it's a starting point for a conversation about the logic, not a design.</p>
-  <p style="font-size:0.85rem; color:#444; max-width:760px;">Once we've talked through the reasoning section by section and agreed the structure together, the next step is a higher-fidelity wireframe prototype, and only after that, the real build.</p>
+  <p style="font-size:0.85rem; color:#444; max-width:760px; margin-bottom:12px;"><strong>How to use this document:</strong> look at the live dev site first (<span style="text-decoration:underline;">ducks-new-build.fitnessatthestreet.pages.dev</span>), then work through this page top to bottom. Every section carries a reviewer note explaining <em>why</em> it's structured that way, and a confirmation flag anywhere we're not certain we've got the real detail right. Nothing here is final — it's a starting point for a conversation about the logic, not a design.</p>
+  <p style="font-size:0.85rem; color:#444; max-width:760px;">Once we've talked through the reasoning together and agreed the structure — including whether this parallel approach is the right call — the next step is a higher-fidelity wireframe prototype, and only after that, the real build.</p>
 </section>
 
-<!-- ── 1. Header ── -->
+<!-- ── PART A: Homepage (existing) ── -->
+<section class="block tight" style="background:#f0f0f0;">
+  <span class="section-num">Part A</span>
+  <h2 class="headline small">Homepage — stays largely as-is</h2>
+  <p class="subhead" style="margin-bottom:16px;">No wireframe needed here — it's the current live homepage, unchanged, with one addition below.</p>
+  <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:20px; font-size:0.78rem; color:#555;">
+    <span style="border:1px solid #ccc; background:#fff; padding:6px 12px; border-radius:3px;">Hero — "Train Hard. Feel Strong. Belong." <span class="real-tag">unchanged</span></span>
+    <span style="border:1px solid #ccc; background:#fff; padding:6px 12px; border-radius:3px;">"More Than Just A Gym" intro <span class="real-tag">unchanged</span></span>
+    <span style="border:1px solid #ccc; background:#fff; padding:6px 12px; border-radius:3px;">Google reviews (4.9★ · 35) + ticker <span class="real-tag">unchanged</span></span>
+    <span style="border:1px solid #ccc; background:#fff; padding:6px 12px; border-radius:3px;">"Follow Our Journey" social wall <span class="real-tag">unchanged</span></span>
+    <span style="border:1px solid #ccc; background:#fff; padding:6px 12px; border-radius:3px;">Footer <span class="real-tag">unchanged</span></span>
+  </div>
+  <div style="border:2px solid #111; background:#fff; padding:20px; max-width:640px;">
+    <div style="font-size:0.65rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:#777; margin-bottom:8px;">New — inserted just below the hero</div>
+    <div style="display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; border:1px dashed #999; padding:14px 18px;">
+      <div>
+        <div style="font-weight:700; font-size:0.9rem;">New to the gym?</div>
+        <div style="font-size:0.8rem; color:#666;">See what to expect and how to get started.</div>
+      </div>
+      <a class="btn btn-primary">START HERE</a>
+    </div>
+  </div>
+  <div class="note">
+    <span class="note-label">Reviewer note</span>
+    This is the only change to the homepage: one clearly-labelled entry point for prospective members, without disrupting what existing members already use the homepage for.
+  </div>
+</section>
+
+<div style="max-width:1100px; margin:0 auto; padding:32px 24px 0;">
+  <div style="border-top:3px solid #111; padding-top:14px; display:flex; align-items:baseline; gap:12px;">
+    <span class="section-num" style="background:#111;">Part B</span>
+    <h2 style="font-size:1.1rem; text-transform:uppercase; letter-spacing:0.04em;">New dedicated page — <code style="background:#eee; padding:2px 8px; border-radius:3px; font-size:0.9rem;">/start-here</code></h2>
+  </div>
+  <p style="font-size:0.85rem; color:#444; margin-top:8px;">Everything from here down is the brief's original journey content — now reframed as its own page rather than the homepage. Reached from the homepage banner above, a new "Start Here" nav item, and external marketing.</p>
+</div>
+
+<!-- ── Shared site nav (light-touch change) ── -->
 <header class="site-header">
   <div class="header-row">
     <div class="logo-placeholder">Fitness At The Street logo</div>
     <nav class="main-nav">
       <span>Home</span>
-      <span>Start Here</span>
-      <span>Training</span>
-      <span>Our Story</span>
-      <span>See Inside <span class="confirm-tag">confirm label</span></span>
+      <span>About</span>
+      <span>Classes</span>
+      <span>Instructors</span>
+      <span>Snowling Stones</span>
+      <span>Take The Tour</span>
       <span>Find Us</span>
-      <a class="btn btn-primary" style="padding:8px 18px;">JOIN</a>
+      <span style="border:1px dashed #b06; padding:4px 8px; border-radius:3px; color:#90104a;">+ Start Here <span class="confirm-tag" style="margin-left:4px;">new</span></span>
+      <a class="btn btn-primary" style="padding:8px 18px;">JOIN <span class="confirm-tag" style="margin-left:4px;">new</span></a>
       <span class="member-login">Member Login</span>
     </nav>
   </div>
-  <div class="nav-groups">
-    <span><strong>Training</strong> ▾ Gym · Personal Training · Classes · Training Programmes · Trainerize</span>
-    <span><strong>Our Story</strong> ▾ About · Meet The Team · Snowling Stones</span>
+  <div class="confirm-note" style="margin:0 24px 16px; max-width:none;">
+    <span class="note-label">Needs confirmation</span>
+    This is a light-touch change: existing nav items stay as they are, with "Start Here" and a "JOIN" button added. The original brief proposed a bigger reorganisation (grouping items under "Training" and "Our Story" dropdowns) — that's a separate decision from the parallel-page question and can be considered independently. Worth discussing, but not assumed here.
   </div>
 </header>
 
 <!-- ── 2. Hero ── -->
 <section class="block hero">
-  <span class="section-num">Section 1 — Hero</span>
+  <span class="section-num">Start Here Page — Section 1 — Hero</span>
   <h1>Train Hard. Feel Strong. Belong.</h1>
   <p class="subhead" style="margin-left:auto;margin-right:auto;">A strength-focused community gym in Brundall where you can train your way.</p>
   <div class="cta-row">
@@ -224,11 +263,15 @@
     <span class="note-label">Reviewer note</span>
     Primary job of hero: immediately establish what the gym is, who it is for, and what a new visitor should do next.
   </div>
+  <div class="confirm-note">
+    <span class="note-label">Needs confirmation</span>
+    Since the homepage keeps "Train Hard. Feel Strong. Belong." as its own hero (unchanged, see Part A above), this Start Here page reusing the identical headline may feel repetitive to someone who clicks through from the homepage banner. Worth considering a journey-specific headline here instead — not resolved in this draft.
+  </div>
 </section>
 
 <!-- ── 3. Find your way to train ── -->
 <section class="block">
-  <span class="section-num">Section 2 — Find Your Way To Train</span>
+  <span class="section-num">Start Here Page — Section 2 — Find Your Way To Train</span>
   <h2 class="headline">Find your way to train</h2>
   <div class="cards-grid">
     <div class="card">
@@ -272,7 +315,7 @@
 
 <!-- ── 4. Is this for you ── -->
 <section class="block">
-  <span class="section-num">Section 3 — Is This For You</span>
+  <span class="section-num">Start Here Page — Section 3 — Is This For You</span>
   <h2 class="headline">Is Fitness At The Street for you?</h2>
   <div class="cards-grid cols-3">
     <div class="card">
@@ -308,7 +351,7 @@
 
 <!-- ── 5. What happens when you join ── -->
 <section class="block">
-  <span class="section-num">Section 4 — The Joining Journey</span>
+  <span class="section-num">Start Here Page — Section 4 — The Joining Journey</span>
   <h2 class="headline">What happens when you join?</h2>
   <div class="journey">
     <div class="journey-step"><span class="step-num">01</span><h3>Get In Touch</h3><p>Tell us what you're looking for.</p></div>
@@ -330,7 +373,7 @@
 
 <!-- ── 6. Trainerize ── -->
 <section class="block">
-  <span class="section-num">Section 5 — Trainerize</span>
+  <span class="section-num">Start Here Page — Section 5 — Trainerize</span>
   <h2 class="headline">Your training goes beyond the gym</h2>
   <p class="subhead">Your membership can include an individual training programme delivered through the Trainerize app, helping you know what to do, track your workouts and see your progress over time.</p>
   <div class="phones-row">
@@ -359,7 +402,7 @@
 
 <!-- ── 7. Personal Training ── -->
 <section class="block">
-  <span class="section-num">Section 6 — Personal Training</span>
+  <span class="section-num">Start Here Page — Section 6 — Personal Training</span>
   <h2 class="headline">Need more individual support?</h2>
   <div class="pt-layout">
     <div>
@@ -385,7 +428,7 @@
 
 <!-- ── 8. Community / testimonials ── -->
 <section class="block">
-  <span class="section-num">Section 7 — Community &amp; Testimonials</span>
+  <span class="section-num">Start Here Page — Section 7 — Community &amp; Testimonials</span>
   <h2 class="headline">A community built around strength</h2>
   <div class="testimonial-grid">
     <div class="testimonial-card">
@@ -420,7 +463,7 @@
 
 <!-- ── 9. Snowling Stones ── -->
 <section class="block tight">
-  <span class="section-num">Section 8 — Strength Is Part Of Our Story (smaller, secondary section)</span>
+  <span class="section-num">Start Here Page — Section 8 — Strength Is Part Of Our Story (smaller, secondary section)</span>
   <h2 class="headline small">Strength is part of our story</h2>
   <div class="stones-layout">
     <div class="placeholder">Steve stone-lifting photograph <span class="confirm-tag">need real photo</span></div>
@@ -442,7 +485,7 @@
 
 <!-- ── 10. See inside ── -->
 <section class="block">
-  <span class="section-num">Section 9 — See Inside The Gym</span>
+  <span class="section-num">Start Here Page — Section 9 — See Inside The Gym</span>
   <h2 class="headline">See inside the gym</h2>
   <div class="photo-grid">
     <div class="placeholder">Gym floor</div>
@@ -472,7 +515,7 @@
 
 <!-- ── 11. Final conversion ── -->
 <section class="block final-cta">
-  <span class="section-num">Section 10 — Final Conversion</span>
+  <span class="section-num">Start Here Page — Section 10 — Final Conversion</span>
   <h2 class="headline">Ready to get started?</h2>
   <p class="subhead" style="margin-left:auto;margin-right:auto;">Whether you're new to training, returning after a break or already experienced, we'll help you find the right way to train.</p>
   <div class="cta-row">
@@ -517,6 +560,8 @@
   <h2>Please Confirm</h2>
   <p class="sub">This is a UX workshop document for Steve and Kim — not a finished marketing website. Please work through these before any detailed design or copywriting starts.</p>
   <ol class="confirm-list">
+    <li>Do you agree the journey should live on its own page (<code>/start-here</code>) rather than replacing the homepage?</li>
+    <li>Is the single "New Here? Start Here" banner enough on the homepage, or does it need more prominence?</li>
     <li>Does this accurately represent what a new member experiences?</li>
     <li>Are Gym, Personal Training, Classes and Training Programmes the right core routes?</li>
     <li>Is the Trainerize description accurate?</li>
@@ -524,6 +569,7 @@
     <li>What have we missed?</li>
     <li>Is the balance between community, strength, coaching and heritage right?</li>
     <li>Does the Snowling Stones story feel appropriately positioned — and is the stone-lifting history (flagged above) accurate?</li>
+    <li>Do you want the full nav reorganisation (Training/Our Story dropdowns) too, or just the light-touch addition shown here?</li>
   </ol>
   <div class="closing-quote">
     "Yes, that's actually what we offer and that's how we want new members to experience us."
