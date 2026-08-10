@@ -223,13 +223,15 @@
     </div>
 
     <div class="audit-card">
-      <h3>Virtual Tour <span class="status-badge status-built">Built — original ask superseded</span></h3>
+      <h3>Virtual Tour <span class="status-badge status-partial">Approach proven, FATS scan not yet done</span></h3>
       <div class="label-row">Why it exists</div>
       <p>Let people see the gym before they visit — reduces the intimidation of walking in somewhere unfamiliar.</p>
       <div class="label-row">How the original ask changed</div>
-      <p>Kim and Steve originally asked for a "book a tour" option — a guided walkthrough, either professionally shot or phone + gimbal with commentary. Matterport's free tier made a full self-guided 3D scan achievable instead, which does the same job better: available any time, no need to schedule a person to film or guide it.</p>
+      <p>Kim and Steve originally asked for a "book a tour" option — a guided walkthrough, either professionally shot or phone + gimbal with commentary. Matterport's free tier makes a full self-guided 3D scan achievable instead, which would do the same job better: available any time, no need to schedule a person to film or guide it.</p>
+      <div class="label-row">What's actually live right now</div>
+      <p>The embed currently on the Take The Tour page is a sample from another gym, used to prove the concept and test the layout — <strong>not FATS's own space</strong>. A real scan of the FATS gym floor still needs to be generated before this is genuinely built.</p>
       <div class="label-row">How it fits the new design</div>
-      <p>Matterport viewer featured distinctly in "See Inside The Gym" (Section 9) on <code>/start-here</code>. No further build needed here.</p>
+      <p>Matterport viewer featured distinctly in "See Inside The Gym" (Section 9) on <code>/start-here</code> — same caveat applies there, it's a concept placeholder until the real scan exists.</p>
     </div>
 
     <div class="audit-card">
@@ -237,7 +239,7 @@
       <div class="label-row">Why it exists</div>
       <p>Reassure people training in a specific style that the gym actually has the equipment for it, rather than a generic once-over.</p>
       <div class="label-row">Discussion point — not decided here</div>
-      <p>Matterport supports adding interactive tags to specific equipment directly within the 3D scan, which could cover this without a separate page — the same way it superseded the guided-tour ask above. Question for Kim and Steve: is tagging equipment inside the existing Matterport tour enough, or does the general/powerlifter/bodybuilder split need its own dedicated page regardless? Flagging as a discussion point rather than assuming either way.</p>
+      <p>Matterport supports adding interactive tags to specific equipment directly within the 3D scan, which could cover this without a separate page — the same way it could replace the guided-tour ask above, once FATS's own scan exists (see Virtual Tour above — the current embed is a sample from another gym, not FATS's space). Question for Kim and Steve: is tagging equipment inside a future FATS Matterport tour enough, or does the general/powerlifter/bodybuilder split need its own dedicated page regardless? Flagging as a discussion point rather than assuming either way.</p>
       <div class="label-row">How it fits the new design</div>
       <p>Whichever approach is chosen, it's now more relevant than when originally asked for — it directly backs up the new "I'm An Experienced Lifter" persona (Section 3) with proof rather than just reassurance copy.</p>
     </div>
@@ -615,13 +617,17 @@
     <div class="matterport-icon">▶</div>
     <div>
       <div class="label">Matterport 3D Viewer</div>
-      <div class="sub">Embedded interactive walkthrough — not a photo or video. <span class="real-tag">real — already live on Take The Tour page</span></div>
+      <div class="sub">Embedded interactive walkthrough — not a photo or video. <span class="confirm-tag">sample from another gym — FATS scan not yet generated</span></div>
     </div>
   </div>
   <div style="margin-top:20px;"><a class="btn btn-primary">TAKE THE TOUR <span class="confirm-tag">or "SEE INSIDE"?</span></a></div>
   <div class="note">
     <span class="note-label">Reviewer note</span>
     Tour = embedded Matterport 3D walkthrough, not a produced video — shown here as a distinct interactive viewer element, not a standard image/video placeholder.
+  </div>
+  <div class="confirm-note">
+    <span class="note-label">Needs action, not just confirmation</span>
+    The Matterport embed currently live on the site's Take The Tour page is a sample from another gym — used to prove the concept and test the page layout, not FATS's actual space. A real 3D scan of the FATS gym floor needs to be generated before this is genuinely finished, on both the live site and this concept.
   </div>
   <div class="confirm-note">
     <span class="note-label">Needs confirmation</span>
@@ -684,7 +690,8 @@
   <h2>Please Confirm</h2>
   <p class="sub">This is a UX workshop document for Steve and Kim — not a finished marketing website. Please work through these before any detailed design or copywriting starts.</p>
   <ol class="confirm-list">
-    <li>For Equipment: tag equipment directly inside the existing Matterport tour, build a dedicated page anyway, or both?</li>
+    <li>Who's generating the real FATS Matterport scan, and by when? Both the live Take The Tour page and this concept currently use a sample from another gym.</li>
+    <li>For Equipment: once the real scan exists, tag equipment directly inside it, build a dedicated page anyway, or both?</li>
     <li>Do you agree the journey should live on its own page (<code>/start-here</code>) rather than replacing the homepage?</li>
     <li>Is the single "New Here? Start Here" banner enough on the homepage, or does it need more prominence?</li>
     <li>Does this accurately represent what a new member experiences?</li>
