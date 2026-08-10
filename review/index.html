@@ -46,6 +46,24 @@
   .audit-card p { font-size: 0.82rem; color: #444; }
   @media (max-width: 900px) { .audit-grid { grid-template-columns: 1fr; } }
 
+  /* ── Tabs ── */
+  .tab-switcher { display: flex; justify-content: center; gap: 4px; padding: 16px 24px; background: #fff; border-bottom: 2px solid #111; flex-wrap: wrap; }
+  .tab-btn { padding: 11px 22px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; background: #eee; border: 1px solid #ccc; cursor: pointer; color: #666; font-family: inherit; }
+  .tab-btn:hover { background: #e2e2e2; }
+  .tab-btn.active { background: #111; color: #fff; border-color: #111; }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* ── Overview diagram ── */
+  .diagram-flow { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .diagram-box { border: 2px solid #111; background: #fff; padding: 14px 22px; text-align: center; border-radius: 6px; max-width: 560px; width: 100%; }
+  .diagram-box.existing { border-style: dashed; border-color: #999; color: #666; }
+  .diagram-arrow-down { font-size: 1.3rem; color: #bbb; padding: 2px 0; }
+  .diagram-fork-row { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; max-width: 900px; }
+  .diagram-fork-box { border: 1px solid #ccc; background: #fff; padding: 10px 14px; font-size: 0.78rem; max-width: 170px; text-align: left; }
+  .diagram-fork-box h4 { font-size: 0.75rem; margin-bottom: 4px; }
+  .diagram-fork-box p { font-size: 0.7rem; color: #666; }
+
   /* ── Placeholder blocks ── */
   .placeholder {
     background: repeating-linear-gradient(45deg, #e2e2e2, #e2e2e2 10px, #ececec 10px, #ececec 20px);
@@ -196,6 +214,14 @@
   <p>This prototype is intended to confirm that the proposed member journey, services and messaging accurately reflect the Fitness At The Street experience before detailed design and development.</p>
 </div>
 
+<div class="tab-switcher">
+  <button class="tab-btn active" data-tab="tab-main">Main Site (Existing)</button>
+  <button class="tab-btn" data-tab="tab-start-here">Start Here (New Page)</button>
+  <button class="tab-btn" data-tab="tab-diagram">Overview Diagram</button>
+</div>
+
+<div id="tab-main" class="tab-panel active">
+
 <!-- ── Why this document exists ── -->
 <section class="block tight" style="border-bottom:3px solid #111;">
   <span class="section-num">Start here</span>
@@ -211,7 +237,7 @@
       <p style="font-size:0.85rem; color:#444;">The full new-member journey from the brief lives here instead — answering Is this for me? / What do I get? / What happens when I join? / How do I get started? Reached via the homepage banner, a new nav item, and any acquisition marketing (ads, bio links, QR codes at the gym).</p>
     </div>
   </div>
-  <p style="font-size:0.85rem; color:#444; max-width:760px; margin-bottom:12px;"><strong>How to use this document:</strong> look at the live dev site first (<span style="text-decoration:underline;">ducks-new-build.fitnessatthestreet.pages.dev</span>), then work through this page top to bottom. Every section carries a reviewer note explaining <em>why</em> it's structured that way, and a confirmation flag anywhere we're not certain we've got the real detail right. Nothing here is final — it's a starting point for a conversation about the logic, not a design.</p>
+  <p style="font-size:0.85rem; color:#444; max-width:760px; margin-bottom:12px;"><strong>How to use this document:</strong> look at the live dev site first (<span style="text-decoration:underline;">ducks-new-build.fitnessatthestreet.pages.dev</span>), then use the three tabs above — <strong>Main Site</strong> for what already exists and why, <strong>Start Here</strong> for the new journey page in full detail, and <strong>Overview Diagram</strong> if you just want the shape of the idea without reading everything. Every section carries a reviewer note explaining <em>why</em> it's structured that way, and a confirmation flag anywhere we're not certain we've got the real detail right. Nothing here is final — it's a starting point for a conversation about the logic, not a design.</p>
   <p style="font-size:0.85rem; color:#444; max-width:760px;">Once we've talked through the reasoning together and agreed the structure — including whether this parallel approach is the right call — the next step is a higher-fidelity wireframe prototype, and only after that, the real build.</p>
 </section>
 
@@ -318,6 +344,12 @@
     "Train Hard. Feel Strong. Belong." was written by Tim during the build — it isn't a confirmed Kim/Steve tagline. Please check whether the gym already has a tagline it uses (signage, merchandise, socials) and whether that should be used instead of this one, here and everywhere else it appears on the site.
   </div>
 </section>
+
+</div>
+<!-- ── end tab-main ── -->
+
+<div id="tab-start-here" class="tab-panel">
+
 
 <div style="max-width:1100px; margin:0 auto; padding:32px 24px 0;">
   <div style="border-top:3px solid #111; padding-top:14px; display:flex; align-items:baseline; gap:12px;">
@@ -739,6 +771,68 @@
   </div>
 </footer>
 
+</div>
+<!-- ── end tab-start-here ── -->
+
+<div id="tab-diagram" class="tab-panel">
+<div style="max-width:820px; margin:0 auto; padding:48px 24px; text-align:center;">
+  <h2 class="headline" style="text-align:center;">The whole concept, at a glance</h2>
+  <p class="subhead" style="margin:0 auto 36px; text-align:center;">No detail here — just the shape of the idea. See the other two tabs for the full reasoning behind each part.</p>
+
+  <div class="diagram-flow">
+    <div class="diagram-box existing">
+      <strong>Existing site — stays as-is</strong><br>
+      <span style="font-size:0.78rem; color:#777;">Home · About · Classes · Instructors · Snowling Stones · Take The Tour · Find Us</span>
+    </div>
+    <div class="diagram-arrow-down">↓</div>
+    <div class="diagram-box" style="border-style:dashed;">
+      <strong>3 new ways in</strong><br>
+      <span style="font-size:0.78rem; color:#777;">Homepage banner · nav item · QR code on signage</span>
+    </div>
+    <div class="diagram-arrow-down">↓</div>
+    <div class="diagram-box">
+      <strong>/start-here — new page</strong>
+    </div>
+    <div class="diagram-arrow-down">↓</div>
+    <div class="diagram-box">
+      <strong>"Which best describes you?"</strong><br>
+      <span style="font-size:0.78rem; color:#777;">The router — sits right after the hero</span>
+    </div>
+    <div class="diagram-arrow-down">↓</div>
+
+    <div class="diagram-fork-row">
+      <div class="diagram-fork-box"><h4>New to training</h4><p>Full reassurance tone, guided by Trainerize</p></div>
+      <div class="diagram-fork-box"><h4>Getting back into it</h4><p>Own pace, PT support offered</p></div>
+      <div class="diagram-fork-box"><h4>Already train</h4><p>Balanced view, both paths shown</p></div>
+      <div class="diagram-fork-box" style="border-color:#111; border-width:2px;"><h4>Experienced / specialist</h4><p>Equipment &amp; coaching, self-guided, no app pushed</p></div>
+      <div class="diagram-fork-box"><h4>Not sure</h4><p>Straight to "Get In Touch"</p></div>
+    </div>
+
+    <div class="diagram-arrow-down">↓ all paths lead to ↓</div>
+    <div class="diagram-box">
+      <strong>JOIN</strong>
+    </div>
+  </div>
+
+  <div style="text-align:left; margin-top:48px; border-top:1px solid #ddd; padding-top:28px;">
+    <h3 style="font-size:0.95rem; margin-bottom:14px;">Existing site — quick status</h3>
+    <p style="font-size:0.85rem; color:#444; margin-bottom:10px;"><span class="status-badge status-built">Built</span> Classes · Trainer Profiles · Snowling Stones · Upcoming Events &amp; Socials</p>
+    <p style="font-size:0.85rem; color:#444; margin-bottom:10px;"><span class="status-badge status-partial">Approach proven, FATS content pending</span> Virtual Tour — sample from another gym live right now, real FATS scan not yet generated</p>
+    <p style="font-size:0.85rem; color:#444;"><span class="status-badge status-partial">Superseded</span> Equipment — no longer its own page, folded into the Experienced Lifter path instead</p>
+  </div>
+
+  <div style="text-align:left; margin-top:28px;">
+    <h3 style="font-size:0.95rem; margin-bottom:14px;">Biggest open decisions</h3>
+    <p style="font-size:0.85rem; color:#444; margin-bottom:6px;">— Does the journey belong on its own page, or should it replace the homepage?</p>
+    <p style="font-size:0.85rem; color:#444; margin-bottom:6px;">— What does JOIN actually do when clicked?</p>
+    <p style="font-size:0.85rem; color:#444; margin-bottom:6px;">— Who generates the real FATS Matterport scan, and by when?</p>
+    <p style="font-size:0.85rem; color:#444;">— Personal Training's real price — the only pricing figure still missing.</p>
+  </div>
+</div>
+</div>
+<!-- ── end tab-diagram ── -->
+
+
 <!-- ── Approval / questions ── -->
 <div class="approval-section">
   <h2>Please Confirm</h2>
@@ -766,6 +860,18 @@
     "Yes, that's actually what we offer and that's how we want new members to experience us."
   </div>
 </div>
+
+<script>
+  document.querySelectorAll('.tab-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach((b) => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach((p) => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.tab).classList.add('active');
+      document.querySelector('.tab-switcher').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
 
 </body>
 </html>
