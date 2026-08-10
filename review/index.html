@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>New Member UX Concept — Fitness At The Street</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+  * , *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; color: #111; background: #fafafa; line-height: 1.5; }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+
+  /* ── Legend / meta ── */
+  .legend { background: #111; color: #fff; padding: 10px 24px; font-size: 0.75rem; display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; }
+  .legend span { display: flex; align-items: center; gap: 6px; }
+  .legend .swatch { width: 14px; height: 14px; display: inline-block; border-radius: 2px; flex-shrink: 0; }
+
+  /* ── Approval banner ── */
+  .approval-banner { background: #111; color: #fff; text-align: center; padding: 28px 20px 24px; }
+  .approval-banner h1 { font-size: 1.1rem; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; }
+  .approval-banner .purpose { font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase; color: #bbb; margin-bottom: 14px; }
+  .approval-banner p { max-width: 640px; margin: 0 auto; font-size: 0.85rem; color: #ddd; }
+
+  .section-num { display: inline-block; background: #111; color: #fff; font-size: 0.68rem; font-weight: 700; padding: 3px 8px; border-radius: 3px; letter-spacing: 0.06em; margin-bottom: 10px; }
+
+  /* ── Reviewer note callouts ── */
+  .note { border: 1px dashed #999; background: #f0f0f0; padding: 12px 16px; font-size: 0.82rem; font-style: italic; color: #444; margin-top: 16px; max-width: 700px; }
+  .note .note-label { display: block; font-style: normal; font-weight: 700; font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; color: #777; margin-bottom: 4px; }
+
+  .confirm-note { border: 1px dashed #b06; background: #fdf0f5; padding: 12px 16px; font-size: 0.82rem; color: #90104a; margin-top: 12px; max-width: 700px; }
+  .confirm-note .note-label { display: block; font-weight: 700; font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4px; }
+
+  .real-tag { display: inline-block; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #16794a; border: 1px solid #16794a; border-radius: 3px; padding: 1px 6px; margin-left: 6px; vertical-align: middle; }
+  .confirm-tag { display: inline-block; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #b0104a; border: 1px solid #b0104a; border-radius: 3px; padding: 1px 6px; margin-left: 6px; vertical-align: middle; }
+
+  /* ── Placeholder blocks ── */
+  .placeholder {
+    background: repeating-linear-gradient(45deg, #e2e2e2, #e2e2e2 10px, #ececec 10px, #ececec 20px);
+    border: 1px solid #ccc;
+    color: #777;
+    display: flex; align-items: center; justify-content: center; text-align: center;
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase;
+    padding: 12px;
+    min-height: 120px;
+  }
+
+  section.block { max-width: 1100px; margin: 0 auto; padding: 56px 24px; border-bottom: 1px solid #ddd; }
+  section.block.tight { padding-top: 36px; padding-bottom: 36px; }
+  h2.headline { font-size: 1.6rem; font-weight: 800; margin-bottom: 6px; }
+  h2.headline.small { font-size: 1.25rem; }
+  .subhead { color: #555; font-size: 0.95rem; max-width: 620px; margin-bottom: 24px; }
+
+  /* ── Header ── */
+  header.site-header { border-bottom: 1px solid #ddd; background: #fff; }
+  .header-row { max-width: 1100px; margin: 0 auto; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+  .logo-placeholder { border: 1px dashed #999; padding: 10px 22px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: #777; }
+  nav.main-nav { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; font-size: 0.82rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+  nav.main-nav .member-login { font-weight: 500; text-transform: none; letter-spacing: 0; color: #777; font-size: 0.8rem; }
+  .btn { display: inline-block; padding: 11px 22px; font-weight: 700; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; text-decoration: none; border-radius: 4px; cursor: default; }
+  .btn-primary { background: #111; color: #fff; }
+  .btn-outline { border: 2px solid #111; color: #111; }
+  .nav-groups { max-width: 1100px; margin: 0 auto; padding: 0 24px 14px; display: flex; gap: 32px; flex-wrap: wrap; font-size: 0.75rem; color: #777; }
+  .nav-groups strong { color: #111; }
+
+  /* ── Hero ── */
+  .hero { text-align: center; padding-top: 48px; }
+  .hero h1 { font-size: 2.2rem; font-weight: 900; letter-spacing: 0.01em; margin-bottom: 12px; }
+  .hero .subhead { margin: 0 auto 22px; }
+  .hero .cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 28px; }
+  .hero .placeholder { min-height: 340px; max-width: 900px; margin: 0 auto; }
+
+  /* ── Cards grid ── */
+  .cards-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .cards-grid.cols-3 { grid-template-columns: repeat(3, 1fr) 0.7fr; }
+  .card { border: 1px solid #ccc; background: #fff; display: flex; flex-direction: column; }
+  .card .placeholder { min-height: 100px; }
+  .card-body { padding: 14px 16px; flex: 1; display: flex; flex-direction: column; }
+  .card-body h3 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 8px; }
+  .card-body p { font-size: 0.82rem; color: #555; flex: 1; margin-bottom: 10px; }
+  .card-body .link { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; text-decoration: underline; }
+  .card.small { font-size: 0.85rem; }
+  .card.small .card-body { justify-content: center; }
+  .card.small h3 { margin-bottom: 4px; }
+
+  /* ── Journey steps ── */
+  .journey { display: flex; gap: 8px; align-items: stretch; flex-wrap: wrap; }
+  .journey-step { flex: 1; min-width: 160px; border: 1px solid #ccc; background: #fff; padding: 16px; position: relative; }
+  .journey-step .step-num { font-size: 1.4rem; font-weight: 900; color: #ccc; display: block; margin-bottom: 6px; }
+  .journey-step h3 { font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.03em; margin-bottom: 6px; }
+  .journey-step p { font-size: 0.78rem; color: #555; }
+  .journey-arrow { display: flex; align-items: center; font-size: 1.4rem; color: #bbb; padding: 0 2px; }
+  .first-visit-link { display: inline-block; margin-top: 18px; font-weight: 700; font-size: 0.85rem; text-decoration: underline; }
+
+  /* ── Trainerize ── */
+  .phones-row { display: flex; gap: 16px; }
+  .phones-row .placeholder { flex: 1; aspect-ratio: 9/16; min-height: 0; }
+  .phone-label { text-align: center; margin-top: 8px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
+  .phone-desc { text-align: center; font-size: 0.75rem; color: #666; margin-top: 2px; }
+  .powered-by { display: inline-block; margin-top: 20px; font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; color: #888; border: 1px solid #ccc; padding: 4px 10px; border-radius: 3px; }
+
+  /* ── Personal training ── */
+  .pt-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; }
+  .pt-layout .placeholder { min-height: 300px; }
+  .benefit-list { list-style: none; margin: 14px 0 20px; }
+  .benefit-list li { font-size: 0.85rem; color: #444; padding: 5px 0 5px 18px; position: relative; }
+  .benefit-list li::before { content: '—'; position: absolute; left: 0; color: #999; }
+
+  /* ── Testimonials ── */
+  .testimonial-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 8px; }
+  .testimonial-card { border: 1px solid #ccc; background: #fff; padding: 16px; }
+  .testimonial-theme { font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #999; margin-bottom: 8px; }
+  .testimonial-card p.quote { font-size: 0.83rem; font-style: italic; color: #333; margin-bottom: 10px; }
+  .testimonial-card .name { font-size: 0.78rem; font-weight: 700; }
+  .rating-strip { display: flex; align-items: center; gap: 8px; margin-top: 18px; font-size: 0.85rem; }
+  .rating-strip .stars { letter-spacing: 2px; }
+
+  /* ── Snowling Stones ── */
+  .stones-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: center; }
+  .stones-layout .placeholder { min-height: 220px; }
+
+  /* ── See inside ── */
+  .photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 24px; }
+  .photo-grid .placeholder { min-height: 140px; }
+  .matterport-box { border: 3px solid #111; background: #fff; padding: 32px; display: flex; align-items: center; gap: 20px; max-width: 600px; }
+  .matterport-icon { width: 56px; height: 56px; border: 2px solid #111; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
+  .matterport-box .label { font-weight: 700; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.03em; margin-bottom: 4px; }
+  .matterport-box .sub { font-size: 0.78rem; color: #666; }
+
+  /* ── Final conversion ── */
+  .final-cta { text-align: center; }
+  .final-cta .cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 20px; }
+
+  /* ── Footer ── */
+  footer.site-footer { background: #111; color: #ccc; padding: 40px 24px; }
+  .footer-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; font-size: 0.82rem; }
+  .footer-inner h4 { color: #fff; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 10px; }
+  .footer-inner p, .footer-inner a { color: #aaa; display: block; margin-bottom: 4px; text-decoration: none; }
+
+  /* ── Approval / questions ── */
+  .approval-section { max-width: 900px; margin: 0 auto; padding: 56px 24px 80px; }
+  .approval-section h2 { font-size: 1.4rem; margin-bottom: 4px; }
+  .approval-section .sub { color: #666; font-size: 0.85rem; margin-bottom: 24px; }
+  .confirm-list { list-style: none; counter-reset: q; border: 1px solid #ccc; background: #fff; }
+  .confirm-list li { counter-increment: q; padding: 16px 20px; border-bottom: 1px solid #e5e5e5; font-size: 0.92rem; display: flex; gap: 12px; }
+  .confirm-list li:last-child { border-bottom: none; }
+  .confirm-list li::before { content: counter(q); flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%; background: #111; color: #fff; font-size: 0.78rem; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+  .closing-quote { margin-top: 28px; padding: 20px; border-left: 4px solid #111; background: #f0f0f0; font-size: 1rem; font-style: italic; }
+
+  @media (max-width: 900px) {
+    .cards-grid, .cards-grid.cols-3, .testimonial-grid, .photo-grid { grid-template-columns: repeat(2, 1fr); }
+    .pt-layout, .stones-layout, .footer-inner { grid-template-columns: 1fr; }
+    .journey { flex-direction: column; }
+    .journey-arrow { display: none; }
+    .phones-row { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<div class="legend">
+  <span><span class="swatch" style="background:repeating-linear-gradient(45deg,#e2e2e2,#e2e2e2 3px,#ececec 3px,#ececec 6px);"></span> Hatched box = image/photo placeholder</span>
+  <span><span class="swatch" style="background:#f0f0f0;border:1px dashed #999;"></span> Dashed grey = reviewer note (from the brief)</span>
+  <span><span class="swatch" style="background:#fdf0f5;border:1px dashed #b06;"></span> Dashed pink = needs your confirmation</span>
+  <span><span class="real-tag" style="margin:0;">real</span> = actual content pulled from the live site</span>
+</div>
+
+<div class="approval-banner">
+  <h1>Fitness At The Street — New Member UX Concept</h1>
+  <div class="purpose">Purpose: Content &amp; Journey Approval</div>
+  <p>This prototype is intended to confirm that the proposed member journey, services and messaging accurately reflect the Fitness At The Street experience before detailed design and development.</p>
+</div>
+
+<!-- ── Why this document exists ── -->
+<section class="block tight" style="border-bottom:3px solid #111;">
+  <span class="section-num">Start here</span>
+  <h2 class="headline">Why we're proposing a restructure</h2>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:20px;">
+    <div style="border:1px solid #ccc; background:#fff; padding:18px;">
+      <h3 style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.05em; color:#777; margin-bottom:10px;">Today's site is organised by page type</h3>
+      <p style="font-size:0.85rem; color:#444;">Home · About · Classes · Instructors · Snowling Stones · Take The Tour · Find Us · Member Login — each page covers one topic well, but a first-time visitor has to piece the member journey together themselves.</p>
+    </div>
+    <div style="border:1px solid #111; background:#fff; padding:18px;">
+      <h3 style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.05em; color:#111; margin-bottom:10px;">This concept is organised around the new-member journey</h3>
+      <p style="font-size:0.85rem; color:#444;">The homepage itself is restructured to answer, in order: Is this gym for me? What do I get as a member? What happens when I join? How do I get started? Everything below is built to answer those four questions before anything else.</p>
+    </div>
+  </div>
+  <p style="font-size:0.85rem; color:#444; max-width:760px; margin-bottom:12px;"><strong>How to use this document:</strong> look at the live dev site first (<span style="text-decoration:underline;">ducks-new-build.fitnessatthestreet.pages.dev</span>), then work through this page top to bottom. Every section below carries a reviewer note explaining <em>why</em> it's structured that way, and a confirmation flag anywhere we're not certain we've got the real detail right. Nothing here is final — it's a starting point for a conversation about the logic, not a design.</p>
+  <p style="font-size:0.85rem; color:#444; max-width:760px;">Once we've talked through the reasoning section by section and agreed the structure together, the next step is a higher-fidelity wireframe prototype, and only after that, the real build.</p>
+</section>
+
+<!-- ── 1. Header ── -->
+<header class="site-header">
+  <div class="header-row">
+    <div class="logo-placeholder">Fitness At The Street logo</div>
+    <nav class="main-nav">
+      <span>Home</span>
+      <span>Start Here</span>
+      <span>Training</span>
+      <span>Our Story</span>
+      <span>See Inside <span class="confirm-tag">confirm label</span></span>
+      <span>Find Us</span>
+      <a class="btn btn-primary" style="padding:8px 18px;">JOIN</a>
+      <span class="member-login">Member Login</span>
+    </nav>
+  </div>
+  <div class="nav-groups">
+    <span><strong>Training</strong> ▾ Gym · Personal Training · Classes · Training Programmes · Trainerize</span>
+    <span><strong>Our Story</strong> ▾ About · Meet The Team · Snowling Stones</span>
+  </div>
+</header>
+
+<!-- ── 2. Hero ── -->
+<section class="block hero">
+  <span class="section-num">Section 1 — Hero</span>
+  <h1>Train Hard. Feel Strong. Belong.</h1>
+  <p class="subhead" style="margin-left:auto;margin-right:auto;">A strength-focused community gym in Brundall where you can train your way.</p>
+  <div class="cta-row">
+    <a class="btn btn-primary">START HERE</a>
+    <a class="btn btn-outline">SEE INSIDE <span class="confirm-tag">or "Take The Tour"?</span></a>
+  </div>
+  <div class="placeholder">Real gym photography — e.g. the gym floor shot currently used as the About page background <span class="real-tag">real asset exists</span></div>
+  <div class="note">
+    <span class="note-label">Reviewer note</span>
+    Primary job of hero: immediately establish what the gym is, who it is for, and what a new visitor should do next.
+  </div>
+</section>
+
+<!-- ── 3. Find your way to train ── -->
+<section class="block">
+  <span class="section-num">Section 2 — Find Your Way To Train</span>
+  <h2 class="headline">Find your way to train</h2>
+  <div class="cards-grid">
+    <div class="card">
+      <div class="placeholder">Gym floor photo</div>
+      <div class="card-body">
+        <h3>Gym</h3>
+        <p>Train independently in a strength-focused community environment.</p>
+        <span class="link">Learn More</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="placeholder">Trainer coaching photo</div>
+      <div class="card-body">
+        <h3>Personal Training</h3>
+        <p>One-to-one support, coaching and accountability.</p>
+        <span class="link">Learn More</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="placeholder">App/programme photo</div>
+      <div class="card-body">
+        <h3>Programmes + Trainerize</h3>
+        <p>Individual training programmes, workouts and progress tracking through the Trainerize app.</p>
+        <span class="link">Learn More</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="placeholder">Class in session photo</div>
+      <div class="card-body">
+        <h3>Classes</h3>
+        <p>Structured group training and the social side of the gym.</p>
+        <span class="link">Learn More</span>
+      </div>
+    </div>
+  </div>
+  <div class="note">
+    <span class="note-label">Reviewer note</span>
+    These are four ways a member can engage with Fitness At The Street. Confirm whether this accurately represents the actual member experience.
+  </div>
+</section>
+
+<!-- ── 4. Is this for you ── -->
+<section class="block">
+  <span class="section-num">Section 3 — Is This For You</span>
+  <h2 class="headline">Is Fitness At The Street for you?</h2>
+  <div class="cards-grid cols-3">
+    <div class="card">
+      <div class="card-body">
+        <h3>I'm New To Training</h3>
+        <p>You don't need to know what you're doing before you arrive.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h3>I'm Getting Back Into Exercise</h3>
+        <p>Start at your own pace with support from the team.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h3>I Already Train</h3>
+        <p>Train independently, follow a programme, attend classes or work with a trainer.</p>
+      </div>
+    </div>
+    <div class="card small">
+      <div class="card-body">
+        <h3>I'm Not Sure</h3>
+        <p>Talk to the team and we'll help you find the right starting point.</p>
+      </div>
+    </div>
+  </div>
+  <div class="note">
+    <span class="note-label">Reviewer note</span>
+    This section is designed to reduce the intimidation barrier for new members.
+  </div>
+</section>
+
+<!-- ── 5. What happens when you join ── -->
+<section class="block">
+  <span class="section-num">Section 4 — The Joining Journey</span>
+  <h2 class="headline">What happens when you join?</h2>
+  <div class="journey">
+    <div class="journey-step"><span class="step-num">01</span><h3>Get In Touch</h3><p>Tell us what you're looking for.</p></div>
+    <div class="journey-arrow">→</div>
+    <div class="journey-step"><span class="step-num">02</span><h3>Meet The Team</h3><p>Talk through your goals and experience.</p></div>
+    <div class="journey-arrow">→</div>
+    <div class="journey-step"><span class="step-num">03</span><h3>Get Your Programme</h3><p>Get training appropriate to your goals and ability.</p></div>
+    <div class="journey-arrow">→</div>
+    <div class="journey-step"><span class="step-num">04</span><h3>Get Started With Trainerize</h3><p>Access your workouts through the app.</p></div>
+    <div class="journey-arrow">→</div>
+    <div class="journey-step"><span class="step-num">05</span><h3>Train &amp; Progress</h3><p>Train, track your workouts and see your progress.</p></div>
+  </div>
+  <a class="first-visit-link">What to expect on your first visit →</a>
+  <div class="confirm-note">
+    <span class="note-label">Needs confirmation</span>
+    These five steps are a proposed structure, not a documented process. Please confirm what actually happens at each stage — is "Meet The Team" a call, a consultation, a walk-in chat? Is there any kind of induction or assessment? Nothing beyond what's shown here has been invented, but the real detail behind each step needs your input before this goes further.
+  </div>
+</section>
+
+<!-- ── 6. Trainerize ── -->
+<section class="block">
+  <span class="section-num">Section 5 — Trainerize</span>
+  <h2 class="headline">Your training goes beyond the gym</h2>
+  <p class="subhead">Your membership can include an individual training programme delivered through the Trainerize app, helping you know what to do, track your workouts and see your progress over time.</p>
+  <div class="phones-row">
+    <div>
+      <div class="placeholder">Phone screenshot</div>
+      <div class="phone-label">Your Programme</div>
+      <div class="phone-desc">Your individual training plan.</div>
+    </div>
+    <div>
+      <div class="placeholder">Phone screenshot</div>
+      <div class="phone-label">Your Workouts</div>
+      <div class="phone-desc">Know what you're doing when you train.</div>
+    </div>
+    <div>
+      <div class="placeholder">Phone screenshot</div>
+      <div class="phone-label">Your Progress</div>
+      <div class="phone-desc">Record sessions and track improvement.</div>
+    </div>
+  </div>
+  <div class="powered-by">Powered by Trainerize</div>
+  <div class="note">
+    <span class="note-label">Reviewer note</span>
+    Trainerize is part of the member experience, not a standalone technology feature. <span class="real-tag">real integration — trainerize.me/profile/fitnessatthestreet</span>
+  </div>
+</section>
+
+<!-- ── 7. Personal Training ── -->
+<section class="block">
+  <span class="section-num">Section 6 — Personal Training</span>
+  <h2 class="headline">Need more individual support?</h2>
+  <div class="pt-layout">
+    <div>
+      <div class="placeholder">Trainer photo — e.g. Stephen, Kim or Nikki coaching a client <span class="real-tag">real instructors</span></div>
+    </div>
+    <div>
+      <p style="font-size:0.95rem;color:#444;margin-bottom:14px;">Work one-to-one with a trainer for focused coaching, support and accountability.</p>
+      <ul class="benefit-list">
+        <li>Build confidence</li>
+        <li>Improve technique</li>
+        <li>Work towards specific goals</li>
+        <li>Get individual guidance</li>
+        <li>Stay accountable</li>
+      </ul>
+      <a class="btn btn-primary">EXPLORE PERSONAL TRAINING</a>
+    </div>
+  </div>
+  <div class="note">
+    <span class="note-label">Reviewer note</span>
+    Personal training is a core route into the Fitness At The Street experience and should be treated as such.
+  </div>
+</section>
+
+<!-- ── 8. Community / testimonials ── -->
+<section class="block">
+  <span class="section-num">Section 7 — Community &amp; Testimonials</span>
+  <h2 class="headline">A community built around strength</h2>
+  <div class="testimonial-grid">
+    <div class="testimonial-card">
+      <div class="testimonial-theme">"I was nervous about joining"</div>
+      <p class="quote">"I used this gym for the first time today and honestly couldn't be happier with my experience."</p>
+      <div class="name">Jake Grimmer <span class="real-tag">real Google review</span></div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-theme">"I didn't know what I was doing"</div>
+      <p class="quote">"I brought a persistent hip and shoulder problem, a desperate need to get back into training and lose weight, and raging peri menopause!"</p>
+      <div class="name">Dawn B <span class="real-tag">real Google review</span></div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-theme">"The trainers are supportive"</div>
+      <p class="quote">"The best gym in Norfolk by a country mile! Warm, welcoming, knowledgable staff, very reasonably priced and equipment to suit every interest and goal."</p>
+      <div class="name">Steven Monsey <span class="real-tag">real Google review</span></div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-theme">"I finally stuck with training"</div>
+      <p class="quote">"Only gym I've been able to stick with. 3 years and counting. It's friendly and welcoming... Classes are always great fun and every ability is catered for."</p>
+      <div class="name">Scott Shrubsall <span class="real-tag">real Google review</span></div>
+    </div>
+  </div>
+  <div class="rating-strip">
+    <span class="stars">★★★★★</span> <strong>4.9</strong> · 35 Google reviews <span class="real-tag">real — already live on homepage</span>
+  </div>
+  <div class="note">
+    <span class="note-label">Reviewer note</span>
+    The objective is reassurance, not simply social proof — these four were chosen to answer specific new-member worries rather than as generic five-star praise.
+  </div>
+</section>
+
+<!-- ── 9. Snowling Stones ── -->
+<section class="block tight">
+  <span class="section-num">Section 8 — Strength Is Part Of Our Story (smaller, secondary section)</span>
+  <h2 class="headline small">Strength is part of our story</h2>
+  <div class="stones-layout">
+    <div class="placeholder">Steve stone-lifting photograph <span class="confirm-tag">need real photo</span></div>
+    <div>
+      <p style="font-size:0.88rem;color:#444;margin-bottom:12px;">Fitness At The Street has its roots in strength and traditional stone lifting.</p>
+      <p style="font-size:0.88rem;color:#444;margin-bottom:16px;">That heritage is part of the gym's identity today, but strength here is about more than lifting the heaviest weight. It's about learning, progressing, challenging yourself and supporting the people around you.</p>
+      <a class="btn btn-outline">DISCOVER THE SNOWLING STONES</a>
+    </div>
+  </div>
+  <div class="confirm-note">
+    <span class="note-label">Needs confirmation</span>
+    The brief's suggested copy says Steve travelled the country lifting stones, including personally lifting the Dinnie Stones. What's actually verified on the live Instructors page is: Steve is a <em>Podium National Natural Strongman competitor</em>, and <em>coached 3 clients to successfully lift the Dinnie Stones</em> — not that Steve lifted them himself (same distinction as the Channel swim correction earlier). Please confirm the real personal history here before it goes further, so we don't overstate it.
+  </div>
+  <div class="note">
+    <span class="note-label">Reviewer note</span>
+    Snowling Stones = heritage and authenticity, not the primary product proposition. The two real Snowling Stones sit outside the gym (296kg combined, named after Steve &amp; Kim, listed on the English Stone Lifting directory) <span class="real-tag">real — live on site</span>.
+  </div>
+</section>
+
+<!-- ── 10. See inside ── -->
+<section class="block">
+  <span class="section-num">Section 9 — See Inside The Gym</span>
+  <h2 class="headline">See inside the gym</h2>
+  <div class="photo-grid">
+    <div class="placeholder">Gym floor</div>
+    <div class="placeholder">Equipment</div>
+    <div class="placeholder">People training</div>
+    <div class="placeholder">Trainers helping members</div>
+    <div class="placeholder">Classes</div>
+    <div class="placeholder">Entrance</div>
+  </div>
+  <div class="matterport-box">
+    <div class="matterport-icon">▶</div>
+    <div>
+      <div class="label">Matterport 3D Viewer</div>
+      <div class="sub">Embedded interactive walkthrough — not a photo or video. <span class="real-tag">real — already live on Take The Tour page</span></div>
+    </div>
+  </div>
+  <div style="margin-top:20px;"><a class="btn btn-primary">TAKE THE TOUR <span class="confirm-tag">or "SEE INSIDE"?</span></a></div>
+  <div class="note">
+    <span class="note-label">Reviewer note</span>
+    Tour = embedded Matterport 3D walkthrough, not a produced video — shown here as a distinct interactive viewer element, not a standard image/video placeholder.
+  </div>
+  <div class="confirm-note">
+    <span class="note-label">Needs confirmation</span>
+    The live site currently calls this nav item / CTA "Take The Tour". This brief proposes "See Inside" for the nav and this section heading. Worth deciding one label and using it consistently across nav, hero secondary CTA, and this section's CTA.
+  </div>
+</section>
+
+<!-- ── 11. Final conversion ── -->
+<section class="block final-cta">
+  <span class="section-num">Section 10 — Final Conversion</span>
+  <h2 class="headline">Ready to get started?</h2>
+  <p class="subhead" style="margin-left:auto;margin-right:auto;">Whether you're new to training, returning after a break or already experienced, we'll help you find the right way to train.</p>
+  <div class="cta-row">
+    <a class="btn btn-primary">JOIN</a>
+    <a class="btn btn-outline">ASK US A QUESTION <span class="real-tag" style="margin-left:6px;">real — WhatsApp CTA already live</span></a>
+  </div>
+</section>
+
+<!-- ── 12. Footer ── -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <h4>Contact</h4>
+      <p>Broom Estates Riverside, Brundall, Norfolk <span class="real-tag">real</span></p>
+      <p>fitnessatthestreet@gmail.com <span class="real-tag">real</span></p>
+      <a href="#">Find Us</a>
+    </div>
+    <div>
+      <h4>Opening Hours</h4>
+      <p>Mon–Thu: 7:00am–8:00pm</p>
+      <p>Fri: 7:00am–6:00pm</p>
+      <p>Sat: 9:30am–12:30pm</p>
+      <p>Sun: Closed</p>
+      <p style="margin-top:6px;"><span class="real-tag">real — confirmed hours already live</span></p>
+    </div>
+    <div>
+      <h4>Follow</h4>
+      <a href="#">Facebook</a>
+      <a href="#">Instagram</a>
+      <a href="#">Member Login</a>
+    </div>
+    <div>
+      <h4>Legal</h4>
+      <a href="#">Privacy <span class="confirm-tag">page doesn't exist yet</span></a>
+      <a href="#">Terms <span class="confirm-tag">page doesn't exist yet</span></a>
+    </div>
+  </div>
+</footer>
+
+<!-- ── Approval / questions ── -->
+<div class="approval-section">
+  <h2>Please Confirm</h2>
+  <p class="sub">This is a UX workshop document for Steve and Kim — not a finished marketing website. Please work through these before any detailed design or copywriting starts.</p>
+  <ol class="confirm-list">
+    <li>Does this accurately represent what a new member experiences?</li>
+    <li>Are Gym, Personal Training, Classes and Training Programmes the right core routes?</li>
+    <li>Is the Trainerize description accurate?</li>
+    <li>Is the joining process accurate?</li>
+    <li>What have we missed?</li>
+    <li>Is the balance between community, strength, coaching and heritage right?</li>
+    <li>Does the Snowling Stones story feel appropriately positioned — and is the stone-lifting history (flagged above) accurate?</li>
+  </ol>
+  <div class="closing-quote">
+    "Yes, that's actually what we offer and that's how we want new members to experience us."
+  </div>
+</div>
+
+</body>
+</html>
