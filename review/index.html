@@ -73,6 +73,8 @@
   /* ── Cards grid ── */
   .cards-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
   .cards-grid.cols-3 { grid-template-columns: repeat(3, 1fr) 0.7fr; }
+  .cards-grid.cols-4 { grid-template-columns: repeat(4, 1fr) 0.7fr; }
+  @media (max-width: 1100px) { .cards-grid.cols-4 { grid-template-columns: repeat(2, 1fr); } }
   .card { border: 1px solid #ccc; background: #fff; display: flex; flex-direction: column; }
   .card .placeholder { min-height: 100px; }
   .card-body { padding: 14px 16px; flex: 1; display: flex; flex-direction: column; }
@@ -216,6 +218,10 @@
     <span class="note-label">Reviewer note</span>
     This is the only change to the homepage: one clearly-labelled entry point for prospective members, without disrupting what existing members already use the homepage for.
   </div>
+  <div class="confirm-note">
+    <span class="note-label">Needs confirmation — not a done deal</span>
+    "Train Hard. Feel Strong. Belong." was written by Tim during the build — it isn't a confirmed Kim/Steve tagline. Please check whether the gym already has a tagline it uses (signage, merchandise, socials) and whether that should be used instead of this one, here and everywhere else it appears on the site.
+  </div>
 </section>
 
 <div style="max-width:1100px; margin:0 auto; padding:32px 24px 0;">
@@ -317,7 +323,7 @@
 <section class="block">
   <span class="section-num">Start Here Page — Section 3 — Is This For You</span>
   <h2 class="headline">Is Fitness At The Street for you?</h2>
-  <div class="cards-grid cols-3">
+  <div class="cards-grid cols-4">
     <div class="card">
       <div class="card-body">
         <h3>I'm New To Training</h3>
@@ -336,6 +342,12 @@
         <p>Train independently, follow a programme, attend classes or work with a trainer.</p>
       </div>
     </div>
+    <div class="card" style="border-color:#111;">
+      <div class="card-body">
+        <h3>I'm An Experienced Lifter <span class="confirm-tag">new</span></h3>
+        <p>Powerlifting, bodybuilding or your own programme — train fully independently. No app, no set programme, no obligation to use Trainerize.</p>
+      </div>
+    </div>
     <div class="card small">
       <div class="card-body">
         <h3>I'm Not Sure</h3>
@@ -346,6 +358,10 @@
   <div class="note">
     <span class="note-label">Reviewer note</span>
     This section is designed to reduce the intimidation barrier for new members.
+  </div>
+  <div class="confirm-note">
+    <span class="note-label">Added by Tim, not in the original brief</span>
+    Experienced lifters (powerlifting, bodybuilding, or anyone running their own programme) need explicit reassurance that they're <em>not</em> being pushed into Trainerize or a set programme — the rest of this page leans heavily on app/programme messaging, which could otherwise read as "everyone here trains through the app."
   </div>
 </section>
 
@@ -368,6 +384,10 @@
   <div class="confirm-note">
     <span class="note-label">Needs confirmation</span>
     These five steps are a proposed structure, not a documented process. Please confirm what actually happens at each stage — is "Meet The Team" a call, a consultation, a walk-in chat? Is there any kind of induction or assessment? Nothing beyond what's shown here has been invented, but the real detail behind each step needs your input before this goes further.
+  </div>
+  <div class="confirm-note">
+    <span class="note-label">Added by Tim, not in the original brief</span>
+    Steps 03 and 04 assume everyone gets a programme through Trainerize — but the new "I'm An Experienced Lifter" persona above explicitly doesn't want that. Worth deciding whether this journey needs a visible branch/note for self-directed members, or whether that's handled elsewhere (e.g. at the "Get In Touch" stage).
   </div>
 </section>
 
@@ -522,6 +542,14 @@
     <a class="btn btn-primary">JOIN</a>
     <a class="btn btn-outline">ASK US A QUESTION <span class="real-tag" style="margin-left:6px;">real — WhatsApp CTA already live</span></a>
   </div>
+  <div class="confirm-note" style="margin-left:auto; margin-right:auto; text-align:left;">
+    <span class="note-label">Needs confirmation</span>
+    JOIN appears throughout this concept as the primary CTA, but what it actually <em>does</em> hasn't been decided — does it link to a sign-up form, a Trainerize membership flow, a "book a free trial/first session" booking, or does it just open the same WhatsApp/contact route as "Ask Us A Question"? This needs deciding before the button means anything.
+  </div>
+  <div class="confirm-note" style="margin-left:auto; margin-right:auto; text-align:left;">
+    <span class="note-label">Missing — not addressed anywhere in the brief</span>
+    Pricing isn't mentioned once across this entire journey, and a prospective member will want to know cost before they "Get In Touch". Worth deciding: does the site show pricing at all, is it "contact us for pricing" by design, or does it only come up once someone's spoken to the team (Step 01/02)? Whatever the answer, it's worth being deliberate about rather than it being an accidental gap.
+  </div>
 </section>
 
 <!-- ── 12. Footer ── -->
@@ -570,6 +598,10 @@
     <li>Is the balance between community, strength, coaching and heritage right?</li>
     <li>Does the Snowling Stones story feel appropriately positioned — and is the stone-lifting history (flagged above) accurate?</li>
     <li>Do you want the full nav reorganisation (Training/Our Story dropdowns) too, or just the light-touch addition shown here?</li>
+    <li>Does the gym already have a tagline you use, rather than "Train Hard. Feel Strong. Belong." (Tim's placeholder, not yet confirmed)?</li>
+    <li>What should JOIN actually do — a sign-up form, a Trainerize flow, a booking, or the same contact route as "Ask Us A Question"?</li>
+    <li>Where does pricing fit? Shown on the site, "contact us" by design, or only discussed once someone's spoken to the team?</li>
+    <li>Does the new "I'm An Experienced Lifter" persona feel right, and does the joining journey need to acknowledge self-directed members separately?</li>
   </ol>
   <div class="closing-quote">
     "Yes, that's actually what we offer and that's how we want new members to experience us."
