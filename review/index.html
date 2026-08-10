@@ -64,6 +64,21 @@
   .funnel-personas span.highlight { border-color: #111; border-width: 2px; color: #111; }
   @media (max-width: 700px) { .funnel-stage, .funnel-personas { width: 100% !important; } .funnel-personas span { min-width: 70px; } }
 
+  /* ── Decision tree (sits between persona row and Conversion in the funnel) ── */
+  .decision-tree { width: 72%; margin: 6px auto 3px; border: 1px solid #ccc; background: #fafafa; padding: 16px; border-radius: 6px; text-align: left; }
+  .decision-tree-label { text-align: center; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: #777; margin-bottom: 12px; }
+  .tree-columns { display: flex; gap: 8px; }
+  .tree-col { flex: 1; border-left: 2px solid #ddd; padding-left: 8px; min-width: 0; }
+  .tree-col.highlight { border-left-color: #111; }
+  .tree-col h5 { font-size: 0.68rem; font-weight: 700; margin-bottom: 6px; }
+  .tree-col .tree-tag { display: block; font-size: 0.58rem; padding: 2px 5px; border-radius: 2px; margin-bottom: 5px; background: #eee; color: #555; white-space: normal; }
+  .tree-col .tree-tag.detail-light { background: #e3f3ea; color: #16794a; }
+  .tree-col .tree-tag.detail-mod { background: #fff6e0; color: #8a6300; }
+  .tree-col .tree-tag.detail-full { background: #fdf0f5; color: #b0104a; }
+  .tree-col .tree-tag.detail-none { background: #eee; color: #888; }
+  .tree-col p { font-size: 0.66rem; color: #555; }
+  @media (max-width: 700px) { .decision-tree { width: 100%; } .tree-columns { flex-direction: column; gap: 12px; } .tree-col { border-left: none; border-top: 2px solid #ddd; padding-left: 0; padding-top: 8px; } }
+
   /* ── Placeholder blocks ── */
   .placeholder {
     background: repeating-linear-gradient(45deg, #e2e2e2, #e2e2e2 10px, #ececec 10px, #ececec 20px);
@@ -805,6 +820,37 @@
 
     <div class="funnel-personas">
       <span>New</span><span>Back Into It</span><span>Already Train</span><span class="highlight">Specialist</span><span>Not Sure</span>
+    </div>
+
+    <div class="decision-tree">
+      <div class="decision-tree-label">↓ same 3 shared steps first (Get In Touch → Induction → Discuss Your Approach) — then this is where it splits ↓</div>
+      <div class="tree-columns">
+        <div class="tree-col">
+          <h5>New</h5>
+          <span class="tree-tag detail-light">Equipment detail: Light</span>
+          <p>Onboarding: Trainerize path</p>
+        </div>
+        <div class="tree-col">
+          <h5>Back Into It</h5>
+          <span class="tree-tag detail-light">Equipment detail: Light</span>
+          <p>Onboarding: Trainerize path</p>
+        </div>
+        <div class="tree-col">
+          <h5>Already Train</h5>
+          <span class="tree-tag detail-mod">Equipment detail: Moderate</span>
+          <p>Onboarding: both paths shown</p>
+        </div>
+        <div class="tree-col highlight">
+          <h5>Specialist</h5>
+          <span class="tree-tag detail-full">Equipment detail: Full</span>
+          <p>Onboarding: Self-Guided path</p>
+        </div>
+        <div class="tree-col">
+          <h5>Not Sure</h5>
+          <span class="tree-tag detail-none">Equipment detail: None</span>
+          <p>Skips straight to Get In Touch</p>
+        </div>
+      </div>
     </div>
 
     <div class="funnel-stage" style="width:30%;">
