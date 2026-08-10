@@ -244,13 +244,13 @@
     </div>
 
     <div class="audit-card">
-      <h3>Equipment (general / powerlifter / bodybuilder tabs) <span class="status-badge status-missing">Not built — open question</span></h3>
+      <h3>Equipment (general / powerlifter / bodybuilder tabs) <span class="status-badge status-partial">Superseded — folded into the Experienced Lifter path</span></h3>
       <div class="label-row">Why it exists</div>
       <p>Reassure people training in a specific style that the gym actually has the equipment for it, rather than a generic once-over.</p>
-      <div class="label-row">Discussion point — not decided here</div>
-      <p>Matterport supports adding interactive tags to specific equipment directly within the 3D scan, which could cover this without a separate page — the same way it could replace the guided-tour ask above, once FATS's own scan exists (see Virtual Tour above — the current embed is a sample from another gym, not FATS's space). Question for Kim and Steve: is tagging equipment inside a future FATS Matterport tour enough, or does the general/powerlifter/bodybuilder split need its own dedicated page regardless? Flagging as a discussion point rather than assuming either way.</p>
+      <div class="label-row">Refined plan</div>
+      <p>Not a page, not even a separate link — this content now lives inside the "Experienced Lifter" version of the Start Here page itself (see the New Here Router, Section 2), in the same spot everyone else sees the Trainerize pitch. That's a more direct answer than the original page-with-tabs idea: no separate destination to build or maintain, and it only ever appears to someone who's already said this is what they need. Tagging equipment inside a future FATS Matterport scan (see Virtual Tour above) could add extra proof later, but isn't required for this to work.</p>
       <div class="label-row">How it fits the new design</div>
-      <p>Whichever approach is chosen, it's now more relevant than when originally asked for — it directly backs up the new "I'm An Experienced Lifter" persona (Section 3) with proof rather than just reassurance copy.</p>
+      <p>Fully absorbed into the persona-routed Start Here page — see Section 5 (Trainerize) for where the Experienced Lifter variant sits.</p>
     </div>
 
     <div class="audit-card">
@@ -370,9 +370,80 @@
   </div>
 </section>
 
-<!-- ── 3. Find your way to train ── -->
+<!-- ── 3. New Here Router ── -->
 <section class="block">
-  <span class="section-num">Start Here Page — Section 2 — Find Your Way To Train</span>
+  <span class="section-num">Start Here Page — Section 2 — New Here Router</span>
+  <h2 class="headline">Which best describes you?</h2>
+  <p class="subhead">Right after the hero, before anything else — the whole rest of this page is bespoke to your answer, not just one section further down.</p>
+  <div class="cards-grid cols-4">
+    <div class="card">
+      <div class="card-body">
+        <h3>I'm New To Training</h3>
+        <p>You don't need to know what you're doing before you arrive.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h3>I'm Getting Back Into Exercise</h3>
+        <p>Start at your own pace with support from the team.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h3>I Already Train</h3>
+        <p>Train independently, follow a programme, attend classes or work with a trainer.</p>
+      </div>
+    </div>
+    <div class="card" style="border-color:#111;">
+      <div class="card-body">
+        <h3>I'm An Experienced Lifter <span class="confirm-tag">new</span></h3>
+        <p>Powerlifting, bodybuilding or your own programme — train fully independently. No app, no set programme, no obligation to use Trainerize.</p>
+      </div>
+    </div>
+    <div class="card small">
+      <div class="card-body">
+        <h3>I'm Not Sure</h3>
+        <p>Talk to the team and we'll help you find the right starting point.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="note">
+    <span class="note-label">How this actually routes (proposed)</span>
+    <table style="width:100%; border-collapse:collapse; margin-top:10px; font-size:0.8rem;">
+      <tr style="border-bottom:1px solid #ccc; text-align:left;">
+        <th style="padding:6px 8px;">Persona</th>
+        <th style="padding:6px 8px;">What's bespoke about their version of this page</th>
+      </tr>
+      <tr style="border-bottom:1px solid #e5e5e5;"><td style="padding:6px 8px; font-weight:700; white-space:nowrap;">New to training</td><td style="padding:6px 8px;">Full reassurance tone throughout. Trainerize explained warmly as a supportive tool. Joining journey defaults to the Trainerize path.</td></tr>
+      <tr style="border-bottom:1px solid #e5e5e5;"><td style="padding:6px 8px; font-weight:700; white-space:nowrap;">Getting back into it</td><td style="padding:6px 8px;">Similar tone to above, with more emphasis on going at your own pace and Personal Training as a support option.</td></tr>
+      <tr style="border-bottom:1px solid #e5e5e5;"><td style="padding:6px 8px; font-weight:700; white-space:nowrap;">Already train</td><td style="padding:6px 8px;">Balanced view of all four routes (Gym / PT / Classes / Programmes). Joining journey shows both paths equally.</td></tr>
+      <tr style="border-bottom:1px solid #e5e5e5;"><td style="padding:6px 8px; font-weight:700; white-space:nowrap;">Experienced lifter / specialist</td><td style="padding:6px 8px;">Where everyone else sees the Trainerize section, this path instead covers: tracking your own lifts (no prescribed programme), specialised equipment, and optional coaching input only if wanted. No separate Equipment page — it lives right here, bespoke to this path. Joining journey defaults to Self-Guided.</td></tr>
+      <tr><td style="padding:6px 8px; font-weight:700; white-space:nowrap;">Not sure</td><td style="padding:6px 8px;">Simplified and contact-focused — skips straight to "Get In Touch".</td></tr>
+    </table>
+  </div>
+
+  <div class="note">
+    <span class="note-label">Reviewer note</span>
+    This section is designed to reduce the intimidation barrier for new members.
+  </div>
+  <div class="confirm-note">
+    <span class="note-label">Added by Tim, not in the original brief</span>
+    Experienced lifters (powerlifting, bodybuilding, or anyone running their own programme) need explicit reassurance that they're <em>not</em> being pushed into Trainerize or a set programme.
+  </div>
+  <div class="confirm-note">
+    <span class="note-label">Wireframe scope note</span>
+    Building five fully separate page variants is beyond a structural review — the sections below (Find Your Way To Train, Trainerize, Joining Journey) show one representative version, aimed at a first-time visitor, with notes where a persona-specific version would differ. The table above is the actual logic to confirm before any personalised variant gets built. See the new Overview Diagram tab for the short version of this whole idea.
+  </div>
+  <div class="note">
+    <span class="note-label">Idea — added by Tim, not in the original brief</span>
+    A QR code on physical signage (window, door, flyers, business cards) could open straight into this router with a warm intro message, skipping the homepage entirely — a dedicated entry point for people discovering the gym in person rather than online. Same destination as the homepage banner and nav item, just a third way in.
+  </div>
+</section>
+
+<!-- ── 4. Find your way to train ── -->
+<section class="block">
+  <span class="section-num">Start Here Page — Section 3 — Find Your Way To Train</span>
   <h2 class="headline">Find your way to train</h2>
   <div class="cards-grid">
     <div class="card">
@@ -426,52 +497,6 @@
   </div>
 </section>
 
-<!-- ── 4. Is this for you ── -->
-<section class="block">
-  <span class="section-num">Start Here Page — Section 3 — Is This For You</span>
-  <h2 class="headline">Is Fitness At The Street for you?</h2>
-  <div class="cards-grid cols-4">
-    <div class="card">
-      <div class="card-body">
-        <h3>I'm New To Training</h3>
-        <p>You don't need to know what you're doing before you arrive.</p>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-body">
-        <h3>I'm Getting Back Into Exercise</h3>
-        <p>Start at your own pace with support from the team.</p>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-body">
-        <h3>I Already Train</h3>
-        <p>Train independently, follow a programme, attend classes or work with a trainer.</p>
-      </div>
-    </div>
-    <div class="card" style="border-color:#111;">
-      <div class="card-body">
-        <h3>I'm An Experienced Lifter <span class="confirm-tag">new</span></h3>
-        <p>Powerlifting, bodybuilding or your own programme — train fully independently. No app, no set programme, no obligation to use Trainerize.</p>
-      </div>
-    </div>
-    <div class="card small">
-      <div class="card-body">
-        <h3>I'm Not Sure</h3>
-        <p>Talk to the team and we'll help you find the right starting point.</p>
-      </div>
-    </div>
-  </div>
-  <div class="note">
-    <span class="note-label">Reviewer note</span>
-    This section is designed to reduce the intimidation barrier for new members.
-  </div>
-  <div class="confirm-note">
-    <span class="note-label">Added by Tim, not in the original brief</span>
-    Experienced lifters (powerlifting, bodybuilding, or anyone running their own programme) need explicit reassurance that they're <em>not</em> being pushed into Trainerize or a set programme — the rest of this page leans heavily on app/programme messaging, which could otherwise read as "everyone here trains through the app."
-  </div>
-</section>
-
 <!-- ── 5. What happens when you join ── -->
 <section class="block">
   <span class="section-num">Start Here Page — Section 4 — The Joining Journey</span>
@@ -510,7 +535,7 @@
   </div>
   <div class="note">
     <span class="note-label">Reviewer note — resolves an earlier gap</span>
-    This now includes an explicit Induction step and a Discuss Your Approach step, and forks into a Self-Guided path alongside the Trainerize path — so the "I'm An Experienced Lifter" persona (Section 3 above) has a visible, named route through the journey rather than being an exception to a Trainerize-only process.
+    This now includes an explicit Induction step and a Discuss Your Approach step, and forks into a Self-Guided path alongside the Trainerize path — so the "I'm An Experienced Lifter" persona (Section 2 above) has a visible, named route through the journey rather than being an exception to a Trainerize-only process.
   </div>
 </section>
 
@@ -540,6 +565,10 @@
   <div class="note">
     <span class="note-label">Reviewer note</span>
     Trainerize is part of the member experience, not a standalone technology feature. <span class="real-tag">real integration — trainerize.me/profile/fitnessatthestreet</span>
+  </div>
+  <div class="confirm-note">
+    <span class="note-label">This is the "New to training" version — the Experienced Lifter path replaces this whole section</span>
+    Per the New Here Router (Section 2), someone who selected "I'm An Experienced Lifter" wouldn't see this Trainerize pitch at all. In its place: tracking your own lifts (no prescribed programme), the gym's specialised equipment, and optional coaching only if they want it. This is also where the old "separate Equipment page" idea now lives — folded into this persona's version of the page, not a standalone destination.
   </div>
 </section>
 
