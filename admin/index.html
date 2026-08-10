@@ -146,6 +146,14 @@
 
     function isVideoSrc(src) { return /\.mp4($|\?)/i.test(src || ''); }
 
+    // Stored paths (e.g. "Images/classes/foo.jpg") are relative to the site root,
+    // but this dashboard lives at /admin/ — resolve them so previews load correctly here.
+    function resolveSrc(src) {
+      if (!src) return '';
+      if (src.startsWith('/') || src.startsWith('http://') || src.startsWith('https://')) return src;
+      return '/' + src;
+    }
+
     // ============================================================
     // CLASSES
     // ============================================================
@@ -163,7 +171,7 @@
         const card = document.createElement('div');
         card.className = 'slot-card';
         card.innerHTML = `
-          <img src="${item.src}" alt="${item.alt || ''}">
+          <img src="${resolveSrc(item.src)}" alt="${item.alt || ''}">
           <div class="slot-body">
             <label>Label</label>
             <input type="text" value="${item.slotLabel || ''}" data-field="slotLabel">
@@ -268,8 +276,8 @@
         const row = document.createElement('div');
         row.className = 'tile-row';
         const mediaTag = tile.type === 'video'
-          ? `<video src="${tile.src || ''}" muted></video>`
-          : `<img src="${tile.src || ''}" alt="${tile.alt || ''}">`;
+          ? `<video src="${resolveSrc(tile.src)}" muted></video>`
+          : `<img src="${resolveSrc(tile.src)}" alt="${tile.alt || ''}">`;
         row.innerHTML = `
           ${mediaTag}
           <div class="tile-fields">
@@ -293,7 +301,7 @@
             <div class="full"><label>Link (where the tile goes when clicked)</label>
               <input type="text" value="${tile.link || ''}" data-field="link">
             </div>
-            <div class="full"><label>Alt text</label>
+            <div class="full"><label>Alt text <span style="text-transform:none; letter-spacing:normal; color:var(--muted); font-weight:400;">— a short description of the photo/video, for screen readers and if the image fails to load. Not shown on the page.</span></label>
               <input type="text" value="${tile.alt || ''}" data-field="alt">
             </div>
           </div>
@@ -307,7 +315,7 @@
         row.querySelectorAll('[data-field]:not([data-field=upload])').forEach((el) => {
           el.addEventListener('input', () => {
             tiles[i][el.dataset.field] = el.value;
-            if (el.dataset.field === 'src') { media.setAttribute('src', el.value); }
+            if (el.dataset.field === 'src') { media.setAttribute('src', resolveSrc(el.value)); }
           });
           el.addEventListener('change', () => { tiles[i][el.dataset.field] = el.value; });
         });
