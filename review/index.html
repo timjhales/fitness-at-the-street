@@ -49,6 +49,19 @@
   /* ── Tabs ── */
   .tab-switcher { display: flex; justify-content: center; gap: 4px; padding: 16px 24px; background: #fff; border-bottom: 2px solid #111; flex-wrap: wrap; position: sticky; top: 0; z-index: 200; }
   .tab-btn { padding: 11px 22px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; background: #eee; border: 1px solid #ccc; cursor: pointer; color: #666; font-family: inherit; }
+  .tab-burger { display: none; }
+
+  @media (max-width: 700px) {
+    .tab-switcher { flex-direction: column; align-items: stretch; padding: 0; gap: 0; }
+    .tab-burger {
+      display: flex; align-items: center; justify-content: space-between; width: 100%;
+      padding: 16px 20px; background: #111; color: #fff; border: none; cursor: pointer;
+      font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; font-family: inherit;
+    }
+    .tab-burger-icon { font-size: 1.1rem; }
+    .tab-switcher .tab-btn { display: none; width: 100%; text-align: left; border-radius: 0; border-left: none; border-right: none; padding: 14px 20px; }
+    .tab-switcher.menu-open .tab-btn { display: block; }
+  }
   .tab-btn:hover { background: #e2e2e2; }
   .tab-btn.active { background: #111; color: #fff; border-color: #111; }
   .tab-panel { display: none; }
@@ -230,6 +243,10 @@
 </div>
 
 <div class="tab-switcher">
+  <button class="tab-burger" id="tab-burger" aria-label="Open tab menu">
+    <span id="tab-burger-label">Overview Diagram</span>
+    <span class="tab-burger-icon" id="tab-burger-icon">☰</span>
+  </button>
   <button class="tab-btn active" data-tab="tab-diagram">Overview Diagram</button>
   <button class="tab-btn" data-tab="tab-main">Main Site (Existing)</button>
   <button class="tab-btn" data-tab="tab-start-here">Start Here (New Page)</button>
@@ -966,12 +983,25 @@
 <!-- ── end tab-checklist ── -->
 
 <script>
+  const tabSwitcher = document.querySelector('.tab-switcher');
+  const tabBurger = document.getElementById('tab-burger');
+  const tabBurgerLabel = document.getElementById('tab-burger-label');
+  const tabBurgerIcon = document.getElementById('tab-burger-icon');
+
+  tabBurger.addEventListener('click', () => {
+    const open = tabSwitcher.classList.toggle('menu-open');
+    tabBurgerIcon.textContent = open ? '✕' : '☰';
+  });
+
   document.querySelectorAll('.tab-btn').forEach((btn) => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.tab-btn').forEach((b) => b.classList.remove('active'));
       document.querySelectorAll('.tab-panel').forEach((p) => p.classList.remove('active'));
       btn.classList.add('active');
       document.getElementById(btn.dataset.tab).classList.add('active');
+      tabBurgerLabel.textContent = btn.textContent;
+      tabSwitcher.classList.remove('menu-open');
+      tabBurgerIcon.textContent = '☰';
       document.querySelector('.tab-switcher').scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   });
