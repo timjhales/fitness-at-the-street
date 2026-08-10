@@ -1002,7 +1002,7 @@
       tabBurgerLabel.textContent = btn.textContent;
       tabSwitcher.classList.remove('menu-open');
       tabBurgerIcon.textContent = '☰';
-      document.querySelector('.tab-switcher').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   });
 </script>
