@@ -218,6 +218,7 @@
   <button class="tab-btn active" data-tab="tab-main">Main Site (Existing)</button>
   <button class="tab-btn" data-tab="tab-start-here">Start Here (New Page)</button>
   <button class="tab-btn" data-tab="tab-diagram">Overview Diagram</button>
+  <button class="tab-btn" data-tab="tab-checklist">Things We Need To Cover Off</button>
 </div>
 
 <div id="tab-main" class="tab-panel active">
@@ -237,7 +238,7 @@
       <p style="font-size:0.85rem; color:#444;">The full new-member journey from the brief lives here instead — answering Is this for me? / What do I get? / What happens when I join? / How do I get started? Reached via the homepage banner, a new nav item, and any acquisition marketing (ads, bio links, QR codes at the gym).</p>
     </div>
   </div>
-  <p style="font-size:0.85rem; color:#444; max-width:760px; margin-bottom:12px;"><strong>How to use this document:</strong> look at the live dev site first (<span style="text-decoration:underline;">ducks-new-build.fitnessatthestreet.pages.dev</span>), then use the three tabs above — <strong>Main Site</strong> for what already exists and why, <strong>Start Here</strong> for the new journey page in full detail, and <strong>Overview Diagram</strong> if you just want the shape of the idea without reading everything. Every section carries a reviewer note explaining <em>why</em> it's structured that way, and a confirmation flag anywhere we're not certain we've got the real detail right. Nothing here is final — it's a starting point for a conversation about the logic, not a design.</p>
+  <p style="font-size:0.85rem; color:#444; max-width:760px; margin-bottom:12px;"><strong>How to use this document:</strong> look at the live dev site first (<span style="text-decoration:underline;">ducks-new-build.fitnessatthestreet.pages.dev</span>), then use the four tabs above — <strong>Main Site</strong> for what already exists and why, <strong>Start Here</strong> for the new journey page in full detail, <strong>Overview Diagram</strong> if you just want the shape of the idea without reading everything, and <strong>Things We Need To Cover Off</strong> for the full checklist of open questions and every image that needs reviewing. Every section carries a reviewer note explaining <em>why</em> it's structured that way, and a confirmation flag anywhere we're not certain we've got the real detail right. Nothing here is final — it's a starting point for a conversation about the logic, not a design.</p>
   <p style="font-size:0.85rem; color:#444; max-width:760px;">Once we've talked through the reasoning together and agreed the structure — including whether this parallel approach is the right call — the next step is a higher-fidelity wireframe prototype, and only after that, the real build.</p>
 </section>
 
@@ -832,10 +833,64 @@
 <!-- ── end tab-diagram ── -->
 
 
-<!-- ── Approval / questions ── -->
+<!-- ── Things We Need To Cover Off ── -->
+<div id="tab-checklist" class="tab-panel">
 <div class="approval-section">
-  <h2>Please Confirm</h2>
+  <h2>Things We Need To Cover Off</h2>
   <p class="sub">This is a UX workshop document for Steve and Kim — not a finished marketing website. Please work through these before any detailed design or copywriting starts.</p>
+
+  <h3 style="font-size:1.05rem; margin:8px 0 6px;">Image library checklist</h3>
+  <p style="font-size:0.85rem; color:#444; margin-bottom:16px;">Every image currently on the site, treated as <strong>not confirmed sufficient</strong> by default — nothing here should be assumed "done" just because it's already live. The trainer profile photos specifically are known to be poor quality (cropped from photographed print flyers and a candid gym photo) and need proper high-res replacements. Everything else needs an honest look, not an assumption.</p>
+
+  <table style="width:100%; border-collapse:collapse; margin-bottom:24px; font-size:0.82rem;">
+    <tr style="border-bottom:1px solid #ccc; text-align:left; background:#f0f0f0;">
+      <th style="padding:8px;">Category</th>
+      <th style="padding:8px;">Current assets</th>
+      <th style="padding:8px;">Status</th>
+    </tr>
+    <tr style="border-bottom:1px solid #e5e5e5;">
+      <td style="padding:8px; font-weight:700;">Trainer profiles (3)</td>
+      <td style="padding:8px;">Stephen, Kim, Nikki headshots on the Instructors page</td>
+      <td style="padding:8px;"><span class="status-badge status-missing">Known poor quality</span> — cropped from photographed print flyers / a candid photo, not proper headshots. Needs a real photoshoot.</td>
+    </tr>
+    <tr style="border-bottom:1px solid #e5e5e5;">
+      <td style="padding:8px; font-weight:700;">Class images (10)</td>
+      <td style="padding:8px;">Circuit, Decades Reloaded, Kettlebells, Yoga, Powerhaus, Iron Giants, HIIT, Bar Attax, Get A Grip, Bootcamp</td>
+      <td style="padding:8px;"><span class="status-badge status-partial">Not reviewed</span> — pre-existing assets, never individually checked for quality, resolution or whether they're current.</td>
+    </tr>
+    <tr style="border-bottom:1px solid #e5e5e5;">
+      <td style="padding:8px; font-weight:700;">Homepage social wall — events &amp; community (9 tiles)</td>
+      <td style="padding:8px;">Transformation video, grip, Steve &amp; Daniel, samurai, WDC event video, World Women's Day, Yarmouth Half Marathon, social, Daniel video</td>
+      <td style="padding:8px;"><span class="status-badge status-partial">Not reviewed</span> — several are tied to specific past events, which will read as increasingly dated over time even if the photos themselves are fine. Needs a refresh cadence, not just a one-off check.</td>
+    </tr>
+    <tr style="border-bottom:1px solid #e5e5e5;">
+      <td style="padding:8px; font-weight:700;">Homepage / background images</td>
+      <td style="padding:8px;">square_ducks (decorative wall), about_gym (real interior), kimandsteve (team photo)</td>
+      <td style="padding:8px;"><span class="status-badge status-partial">Not reviewed</span> — square_ducks in particular doesn't show the actual gym at all (a decorative plant wall), worth confirming that's intentional branding rather than a placeholder that stuck.</td>
+    </tr>
+    <tr style="border-bottom:1px solid #e5e5e5;">
+      <td style="padding:8px; font-weight:700;">Snowling Stones (2)</td>
+      <td style="padding:8px;">Storefront photo, close-up of the stones</td>
+      <td style="padding:8px;"><span class="status-badge status-partial">Not reviewed</span> — recently added and taken quickly on request; worth confirming they don't need a proper reshoot.</td>
+    </tr>
+    <tr style="border-bottom:1px solid #e5e5e5;">
+      <td style="padding:8px; font-weight:700;">Virtual Tour</td>
+      <td style="padding:8px;">Matterport embed</td>
+      <td style="padding:8px;"><span class="status-badge status-missing">Confirmed not FATS's own</span> — sample from another gym. Real scan needs generating (see Main Site tab).</td>
+    </tr>
+    <tr style="border-bottom:1px solid #e5e5e5;">
+      <td style="padding:8px; font-weight:700;">Equipment detail photography</td>
+      <td style="padding:8px;">None yet</td>
+      <td style="padding:8px;"><span class="status-badge status-missing">Not started</span> — new requirement from the Experienced Lifter path (Start Here tab), needs specialist-kit photography once that content is built.</td>
+    </tr>
+    <tr>
+      <td style="padding:8px; font-weight:700;">Logo / branding</td>
+      <td style="padding:8px;">fats3.png, footer signature</td>
+      <td style="padding:8px;"><span class="status-badge status-partial">Not reviewed</span> — confirm this is the current, correct logo file and not an older version.</td>
+    </tr>
+  </table>
+
+  <h3 style="font-size:1.05rem; margin:24px 0 6px;">Everything else</h3>
   <ol class="confirm-list">
     <li>Who's generating the real FATS Matterport scan, and by when? Both the live Take The Tour page and this concept currently use a sample from another gym.</li>
     <li>For Equipment: once the real scan exists, tag equipment directly inside it, build a dedicated page anyway, or both?</li>
@@ -859,6 +914,8 @@
     "Yes, that's actually what we offer and that's how we want new members to experience us."
   </div>
 </div>
+</div>
+<!-- ── end tab-checklist ── -->
 
 <script>
   document.querySelectorAll('.tab-btn').forEach((btn) => {
