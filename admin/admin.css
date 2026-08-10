@@ -39,7 +39,7 @@ a { color: var(--teal); }
 
 .slot-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; margin-bottom: 20px; }
 .slot-card { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
-.slot-card img, .slot-card video { width: 100%; height: 130px; object-fit: cover; display: block; background: #000; }
+.slot-card img, .slot-card video { width: 100%; height: 130px; object-fit: contain; display: block; background: #000; }
 .slot-body { padding: 10px 12px; }
 .slot-body input[type=text] { width: 100%; margin-bottom: 8px; }
 .slot-body label { font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; display: block; margin-bottom: 3px; }
