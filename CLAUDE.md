@@ -1,10 +1,10 @@
 # Working style
 
-- Tim handles all deployment, uploading, clicking, and form-filling himself
-- Claude writes code and files only — no automated browser or computer actions unless explicitly asked
-- When something needs testing, Tim will share a screenshot
-- Keep responses concise — no lengthy summaries after completing a task
-- Always check with Tim before starting any automated sequence, and confirm understanding back before beginning
+- Routine site edits (HTML/CSS/JS changes, image swaps, content updates) get committed and pushed automatically, same as always — no need to ask each time. Pushing to a branch auto-deploys via Cloudflare Pages' git integration, so this is just the normal workflow, not a "deployment" action requiring sign-off.
+- Tim handles Cloudflare dashboard actions himself (uploading via the admin panel, clicking through settings, form-filling on external sites) — Claude doesn't drive a browser or take computer actions there unless explicitly asked.
+- When something needs visual testing, Tim will share a screenshot.
+- Keep responses concise — no lengthy summaries after completing a task.
+- Still check with Tim before anything genuinely risky or unusual (force-push, branch resets, billing/account changes, etc.) — the automatic-push default is for normal day-to-day edits, not everything.
 
 # Background image approach
 
