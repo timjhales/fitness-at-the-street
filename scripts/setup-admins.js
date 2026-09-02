@@ -41,7 +41,7 @@ async function main() {
   console.log('Bootstraps admin accounts via the one-time /api/admin/setup endpoint.');
   console.log('Only works if admin-users.json is currently empty/deleted in KV.\n');
 
-  const baseUrl = await ask('Site base URL', 'https://ducks-new-build.fitnessatthestreet.pages.dev');
+  const baseUrl = await ask('Site base URL', 'https://fitnessatthestreet.pages.dev');
   const setupToken = await askHidden('SETUP_TOKEN (hidden)');
 
   const users = [];
