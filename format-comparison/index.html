@@ -69,6 +69,33 @@
   }
 
   footer { text-align: center; padding: 60px 32px 0; color: #555; font-size: 0.8rem; }
+
+  /* ── Replica site header/nav (static, not fixed, for page-context previews) ── */
+  .site-frame { background: #17170f; border: 1px solid rgba(82,212,204,0.2); border-radius: 12px; overflow: hidden; margin-bottom: 8px; }
+  .site-frame-inner { background: rgba(23,23,21,0.92); padding: 14px 20px 0; }
+  .site-frame header { padding: 4px 0 0; display: flex; justify-content: center; }
+  .site-frame header img.logo { width: 46%; max-width: 380px; min-width: 180px; height: auto; display: block; }
+  .site-frame nav { border-bottom: 2px solid var(--teal-dark); padding: 0 8px; display: flex; justify-content: center; flex-wrap: wrap; gap: 2px; margin-top: 2px; }
+  .site-frame nav a { color: var(--muted); text-decoration: none; font-size: 0.66rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 8px 10px; border-bottom: 2px solid transparent; margin-bottom: -2px; white-space: nowrap; }
+  .site-frame nav a.active { color: var(--teal); border-bottom-color: var(--teal); }
+  .site-frame nav a.nav-login { color: var(--teal); border: 1px solid var(--teal-dark); border-radius: 4px; margin: 4px 0 5px; padding: 5px 10px; }
+  .site-frame .page-hero { padding: 28px 20px 8px; text-align: center; }
+  .site-frame .page-hero h1 { font-size: 1.5rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.04em; }
+  .site-frame .page-hero h1 em { font-style: normal; color: var(--teal); }
+  .site-frame-body { padding: 8px 20px 24px; }
+
+  /* ── Timetable (matches classes.html) ── */
+  .timetable-section { max-width: 760px; width: 100%; margin: 32px auto 0; }
+  .section-label { font-size: 0.66rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); margin-bottom: 10px; text-align: center; }
+  .timetable-scroll { overflow-x: auto; border-radius: 10px; }
+  table.timetable { width: 100%; min-width: 420px; border-collapse: collapse; background: rgba(23,23,21,0.88); border: 1px solid rgba(82,212,204,0.25); border-radius: 10px; overflow: hidden; }
+  table.timetable thead tr { background: rgba(82,212,204,0.1); border-bottom: 2px solid var(--teal-dark); }
+  table.timetable thead th { padding: 9px 14px; text-align: left; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal); }
+  table.timetable tr.day-header td { padding: 7px 14px; background: rgba(82,212,204,0.07); border-top: 1px solid rgba(82,212,204,0.2); border-bottom: 1px solid rgba(82,212,204,0.1); color: var(--teal); font-size: 0.64rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+  table.timetable tbody tr:not(.day-header) td { padding: 8px 14px; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 0.8rem; color: var(--muted); vertical-align: middle; }
+  table.timetable tbody tr:not(.day-header):last-child td { border-bottom: none; }
+  .class-name { color: var(--text); font-weight: 600; }
+  .time-cell { color: var(--teal); font-weight: 600; white-space: nowrap; }
 </style>
 </head>
 <body>
@@ -147,37 +174,119 @@
 <div class="tab-panel" id="tab-old">
   <section>
     <div class="section-title">Current Classes Page</div>
-    <div class="section-sub">The ten class tiles as they appear on the site today — square photos.</div>
-    <div class="cards-grid">
-      <div class="card-wrap"><div class="site-card"><img src="assets/old-circuit.jpg" alt="Circuit Training"></div><div class="card-name">Circuit Training</div></div>
-      <div class="card-wrap"><div class="site-card"><img src="assets/old-decades.jpg" alt="Decades Reloaded"></div><div class="card-name">Decades Reloaded</div></div>
-      <div class="card-wrap"><div class="site-card"><img src="assets/old-kettlebells.jpg" alt="Kettlebells"></div><div class="card-name">Kettlebells</div></div>
-      <div class="card-wrap"><div class="site-card"><img src="assets/old-yoga.jpg" alt="Yoga"></div><div class="card-name">Yoga</div></div>
-      <div class="card-wrap"><div class="site-card"><img src="assets/old-powerhaus.jpg" alt="Powerhaus"></div><div class="card-name">Powerhaus</div></div>
-      <div class="card-wrap"><div class="site-card"><img src="assets/old-irongiants.jpg" alt="Iron Giants Barbell Club"></div><div class="card-name">Iron Giants Barbell Club</div></div>
-      <div class="card-wrap"><div class="site-card"><img src="assets/old-hiit.jpg" alt="HIIT"></div><div class="card-name">HIIT</div></div>
-      <div class="card-wrap"><div class="site-card"><img src="assets/old-barattax.jpg" alt="Bar Attax"></div><div class="card-name">Bar Attax</div></div>
-      <div class="card-wrap"><div class="site-card"><img src="assets/old-getagrip.jpg" alt="Get A Grip"></div><div class="card-name">Get A Grip</div></div>
-      <div class="card-wrap"><div class="site-card"><img src="assets/old-boatcamp.jpg" alt="Bootcamp"></div><div class="card-name">Bootcamp</div></div>
+    <div class="section-sub">The full page as it appears on the site today — header, tile grid, and timetable together.</div>
+    <div class="site-frame">
+      <div class="site-frame-inner">
+        <header><img src="assets/real-logo.png" alt="Fitness At The Street" class="logo"></header>
+        <nav>
+          <a href="#">Home</a><a href="#">About</a><a href="#" class="active">Classes</a><a href="#">Instructors</a><a href="#">Snowling Stones</a><a href="#">Take The Tour</a><a href="#">Find Us</a><a href="#" class="nav-login">Member Login</a>
+        </nav>
+        <div class="page-hero"><h1>Our <em>Classes</em></h1></div>
+      </div>
+      <div class="site-frame-body">
+        <div class="cards-grid">
+          <div class="card-wrap"><div class="site-card"><img src="assets/old-circuit.jpg" alt="Circuit Training"></div><div class="card-name">Circuit Training</div></div>
+          <div class="card-wrap"><div class="site-card"><img src="assets/old-decades.jpg" alt="Decades Reloaded"></div><div class="card-name">Decades Reloaded</div></div>
+          <div class="card-wrap"><div class="site-card"><img src="assets/old-kettlebells.jpg" alt="Kettlebells"></div><div class="card-name">Kettlebells</div></div>
+          <div class="card-wrap"><div class="site-card"><img src="assets/old-yoga.jpg" alt="Yoga"></div><div class="card-name">Yoga</div></div>
+          <div class="card-wrap"><div class="site-card"><img src="assets/old-powerhaus.jpg" alt="Powerhaus"></div><div class="card-name">Powerhaus</div></div>
+          <div class="card-wrap"><div class="site-card"><img src="assets/old-irongiants.jpg" alt="Iron Giants Barbell Club"></div><div class="card-name">Iron Giants Barbell Club</div></div>
+          <div class="card-wrap"><div class="site-card"><img src="assets/old-hiit.jpg" alt="HIIT"></div><div class="card-name">HIIT</div></div>
+          <div class="card-wrap"><div class="site-card"><img src="assets/old-barattax.jpg" alt="Bar Attax"></div><div class="card-name">Bar Attax</div></div>
+          <div class="card-wrap"><div class="site-card"><img src="assets/old-getagrip.jpg" alt="Get A Grip"></div><div class="card-name">Get A Grip</div></div>
+          <div class="card-wrap"><div class="site-card"><img src="assets/old-boatcamp.jpg" alt="Bootcamp"></div><div class="card-name">Bootcamp</div></div>
+        </div>
+        <div class="timetable-section">
+          <div class="section-label">Full Weekly Schedule</div>
+          <div class="timetable-scroll">
+            <table class="timetable">
+              <thead><tr><th>Time</th><th>Class</th><th>Instructor</th></tr></thead>
+              <tbody>
+                <tr class="day-header"><td colspan="3">Monday</td></tr>
+                <tr><td class="time-cell">13:00</td><td><span class="class-name">Get A Grip</span></td><td>Kim or Steve</td></tr>
+                <tr><td class="time-cell">17:30</td><td><span class="class-name">Suspension &amp; RIP Lab</span></td><td>Kim or Steve</td></tr>
+                <tr><td class="time-cell">18:30</td><td><span class="class-name">Suspension &amp; RIP Lab</span></td><td>Kim or Steve</td></tr>
+                <tr><td class="time-cell">18:30</td><td><span class="class-name">Decades (every 2nd Monday of the month)</span></td><td>Kim</td></tr>
+                <tr class="day-header"><td colspan="3">Tuesday</td></tr>
+                <tr><td class="time-cell">17:30</td><td><span class="class-name">Kettlebells</span></td><td>Steve</td></tr>
+                <tr><td class="time-cell">18:45</td><td><span class="class-name">Pilates</span></td><td>Nikki</td></tr>
+                <tr class="day-header"><td colspan="3">Wednesday</td></tr>
+                <tr><td class="time-cell">17:30</td><td><span class="class-name">PowerHaus</span></td><td>Kim &amp; Steve</td></tr>
+                <tr><td class="time-cell">18:30</td><td><span class="class-name">PowerHaus</span></td><td>Kim &amp; Steve</td></tr>
+                <tr class="day-header"><td colspan="3">Thursday</td></tr>
+                <tr><td class="time-cell">10:00</td><td><span class="class-name">Gentle Fitness (Lingwood Village Hall)</span></td><td>Kim</td></tr>
+                <tr><td class="time-cell">17:30</td><td><span class="class-name">Circuit Class</span></td><td>Kim or Steve</td></tr>
+                <tr><td class="time-cell">18:30</td><td><span class="class-name">Circuit Class</span></td><td>Kim or Steve</td></tr>
+                <tr class="day-header"><td colspan="3">Friday</td></tr>
+                <tr><td class="time-cell">09:30</td><td><span class="class-name">Iron Giants Barbell Club (Term time only)</span></td><td>Kim</td></tr>
+                <tr><td class="time-cell">18:00</td><td><span class="class-name">Hypertrophy</span></td><td>Ryan</td></tr>
+                <tr class="day-header"><td colspan="3">Saturday</td></tr>
+                <tr><td class="time-cell">08:30</td><td><span class="class-name">Boatcamp</span></td><td>Kim or Steve</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 </div>
 
 <div class="tab-panel" id="tab-new">
   <section>
-    <div class="section-title">Classes Page — Adapted For The New Graphics</div>
-    <div class="section-sub">The same grid, using all ten new graphics at their native shape — nothing cropped, logo and class name fully visible on every tile. This is the new artwork shown at its best.</div>
-    <div class="cards-grid native">
-      <div class="card-wrap"><div class="native-card"><img src="assets/new-circuit.png" alt="Circuit Class"></div><div class="card-name">Circuit Class</div></div>
-      <div class="card-wrap"><div class="native-card"><img src="assets/new-decades.png" alt="Decades"></div><div class="card-name">Decades</div></div>
-      <div class="card-wrap"><div class="native-card"><img src="assets/new-kettlebells.png" alt="Kettlebells"></div><div class="card-name">Kettlebells</div></div>
-      <div class="card-wrap"><div class="native-card"><img src="assets/new-pilates.png" alt="Pilates"></div><div class="card-name">Pilates</div></div>
-      <div class="card-wrap"><div class="native-card"><img src="assets/new-powerhaus.png" alt="PowerHaus"></div><div class="card-name">PowerHaus</div></div>
-      <div class="card-wrap"><div class="native-card"><img src="assets/new-irongiants.png" alt="Iron Giants"></div><div class="card-name">Iron Giants</div></div>
-      <div class="card-wrap"><div class="native-card"><img src="assets/new-hypertrophy.png" alt="Hypertrophy"></div><div class="card-name">Hypertrophy</div></div>
-      <div class="card-wrap"><div class="native-card"><img src="assets/new-suspensionrip.png" alt="Suspension & RIP Lab"></div><div class="card-name">Suspension &amp; RIP Lab</div></div>
-      <div class="card-wrap"><div class="native-card"><img src="assets/new-getagrip.png" alt="Get A Grip"></div><div class="card-name">Get A Grip</div></div>
-      <div class="card-wrap"><div class="native-card"><img src="assets/new-boatcamp.png" alt="Boatcamp"></div><div class="card-name">Boatcamp</div></div>
+    <div class="section-title">Classes Page — Updated Format</div>
+    <div class="section-sub">Same header and layout, but the tiles use the new graphics at their native shape — nothing cropped, logo and class name fully visible on every tile.</div>
+    <div class="site-frame">
+      <div class="site-frame-inner">
+        <header><img src="assets/real-logo.png" alt="Fitness At The Street" class="logo"></header>
+        <nav>
+          <a href="#">Home</a><a href="#">About</a><a href="#" class="active">Classes</a><a href="#">Instructors</a><a href="#">Snowling Stones</a><a href="#">Take The Tour</a><a href="#">Find Us</a><a href="#" class="nav-login">Member Login</a>
+        </nav>
+        <div class="page-hero"><h1>Our <em>Classes</em></h1></div>
+      </div>
+      <div class="site-frame-body">
+        <div class="cards-grid native">
+          <div class="card-wrap"><div class="native-card"><img src="assets/new-circuit.png" alt="Circuit Class"></div><div class="card-name">Circuit Class</div></div>
+          <div class="card-wrap"><div class="native-card"><img src="assets/new-decades.png" alt="Decades"></div><div class="card-name">Decades</div></div>
+          <div class="card-wrap"><div class="native-card"><img src="assets/new-kettlebells.png" alt="Kettlebells"></div><div class="card-name">Kettlebells</div></div>
+          <div class="card-wrap"><div class="native-card"><img src="assets/new-pilates.png" alt="Pilates"></div><div class="card-name">Pilates</div></div>
+          <div class="card-wrap"><div class="native-card"><img src="assets/new-powerhaus.png" alt="PowerHaus"></div><div class="card-name">PowerHaus</div></div>
+          <div class="card-wrap"><div class="native-card"><img src="assets/new-irongiants.png" alt="Iron Giants"></div><div class="card-name">Iron Giants</div></div>
+          <div class="card-wrap"><div class="native-card"><img src="assets/new-hypertrophy.png" alt="Hypertrophy"></div><div class="card-name">Hypertrophy</div></div>
+          <div class="card-wrap"><div class="native-card"><img src="assets/new-suspensionrip.png" alt="Suspension & RIP Lab"></div><div class="card-name">Suspension &amp; RIP Lab</div></div>
+          <div class="card-wrap"><div class="native-card"><img src="assets/new-getagrip.png" alt="Get A Grip"></div><div class="card-name">Get A Grip</div></div>
+          <div class="card-wrap"><div class="native-card"><img src="assets/new-boatcamp.png" alt="Boatcamp"></div><div class="card-name">Boatcamp</div></div>
+        </div>
+        <div class="timetable-section">
+          <div class="section-label">Full Weekly Schedule</div>
+          <div class="timetable-scroll">
+            <table class="timetable">
+              <thead><tr><th>Time</th><th>Class</th><th>Instructor</th></tr></thead>
+              <tbody>
+                <tr class="day-header"><td colspan="3">Monday</td></tr>
+                <tr><td class="time-cell">13:00</td><td><span class="class-name">Get A Grip</span></td><td>Kim or Steve</td></tr>
+                <tr><td class="time-cell">17:30</td><td><span class="class-name">Suspension &amp; RIP Lab</span></td><td>Kim or Steve</td></tr>
+                <tr><td class="time-cell">18:30</td><td><span class="class-name">Suspension &amp; RIP Lab</span></td><td>Kim or Steve</td></tr>
+                <tr><td class="time-cell">18:30</td><td><span class="class-name">Decades (every 2nd Monday of the month)</span></td><td>Kim</td></tr>
+                <tr class="day-header"><td colspan="3">Tuesday</td></tr>
+                <tr><td class="time-cell">17:30</td><td><span class="class-name">Kettlebells</span></td><td>Steve</td></tr>
+                <tr><td class="time-cell">18:45</td><td><span class="class-name">Pilates</span></td><td>Nikki</td></tr>
+                <tr class="day-header"><td colspan="3">Wednesday</td></tr>
+                <tr><td class="time-cell">17:30</td><td><span class="class-name">PowerHaus</span></td><td>Kim &amp; Steve</td></tr>
+                <tr><td class="time-cell">18:30</td><td><span class="class-name">PowerHaus</span></td><td>Kim &amp; Steve</td></tr>
+                <tr class="day-header"><td colspan="3">Thursday</td></tr>
+                <tr><td class="time-cell">10:00</td><td><span class="class-name">Gentle Fitness (Lingwood Village Hall)</span></td><td>Kim</td></tr>
+                <tr><td class="time-cell">17:30</td><td><span class="class-name">Circuit Class</span></td><td>Kim or Steve</td></tr>
+                <tr><td class="time-cell">18:30</td><td><span class="class-name">Circuit Class</span></td><td>Kim or Steve</td></tr>
+                <tr class="day-header"><td colspan="3">Friday</td></tr>
+                <tr><td class="time-cell">09:30</td><td><span class="class-name">Iron Giants Barbell Club (Term time only)</span></td><td>Kim</td></tr>
+                <tr><td class="time-cell">18:00</td><td><span class="class-name">Hypertrophy</span></td><td>Ryan</td></tr>
+                <tr class="day-header"><td colspan="3">Saturday</td></tr>
+                <tr><td class="time-cell">08:30</td><td><span class="class-name">Boatcamp</span></td><td>Kim or Steve</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 </div>
