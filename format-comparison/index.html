@@ -72,7 +72,10 @@
 
   /* ── Replica site header/nav (static, not fixed, for page-context previews) ── */
   .site-frame { position: relative; isolation: isolate; border: 1px solid rgba(82,212,204,0.2); border-radius: 12px; overflow: hidden; margin-bottom: 8px; }
-  .site-frame::before { content: ''; position: absolute; inset: -80px -20px; z-index: -2; background: url('assets/page-bg.jpg') center calc(20% + var(--parallax, 0px)) / cover no-repeat; }
+  /* Fixed size (not "cover") — "cover" would scale relative to this small
+     box and zoom in far more than the image appears on an actual, much
+     wider browser viewport. 1600px approximates a real desktop width. */
+  .site-frame::before { content: ''; position: absolute; inset: -80px -20px; z-index: -2; background: url('assets/page-bg.jpg') center calc(20% + var(--parallax, 0px)) / 1600px auto no-repeat; }
   .site-frame::after { content: ''; position: absolute; inset: 0; z-index: -1; background: rgba(23,23,21,0.72); pointer-events: none; }
   .site-frame-inner { padding: 14px 20px 0; }
   .site-frame header { padding: 4px 0 0; display: flex; justify-content: center; }
