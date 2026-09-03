@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Class Graphics — Format & Style Review</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --teal: #52D4CC; --teal-dark: #2FA39D; --bg: #171715; --card: #111; --text: #f0f0f0; --muted: #aaa; --bad: #ff6b6b; --good: #6bffa0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--text); padding: 0 0 80px; }
+
+  header { padding: 48px 32px 32px; text-align: center; border-bottom: 1px solid rgba(82,212,204,0.2); }
+  header h1 { font-size: 1.9rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.03em; }
+  header h1 em { font-style: normal; color: var(--teal); }
+  header p { color: var(--muted); max-width: 640px; margin: 12px auto 0; font-size: 0.95rem; line-height: 1.5; }
+
+  section { max-width: 1100px; margin: 0 auto; padding: 56px 32px 0; }
+  .section-title { font-size: 1.3rem; font-weight: 800; margin-bottom: 6px; }
+  .section-sub { color: var(--muted); font-size: 0.9rem; margin-bottom: 28px; max-width: 720px; line-height: 1.5; }
+
+  /* ── Section A: three-way format demo ── */
+  .format-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .format-item { text-align: center; }
+  .format-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+  .format-label.bad { color: var(--bad); }
+  .format-label.good { color: var(--good); }
+  .format-caption { font-size: 0.8rem; color: var(--muted); margin-top: 10px; line-height: 1.4; }
+
+  /* exact replica of classes.html .class-card */
+  .site-card {
+    position: relative; border-radius: 10px; overflow: hidden; aspect-ratio: 1/1;
+    border: 1px solid rgba(82,212,204,0.2); background: var(--card); margin: 0 auto; max-width: 320px;
+  }
+  .site-card img { width: 100%; height: 100%; object-fit: contain; display: block; }
+
+  .crop-card {
+    position: relative; border-radius: 10px; overflow: hidden; aspect-ratio: 1/1;
+    border: 1px solid rgba(255,107,107,0.4); background: var(--card); margin: 0 auto; max-width: 320px;
+  }
+  .crop-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  .native-card {
+    position: relative; border-radius: 10px; overflow: hidden; aspect-ratio: 1080/1350;
+    border: 1px solid rgba(107,255,160,0.4); background: var(--card); margin: 0 auto; max-width: 320px;
+  }
+  .native-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  /* ── Section B: real vs AI pairs ── */
+  .pairs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 24px; }
+  .pair { background: rgba(255,255,255,0.03); border: 1px solid rgba(82,212,204,0.15); border-radius: 10px; padding: 14px; }
+  .pair-name { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--teal); margin-bottom: 10px; text-align: center; }
+  .pair-imgs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .pair-imgs .site-card { max-width: none; }
+  .pair-tag { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); text-align: center; margin-top: 6px; }
+
+  /* ── Section C: logo ── */
+  .logo-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: center; }
+  .logo-box { background: rgba(255,255,255,0.03); border-radius: 10px; padding: 28px; text-align: center; }
+  .logo-box img { max-width: 100%; height: auto; }
+  .logo-box.crop { overflow: hidden; height: 220px; display: flex; align-items: center; }
+  .logo-box.crop img { width: 100%; height: auto; object-fit: none; object-position: 0 -20px; transform: scale(2.4) translateY(10px); }
+  .logo-tag { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 12px; }
+  .logo-tag.good { color: var(--good); }
+  .logo-tag.bad { color: var(--bad); }
+
+  /* ── Section D: inconsistency within new set ── */
+  .incon-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .incon-row .native-card { max-width: none; }
+
+  @media (max-width: 800px) {
+    .format-row, .logo-row, .incon-row { grid-template-columns: 1fr; }
+  }
+
+  footer { text-align: center; padding: 60px 32px 0; color: #555; font-size: 0.8rem; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Class Graphics — <em>Format &amp; Style</em> Review</h1>
+  <p>A visual comparison of the new AW26 class artwork against the site's current square photo tiles — not merged to the live site, this is a discussion aid only.</p>
+</header>
+
+<section>
+  <div class="section-title">A. What happens to a 4:5 poster in a square tile</div>
+  <div class="section-sub">The site's class tiles are a fixed square. Kim's new graphics are 1080×1350 (4:5 portrait) with the logo pinned to the top and the class name pinned to the bottom. Here's the same image, shown three ways.</div>
+  <div class="format-row">
+    <div class="format-item">
+      <div class="format-label bad">Current site behaviour</div>
+      <div class="site-card"><img src="assets/new-circuit.png" alt="Circuit class graphic, shrunk to fit square tile"></div>
+      <div class="format-caption">Whole image shrinks to fit — dead space top/bottom/sides, image looks small and off-centre inside the card.</div>
+    </div>
+    <div class="format-item">
+      <div class="format-label bad">Forced square crop</div>
+      <div class="crop-card"><img src="assets/new-circuit.png" alt="Circuit class graphic, cropped to square"></div>
+      <div class="format-caption">Fills the tile, but crops the top and bottom — the logo and "CIRCUIT CLASS" text get cut off.</div>
+    </div>
+    <div class="format-item">
+      <div class="format-label good">Native 4:5, uncropped</div>
+      <div class="native-card"><img src="assets/new-circuit.png" alt="Circuit class graphic, full uncropped"></div>
+      <div class="format-caption">The graphic as Kim designed it — logo and class name both fully visible.</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="section-title">B. Real photos vs. new illustrations, class by class</div>
+  <div class="section-sub">The current site tile (real photo, already square) next to the new graphic in the same square tile, for every class that has both.</div>
+  <div class="pairs-grid">
+    <div class="pair">
+      <div class="pair-name">Circuit Training</div>
+      <div class="pair-imgs">
+        <div><div class="site-card"><img src="assets/old-circuit.jpg" alt="Old Circuit Training photo"></div><div class="pair-tag">Current</div></div>
+        <div><div class="site-card"><img src="assets/new-circuit.png" alt="New Circuit Training graphic"></div><div class="pair-tag">New</div></div>
+      </div>
+    </div>
+    <div class="pair">
+      <div class="pair-name">Iron Giants</div>
+      <div class="pair-imgs">
+        <div><div class="site-card"><img src="assets/old-irongiants.jpg" alt="Old Iron Giants photo"></div><div class="pair-tag">Current</div></div>
+        <div><div class="site-card"><img src="assets/new-irongiants.png" alt="New Iron Giants graphic"></div><div class="pair-tag">New</div></div>
+      </div>
+    </div>
+    <div class="pair">
+      <div class="pair-name">Kettlebells</div>
+      <div class="pair-imgs">
+        <div><div class="site-card"><img src="assets/old-kettlebells.jpg" alt="Old Kettlebells photo"></div><div class="pair-tag">Current</div></div>
+        <div><div class="site-card"><img src="assets/new-kettlebells.png" alt="New Kettlebells graphic"></div><div class="pair-tag">New</div></div>
+      </div>
+    </div>
+    <div class="pair">
+      <div class="pair-name">Get A Grip</div>
+      <div class="pair-imgs">
+        <div><div class="site-card"><img src="assets/old-getagrip.jpg" alt="Old Get A Grip photo"></div><div class="pair-tag">Current</div></div>
+        <div><div class="site-card"><img src="assets/new-getagrip.png" alt="New Get A Grip graphic"></div><div class="pair-tag">New</div></div>
+      </div>
+    </div>
+    <div class="pair">
+      <div class="pair-name">Bootcamp / Boatcamp</div>
+      <div class="pair-imgs">
+        <div><div class="site-card"><img src="assets/old-boatcamp.jpg" alt="Old Bootcamp photo"></div><div class="pair-tag">Current</div></div>
+        <div><div class="site-card"><img src="assets/new-boatcamp.png" alt="New Boatcamp graphic"></div><div class="pair-tag">New</div></div>
+      </div>
+    </div>
+    <div class="pair">
+      <div class="pair-name">Powerhaus</div>
+      <div class="pair-imgs">
+        <div><div class="site-card"><img src="assets/old-powerhaus.jpg" alt="Old Powerhaus photo"></div><div class="pair-tag">Current</div></div>
+        <div><div class="site-card"><img src="assets/new-powerhaus.png" alt="New Powerhaus graphic"></div><div class="pair-tag">New</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="section-title">C. Logo accuracy</div>
+  <div class="section-sub">The real brand logo file next to the logo lettering baked into the new graphics.</div>
+  <div class="logo-row">
+    <div class="logo-box">
+      <img src="assets/real-logo.png" alt="Real Fitness At The Street logo" style="filter: invert(0);">
+      <div class="logo-tag good">Real logo (fats3.png) — teal/white, angular slab letterforms</div>
+    </div>
+    <div class="logo-box crop">
+      <img src="assets/new-circuit.png" alt="Logo lettering as rendered inside the new graphic">
+      <div class="logo-tag bad">As rendered in the new graphics — chrome/gold synthwave font, different letterforms and colour palette entirely</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="section-title">D. Even within the new batch, one graphic doesn't match the rest</div>
+  <div class="section-sub">Decades is styled completely differently from the other ten — a real photo with an existing "Decades Reloaded®" brand sticker, not the neon illustration style.</div>
+  <div class="incon-row">
+    <div>
+      <div class="native-card" style="aspect-ratio:1/1;"><img src="assets/new-decades.png" alt="Decades graphic, different style"></div>
+      <div class="format-caption" style="text-align:center;">Decades — photo-based, pink background, existing brand sticker</div>
+    </div>
+    <div>
+      <div class="native-card"><img src="assets/new-circuit.png" alt="Circuit graphic, neon illustration style"></div>
+      <div class="format-caption" style="text-align:center;">Circuit Class — the neon illustration style used everywhere else</div>
+    </div>
+  </div>
+</section>
+
+<footer>Internal review page — not linked from the live site, blocked from search indexing.</footer>
+
+</body>
+</html>
