@@ -71,8 +71,10 @@
   footer { text-align: center; padding: 60px 32px 0; color: #555; font-size: 0.8rem; }
 
   /* ── Replica site header/nav (static, not fixed, for page-context previews) ── */
-  .site-frame { background: #17170f; border: 1px solid rgba(82,212,204,0.2); border-radius: 12px; overflow: hidden; margin-bottom: 8px; }
-  .site-frame-inner { background: rgba(23,23,21,0.92); padding: 14px 20px 0; }
+  .site-frame { position: relative; isolation: isolate; border: 1px solid rgba(82,212,204,0.2); border-radius: 12px; overflow: hidden; margin-bottom: 8px; }
+  .site-frame::before { content: ''; position: absolute; inset: -80px -20px; z-index: -2; background: url('assets/page-bg.jpg') center calc(20% + var(--parallax, 0px)) / cover no-repeat; }
+  .site-frame::after { content: ''; position: absolute; inset: 0; z-index: -1; background: rgba(23,23,21,0.72); pointer-events: none; }
+  .site-frame-inner { padding: 14px 20px 0; }
   .site-frame header { padding: 4px 0 0; display: flex; justify-content: center; }
   .site-frame header img.logo { width: 46%; max-width: 380px; min-width: 180px; height: auto; display: block; }
   .site-frame nav { border-bottom: 2px solid var(--teal-dark); padding: 0 8px; display: flex; justify-content: center; flex-wrap: wrap; gap: 2px; margin-top: 2px; }
@@ -300,8 +302,22 @@
       document.querySelectorAll('.tab-panel').forEach((p) => p.classList.remove('active'));
       btn.classList.add('active');
       document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+      updateFrameParallax();
     });
   });
+
+  // Same idea as the live site's parallax — background drifts with scroll,
+  // scoped to each page-preview frame rather than the whole viewport.
+  function updateFrameParallax() {
+    document.querySelectorAll('.site-frame').forEach((el) => {
+      const rect = el.getBoundingClientRect();
+      const shift = (window.innerHeight / 2 - rect.top) * 0.15;
+      el.style.setProperty('--parallax', shift + 'px');
+    });
+  }
+  window.addEventListener('scroll', updateFrameParallax, { passive: true });
+  window.addEventListener('resize', updateFrameParallax);
+  updateFrameParallax();
 </script>
 
 </body>
