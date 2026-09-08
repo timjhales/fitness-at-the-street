@@ -39,8 +39,23 @@
 
     /* ── Page hero ── */
     .page-hero { padding: 180px 32px 32px; text-align: center; flex-shrink: 0; }
-    .page-hero h1 { font-size: 2.2rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.05em; }
-    .page-hero h1 em { font-style: normal; color: var(--teal); }
+    .page-hero h1 { font-size: 2.2rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.05em; text-shadow: 0 0 24px rgba(236,60,160,0.35), 0 0 48px rgba(82,212,204,0.2); }
+    .page-hero h1 em { font-style: normal; background: linear-gradient(90deg, #52D4CC 0%, #ec3ca0 50%, #ffb347 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+    .retro-badge {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 0.66rem; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase;
+      color: #ec3ca0; margin-bottom: 14px;
+      text-shadow: 0 0 12px rgba(236,60,160,0.6);
+    }
+    .retro-badge span { width: 28px; height: 1px; background: linear-gradient(90deg, transparent, #52D4CC); }
+    .retro-badge span:last-child { background: linear-gradient(90deg, #52D4CC, transparent); }
+
+    .retro-rule {
+      width: 140px; height: 2px; margin: 18px auto 0;
+      background: linear-gradient(90deg, transparent, #52D4CC, #ec3ca0, transparent);
+      box-shadow: 0 0 10px rgba(82,212,204,0.5);
+    }
 
     /* ── Class cards grid ── */
     .cards-section { max-width: 1280px; width: 100%; margin: 0 auto; padding: 8px 32px 48px; flex-shrink: 0; }
@@ -64,6 +79,7 @@
     }
 
     .class-card:hover { box-shadow: 0 0 24px rgba(82,212,204,0.25); }
+    .class-card { cursor: pointer; }
 
     .class-card img {
       width: 100%;
@@ -72,6 +88,30 @@
       display: block;
       transition: transform 0.4s ease;
     }
+
+    /* ── Lightbox ── */
+    .lightbox {
+      position: fixed; inset: 0; z-index: 200;
+      background: rgba(10,4,20,0.92);
+      display: none; align-items: center; justify-content: center;
+      padding: 40px 24px;
+      cursor: zoom-out;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: min(92vw, 520px); max-height: 88vh; width: auto; height: auto;
+      border-radius: 12px; border: 1px solid rgba(82,212,204,0.3);
+      box-shadow: 0 0 60px rgba(82,212,204,0.25);
+      animation: lightbox-in 0.25s ease both;
+    }
+    @keyframes lightbox-in { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: scale(1); } }
+    .lightbox-close {
+      position: absolute; top: 18px; right: 24px;
+      background: none; border: 1px solid rgba(82,212,204,0.4); border-radius: 50%;
+      width: 40px; height: 40px; color: var(--teal); font-size: 1.4rem; line-height: 1;
+      cursor: pointer;
+    }
+    .lightbox-close:hover { background: rgba(82,212,204,0.1); }
 
     .class-card:hover img { transform: scale(1.04); }
 
@@ -92,32 +132,44 @@
     .class-card:nth-child(10) { animation-delay: 0.68s; }
 
 
+    @media (max-width: 700px) {
+      /* Landscape-shaped bg image gets crushed to a sliver by "cover" on a
+         tall narrow screen — swap in a portrait-composed version so the
+         grid/glow/triangles spread across the full scroll instead of
+         bunching at the bottom. */
+      #bg-image { background-image: url('Images/classes_retro/retro-bg-mobile.jpg'); background-position: center 0%; }
+      #header-bg { background-image: url('Images/classes_retro/retro-bg-mobile.jpg'); background-position: center 0%; }
+    }
+
     @media (max-width: 900px) {
       .cards-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
       .cards-section { padding: 8px 16px 40px; }
+      /* Decades and Boatcamp stand alone at full width rather than pairing
+         awkwardly with a neighbour — keeps the grid feeling balanced. */
+      .class-card-wide { grid-column: 1 / -1; max-width: 320px; margin: 0 auto; }
     }
 
-    /* ── Compact timetable ── */
+    /* ── Compact timetable (retro palette — magenta/cyan/sunset, not brand teal) ── */
     .timetable-section { max-width: 760px; width: 100%; margin: 0 auto; padding: 0 32px 64px; flex-shrink: 0; }
 
-    .section-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--teal); margin-bottom: 10px; text-align: center; }
+    .section-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #ec3ca0; margin-bottom: 10px; text-align: center; text-shadow: 0 0 12px rgba(236,60,160,0.5); }
 
     .timetable-scroll { overflow-x: auto; border-radius: 10px;
-      box-shadow: 0 0 40px rgba(82,212,204,0.15), 0 0 80px rgba(82,212,204,0.06); }
+      box-shadow: 0 0 40px rgba(236,60,160,0.12), 0 0 80px rgba(82,212,204,0.08); }
 
     table.timetable {
       width: 100%;
       min-width: 420px;
       border-collapse: collapse;
-      background: rgba(23,23,21,0.88);
-      border: 1px solid rgba(82,212,204,0.25);
+      background: rgba(17,8,28,0.88);
+      border: 1px solid rgba(236,60,160,0.25);
       border-radius: 10px;
       overflow: hidden;
     }
 
     table.timetable thead tr {
-      background: rgba(82,212,204,0.1);
-      border-bottom: 2px solid var(--teal-dark);
+      background: rgba(236,60,160,0.1);
+      border-bottom: 2px solid #ec3ca0;
     }
     table.timetable thead th {
       padding: 11px 16px;
@@ -126,15 +178,15 @@
       font-weight: 700;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--teal);
+      color: #ff9ecf;
     }
 
     table.timetable tr.day-header td {
       padding: 8px 16px;
-      background: rgba(82,212,204,0.07);
-      border-top: 1px solid rgba(82,212,204,0.2);
-      border-bottom: 1px solid rgba(82,212,204,0.1);
-      color: var(--teal);
+      background: rgba(236,60,160,0.08);
+      border-top: 1px solid rgba(236,60,160,0.2);
+      border-bottom: 1px solid rgba(236,60,160,0.12);
+      color: #ff9ecf;
       font-size: 0.68rem;
       font-weight: 700;
       letter-spacing: 0.14em;
@@ -150,12 +202,12 @@
     }
     table.timetable tbody tr:not(.day-header):last-child td { border-bottom: none; }
     table.timetable tbody tr:not(.day-header):hover td {
-      background: rgba(82,212,204,0.05);
+      background: rgba(82,212,204,0.06);
       color: var(--text);
     }
 
     .class-name { color: var(--text); font-weight: 600; }
-    .time-cell { color: var(--teal); font-weight: 600; white-space: nowrap; }
+    .time-cell { color: var(--teal); font-weight: 600; white-space: nowrap; text-shadow: 0 0 8px rgba(82,212,204,0.4); }
 
     @media (max-width: 768px) { .timetable-section { padding: 0 16px 48px; } }
 
@@ -208,7 +260,9 @@
     <div class="bg-content">
 
       <div class="page-hero">
+        <div class="retro-badge"><span></span>AW26 Seasonal Collection<span></span></div>
         <h1>Our <em>Classes</em></h1>
+        <div class="retro-rule"></div>
       </div>
 
       <!-- Class cards -->
@@ -259,6 +313,11 @@
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#fff" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
   </a>
 
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close">&times;</button>
+    <img id="lightbox-img" src="" alt="">
+  </div>
+
   <script>
     const siteTop = document.querySelector('.site-top');
     const offset  = document.querySelector('.page-offset');
@@ -279,21 +338,36 @@
     const RETRO_CLASSES = [
       { src: 'Images/classes_retro/getagrip.jpg',      alt: 'Get A Grip' },
       { src: 'Images/classes_retro/suspensionrip.jpg', alt: 'Suspension & RIP Lab' },
-      { src: 'Images/classes_retro/decades.jpg',        alt: 'Decades' },
+      { src: 'Images/classes_retro/decades.jpg',        alt: 'Decades', wide: true },
       { src: 'Images/classes_retro/kettlebells.jpg',    alt: 'Kettlebells' },
       { src: 'Images/classes_retro/pilates.jpg',        alt: 'Pilates' },
       { src: 'Images/classes_retro/powerhaus.jpg',      alt: 'PowerHaus' },
       { src: 'Images/classes_retro/circuit.jpg',        alt: 'Circuit Class' },
       { src: 'Images/classes_retro/irongiants.jpg',     alt: 'Iron Giants Barbell Club' },
       { src: 'Images/classes_retro/hypertrophy.jpg',    alt: 'Hypertrophy' },
-      { src: 'Images/classes_retro/boatcamp.jpg',       alt: 'Boatcamp' },
+      { src: 'Images/classes_retro/boatcamp.jpg',       alt: 'Boatcamp', wide: true },
     ];
 
     (async function loadClassContent() {
       const grid = document.getElementById('cards-grid');
       grid.innerHTML = RETRO_CLASSES.map((item) =>
-        `<div class="class-card"><img src="${item.src}" alt="${item.alt}"></div>`
+        `<div class="class-card${item.wide ? ' class-card-wide' : ''}" data-src="${item.src}" data-alt="${item.alt}"><img src="${item.src}" alt="${item.alt}"></div>`
       ).join('');
+
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      const openLightbox = (src, alt) => {
+        lightboxImg.src = src;
+        lightboxImg.alt = alt;
+        lightbox.classList.add('open');
+      };
+      const closeLightbox = () => lightbox.classList.remove('open');
+      grid.querySelectorAll('.class-card').forEach((card) => {
+        card.addEventListener('click', () => openLightbox(card.dataset.src, card.dataset.alt));
+      });
+      document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+      lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
 
       try {
         const schedule = await (await fetch('/api/schedule')).json();
@@ -316,7 +390,19 @@
 
     // Parallax: background drifts at 30% of scroll speed, clamped to image bounds
     let _bgW = 0, _bgH = 0;
-    { const i = new Image(); i.onload = () => { _bgW = i.naturalWidth; _bgH = i.naturalHeight; }; i.src = 'Images/classes_retro/retro-bg.jpg'; }
+    function loadBgDimensions() {
+      const isMobile = window.innerWidth <= 700;
+      const src = isMobile ? 'Images/classes_retro/retro-bg-mobile.jpg' : 'Images/classes_retro/retro-bg.jpg';
+      const i = new Image();
+      i.onload = () => { _bgW = i.naturalWidth; _bgH = i.naturalHeight; };
+      i.src = src;
+    }
+    loadBgDimensions();
+    let _lastBgIsMobile = window.innerWidth <= 700;
+    window.addEventListener('resize', () => {
+      const isMobile = window.innerWidth <= 700;
+      if (isMobile !== _lastBgIsMobile) { _lastBgIsMobile = isMobile; loadBgDimensions(); }
+    });
     const parallax = () => {
       let pos;
       if (_bgW && _bgH) {
