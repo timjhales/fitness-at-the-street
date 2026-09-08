@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Classes — Fitness At The Street</title>
   <link rel="stylesheet" href="styles.css">
-  <meta name="description" content="Weekly classes at Fitness At The Street, Brundall — yoga, HIIT, Powerhaus, Iron Giants Barbell Club, kettlebells, bootcamp and more. View the full timetable.">
+  <meta name="description" content="Weekly classes at Fitness At The Street, Brundall — Pilates, PowerHaus, Iron Giants Barbell Club, Kettlebells, Boatcamp and more. View the full timetable.">
   <meta property="og:title" content="Classes — Fitness At The Street">
-  <meta property="og:description" content="Weekly classes at Fitness At The Street, Brundall — yoga, HIIT, Powerhaus, Iron Giants Barbell Club, kettlebells, bootcamp and more.">
+  <meta property="og:description" content="Weekly classes at Fitness At The Street, Brundall — Pilates, PowerHaus, Iron Giants Barbell Club, Kettlebells, Boatcamp and more.">
   <meta property="og:image" content="https://fitnessatthestreet.co.uk/FATSOUTSIDE.jpeg">
   <meta property="og:url" content="https://fitnessatthestreet.co.uk/classes.html">
   <meta property="og:type" content="website">
@@ -16,11 +16,11 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root { --teal: #52D4CC; --teal-dark: #2FA39D; --bg: #171715; --text: #f0f0f0; --muted: #bbb; }
     body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
-    #bg-image { position: fixed; inset: 0; z-index: -2; background: url('Images/dumbell.jpg') center 20% / cover no-repeat; }
-    #bg-overlay { position: fixed; inset: 0; z-index: -1; background: rgba(23,23,21,0.5); pointer-events: none; }
+    #bg-image { position: fixed; inset: 0; z-index: -2; background: url('Images/classes_retro/retro-bg.jpg') center 30% / cover no-repeat; }
+    #bg-overlay { position: fixed; inset: 0; z-index: -1; background: rgba(15,4,26,0.45); pointer-events: none; }
     #header-cover { position: fixed; top: 0; left: 0; right: 0; height: 160px; z-index: 3; overflow: hidden; pointer-events: none; }
-    #header-bg { position: absolute; top: 0; left: 0; right: 0; height: 100vh; background: url('Images/dumbell.jpg') center 20% / cover no-repeat; }
-    #header-bg::after { content: ''; position: absolute; inset: 0; background: rgba(23,23,21,0.5); }
+    #header-bg { position: absolute; top: 0; left: 0; right: 0; height: 100vh; background: url('Images/classes_retro/retro-bg.jpg') center 30% / cover no-repeat; }
+    #header-bg::after { content: ''; position: absolute; inset: 0; background: rgba(15,4,26,0.45); }
 
 
     .site-top { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: transparent; }
@@ -43,28 +43,32 @@
     .page-hero h1 em { font-style: normal; color: var(--teal); }
 
     /* ── Class cards grid ── */
-    .cards-section { max-width: 1100px; width: 100%; margin: 0 auto; padding: 8px 32px 48px; flex-shrink: 0; }
+    .cards-section { max-width: 1280px; width: 100%; margin: 0 auto; padding: 8px 32px 48px; flex-shrink: 0; }
 
     .cards-grid {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
-      gap: 16px;
+      gap: 18px;
     }
 
     .class-card {
       position: relative;
       border-radius: 10px;
       overflow: hidden;
-      aspect-ratio: 1/1;
-      border: 1px solid rgba(82,212,204,0.2);
+      aspect-ratio: 1080/1350;
+      border: 1px solid rgba(82,212,204,0.25);
       cursor: default;
       background: #111;
+      box-shadow: 0 0 0 rgba(82,212,204,0);
+      transition: box-shadow 0.3s ease;
     }
+
+    .class-card:hover { box-shadow: 0 0 24px rgba(82,212,204,0.25); }
 
     .class-card img {
       width: 100%;
       height: 100%;
-      object-fit: contain;
+      object-fit: cover;
       display: block;
       transition: transform 0.4s ease;
     }
@@ -184,7 +188,7 @@
   </div>
 
   <div class="site-top">
-    <header><img src="fats3.png" alt="Fitness At The Street" class="logo"></header>
+    <header><img src="Images/classes_retro/logo-retro.png" alt="Fitness At The Street" class="logo"></header>
     <nav>
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
@@ -268,15 +272,28 @@
       document.querySelectorAll('.nav-login').forEach(l => l.removeAttribute('target'));
     }
 
-    // Class images and weekly schedule are managed from /admin — fetch and render them here
+    // AW26 retro campaign tiles — staged here for review ahead of the seasonal
+    // launch. Not yet wired to /api/class-images (which still holds the prior
+    // square-photo set), so this preview doesn't affect what's live on the
+    // admin-managed data. Move into the admin system once approved.
+    const RETRO_CLASSES = [
+      { src: 'Images/classes_retro/getagrip.jpg',      alt: 'Get A Grip' },
+      { src: 'Images/classes_retro/suspensionrip.jpg', alt: 'Suspension & RIP Lab' },
+      { src: 'Images/classes_retro/decades.jpg',        alt: 'Decades' },
+      { src: 'Images/classes_retro/kettlebells.jpg',    alt: 'Kettlebells' },
+      { src: 'Images/classes_retro/pilates.jpg',        alt: 'Pilates' },
+      { src: 'Images/classes_retro/powerhaus.jpg',      alt: 'PowerHaus' },
+      { src: 'Images/classes_retro/circuit.jpg',        alt: 'Circuit Class' },
+      { src: 'Images/classes_retro/irongiants.jpg',     alt: 'Iron Giants Barbell Club' },
+      { src: 'Images/classes_retro/hypertrophy.jpg',    alt: 'Hypertrophy' },
+      { src: 'Images/classes_retro/boatcamp.jpg',       alt: 'Boatcamp' },
+    ];
+
     (async function loadClassContent() {
-      try {
-        const images = await (await fetch('/api/class-images')).json();
-        const grid = document.getElementById('cards-grid');
-        grid.innerHTML = images.map((item) =>
-          `<div class="class-card"><img src="${item.src}" alt="${item.alt || item.slotLabel || ''}"></div>`
-        ).join('');
-      } catch (e) { /* leave grid empty on failure */ }
+      const grid = document.getElementById('cards-grid');
+      grid.innerHTML = RETRO_CLASSES.map((item) =>
+        `<div class="class-card"><img src="${item.src}" alt="${item.alt}"></div>`
+      ).join('');
 
       try {
         const schedule = await (await fetch('/api/schedule')).json();
@@ -299,7 +316,7 @@
 
     // Parallax: background drifts at 30% of scroll speed, clamped to image bounds
     let _bgW = 0, _bgH = 0;
-    { const i = new Image(); i.onload = () => { _bgW = i.naturalWidth; _bgH = i.naturalHeight; }; i.src = 'Images/dumbell.jpg'; }
+    { const i = new Image(); i.onload = () => { _bgW = i.naturalWidth; _bgH = i.naturalHeight; }; i.src = 'Images/classes_retro/retro-bg.jpg'; }
     const parallax = () => {
       let pos;
       if (_bgW && _bgH) {
