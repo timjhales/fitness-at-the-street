@@ -81,6 +81,12 @@
     .class-card:hover { box-shadow: 0 0 24px rgba(82,212,204,0.25); }
     .class-card { cursor: pointer; }
 
+    /* Decades is a native 1080x1080 square, unlike the other nine (1080x1350
+       portrait) — sharing the default aspect-ratio would crop it into a
+       rectangle, so it gets its own true-square box and isn't force-stretched
+       to match its taller row neighbours. */
+    .class-card.class-card-square { aspect-ratio: 1/1; align-self: start; }
+
     .class-card img {
       width: 100%;
       height: 100%;
@@ -139,6 +145,10 @@
          bunching at the bottom. */
       #bg-image { background-image: url('Images/classes_retro/retro-bg-mobile.jpg'); background-position: center 0%; }
       #header-bg { background-image: url('Images/classes_retro/retro-bg-mobile.jpg'); background-position: center 0%; }
+
+      /* 180px top padding is sized for desktop's taller header — far too
+         much breathing room above the badge on a small screen. */
+      .page-hero { padding: 40px 20px 24px; }
     }
 
     @media (max-width: 900px) {
@@ -338,7 +348,7 @@
     const RETRO_CLASSES = [
       { src: 'Images/classes_retro/getagrip.jpg',      alt: 'Get A Grip' },
       { src: 'Images/classes_retro/suspensionrip.jpg', alt: 'Suspension & RIP Lab' },
-      { src: 'Images/classes_retro/decades.jpg',        alt: 'Decades', wide: true },
+      { src: 'Images/classes_retro/decades.jpg',        alt: 'Decades', wide: true, square: true },
       { src: 'Images/classes_retro/kettlebells.jpg',    alt: 'Kettlebells' },
       { src: 'Images/classes_retro/pilates.jpg',        alt: 'Pilates' },
       { src: 'Images/classes_retro/powerhaus.jpg',      alt: 'PowerHaus' },
@@ -350,9 +360,10 @@
 
     (async function loadClassContent() {
       const grid = document.getElementById('cards-grid');
-      grid.innerHTML = RETRO_CLASSES.map((item) =>
-        `<div class="class-card${item.wide ? ' class-card-wide' : ''}" data-src="${item.src}" data-alt="${item.alt}"><img src="${item.src}" alt="${item.alt}"></div>`
-      ).join('');
+      grid.innerHTML = RETRO_CLASSES.map((item) => {
+        const cls = ['class-card', item.wide && 'class-card-wide', item.square && 'class-card-square'].filter(Boolean).join(' ');
+        return `<div class="${cls}" data-src="${item.src}" data-alt="${item.alt}"><img src="${item.src}" alt="${item.alt}"></div>`;
+      }).join('');
 
       const lightbox = document.getElementById('lightbox');
       const lightboxImg = document.getElementById('lightbox-img');
