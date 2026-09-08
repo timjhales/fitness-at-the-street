@@ -154,6 +154,17 @@
       /* 180px top padding is sized for desktop's taller header — far too
          much breathing room above the badge on a small screen. */
       .page-hero { padding: 40px 20px 24px; }
+
+      /* Generous gap so the background's sunset/grid peak reads as its own
+         intro moment (with parallax) instead of the tile grid immediately
+         cutting into it. Tiles pick up again once the grid has widened out
+         past the peak, rather than right at the point of convergence. */
+      .cards-section { padding-top: 210px; }
+    }
+
+    .nav-overlay a.active {
+      background: linear-gradient(90deg, #52D4CC 0%, #ec3ca0 55%, #ffb347 100%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
     }
 
     @media (max-width: 900px) {
