@@ -43,7 +43,12 @@
     .bg-content { position: relative; z-index: 2; display: flex; flex-direction: column; min-height: 150vh; }
 
     /* ── Page hero ── */
-    .page-hero { padding: 180px 32px 32px; text-align: center; flex-shrink: 0; }
+    /* Extra top padding compensates for the retro logo (cropped tight to a
+       ~3.6:1 aspect) rendering a noticeably shorter header than before —
+       without this, the hero content shifts up into the space where the
+       background's sunset/triangle peak needs room to show below the
+       header rather than being covered by it. */
+    .page-hero { padding: 320px 32px 32px; text-align: center; flex-shrink: 0; }
     .page-hero h1 { font-size: 2.2rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.05em; text-shadow: 0 0 24px rgba(236,60,160,0.35), 0 0 48px rgba(82,212,204,0.2); }
     .page-hero h1 em { font-style: normal; background: linear-gradient(90deg, #52D4CC 0%, #ec3ca0 50%, #ffb347 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
 
@@ -151,9 +156,10 @@
       #bg-image { background-image: url('Images/classes_retro/retro-bg-mobile.jpg'); background-position: center 0%; }
       #header-bg { background-image: url('Images/classes_retro/retro-bg-mobile.jpg'); background-position: center 0%; }
 
-      /* 180px top padding is sized for desktop's taller header — far too
-         much breathing room above the badge on a small screen. */
-      .page-hero { padding: 40px 20px 24px; }
+      /* Same logic as the desktop rule above — the shorter retro header
+         needs a bit of this padding back so the triangle peak still shows
+         below it rather than getting covered by the badge/heading. */
+      .page-hero { padding: 90px 20px 24px; }
 
       /* Generous gap so the background's sunset/grid peak reads as its own
          intro moment (with parallax) instead of the tile grid immediately
