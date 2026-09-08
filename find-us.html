@@ -32,6 +32,20 @@
     nav a.nav-login { color: var(--teal); border: 1px solid var(--teal-dark); border-radius: 4px; margin: 5px 0 7px; padding: 6px 14px; }
     nav a.nav-login:hover { background: rgba(82,212,204,0.1); border-bottom-color: var(--teal-dark); }
 
+    /* AW26 Classes campaign — retro gradient stays visible site-wide
+       (not just when Classes is the active page) so it doesn't
+       disappear as you browse between pages. */
+    nav a[href="classes.html"] {
+      background: linear-gradient(90deg, #52D4CC 0%, #ec3ca0 55%, #ffb347 100%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    nav a[href="classes.html"]:hover { border-bottom-color: #ec3ca0; }
+    .nav-overlay a[href="classes.html"] {
+      background: linear-gradient(90deg, #8affF5 0%, #ff2e9e 50%, #ffd166 100%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+      text-shadow: 0 0 18px rgba(255,46,158,0.75), 0 0 32px rgba(138,255,245,0.5);
+    }
+
     .page-offset { height: 160px; }
 
     .bg-section { position: relative; min-height: 100vh; }
