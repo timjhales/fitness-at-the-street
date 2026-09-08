@@ -43,12 +43,11 @@
     .bg-content { position: relative; z-index: 2; display: flex; flex-direction: column; min-height: 150vh; }
 
     /* ── Page hero ── */
-    /* Extra top padding compensates for the retro logo (cropped tight to a
-       ~3.6:1 aspect) rendering a noticeably shorter header than before —
-       without this, the hero content shifts up into the space where the
-       background's sunset/triangle peak needs room to show below the
-       header rather than being covered by it. */
-    .page-hero { padding: 320px 32px 32px; text-align: center; flex-shrink: 0; }
+    /* .page-offset (JS-measured) already reserves exactly the real header
+       height, so this padding is only the extra distance placing the badge
+       a little below the background's triangle peak (which the parallax JS
+       positions PEAK_BELOW_HEADER=30px under the header) — not a guess. */
+    .page-hero { padding: 70px 32px 32px; text-align: center; flex-shrink: 0; }
     .page-hero h1 { font-size: 2.2rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.05em; text-shadow: 0 0 24px rgba(236,60,160,0.35), 0 0 48px rgba(82,212,204,0.2); }
     .page-hero h1 em { font-style: normal; background: linear-gradient(90deg, #52D4CC 0%, #ec3ca0 50%, #ffb347 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
 
@@ -156,10 +155,8 @@
       #bg-image { background-image: url('Images/classes_retro/retro-bg-mobile.jpg'); background-position: center 0%; }
       #header-bg { background-image: url('Images/classes_retro/retro-bg-mobile.jpg'); background-position: center 0%; }
 
-      /* Same logic as the desktop rule above — the shorter retro header
-         needs a bit of this padding back so the triangle peak still shows
-         below it rather than getting covered by the badge/heading. */
-      .page-hero { padding: 90px 20px 24px; }
+      /* Same logic as the desktop rule above. */
+      .page-hero { padding: 50px 20px 24px; }
 
       /* Generous gap so the background's sunset/grid peak reads as its own
          intro moment (with parallax) instead of the tile grid immediately
@@ -422,13 +419,19 @@
       } catch (e) { /* leave timetable empty on failure */ }
     })();
 
-    // Parallax: background drifts at 30% of scroll speed, clamped to image bounds
+    // Parallax: background drifts with scroll, clamped to image bounds. The
+    // "at rest" position is computed (not guessed) so the sunset/triangle
+    // peak lands a fixed distance below the real, measured header height —
+    // matches Images/classes_retro/retro-bg*.jpg's actual horizon placement
+    // (desktop source is 2400x1800 with the peak at 52% down; mobile source
+    // is 1400x3200 with the peak at 30% down).
     let _bgW = 0, _bgH = 0;
+    const PEAK_BELOW_HEADER = 30; // px gap between header bottom and the peak
     function loadBgDimensions() {
       const isMobile = window.innerWidth <= 700;
       const src = isMobile ? 'Images/classes_retro/retro-bg-mobile.jpg' : 'Images/classes_retro/retro-bg.jpg';
       const i = new Image();
-      i.onload = () => { _bgW = i.naturalWidth; _bgH = i.naturalHeight; };
+      i.onload = () => { _bgW = i.naturalWidth; _bgH = i.naturalHeight; parallax(); };
       i.src = src;
     }
     loadBgDimensions();
@@ -436,13 +439,18 @@
     window.addEventListener('resize', () => {
       const isMobile = window.innerWidth <= 700;
       if (isMobile !== _lastBgIsMobile) { _lastBgIsMobile = isMobile; loadBgDimensions(); }
+      else { parallax(); }
     });
     const parallax = () => {
       let pos;
       if (_bgW && _bgH) {
+        const isMobile = window.innerWidth <= 700;
+        const peakSourceY = isMobile ? _bgH * 0.30 : _bgH * 0.52;
         const scale = Math.max(window.innerWidth / _bgW, window.innerHeight / _bgH);
         const maxShift = Math.max(0, _bgH * scale - window.innerHeight);
-        const baseShift = maxShift * 0.20;
+        const headerH = siteTop ? siteTop.offsetHeight : 0;
+        const desiredShift = peakSourceY * scale - (headerH + PEAK_BELOW_HEADER);
+        const baseShift = Math.min(Math.max(desiredShift, 0), maxShift);
         const shift = Math.min(baseShift + window.scrollY * 0.3, maxShift);
         pos = `-${shift}px`;
       } else {
